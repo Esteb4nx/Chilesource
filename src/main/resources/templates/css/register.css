@@ -1,0 +1,9 @@
+.register-container{
+    margin: auto;
+    width: 400px;
+    height: 800px;
+}
+
+.username-input{
+    width: 100%;
+}
