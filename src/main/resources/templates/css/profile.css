@@ -68,3 +68,30 @@
 .profile-button img{
     margin-left: 5px;
 }
+
+.user-stats-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 820px;
+}
+
+.user-stat{
+    margin: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 180px;
+}
+
+.user-stat p{
+    margin-top: 12px;
+    margin-bottom: 12px;
+    font-size: 18px;
+    text-align: center;
+
+}
+
+.user-stat hr{
+    margin: 0;
+}

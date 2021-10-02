@@ -23,6 +23,7 @@
         includeHTML();
     </script>
 
+    <!-- Body -->
     <main class="main-container">
         <!-- <h1>Perfil</h1>
         <hr> -->
@@ -70,8 +71,12 @@
                     </tbody>
                 </table>
                 <div class="profile-buttons-container">
-                    <button class="btn profile-button" type="submit">Favoritos <img src="./media/icons/star.svg" width="18px" alt=""></button>
-                    <button class="btn profile-button" type="submit">Editar perfil <img src="./media/icons/pencil.svg" width="18px" alt=""></button>
+                    <a href="./favorites.html">
+                        <button class="btn profile-button" type="submit">Favoritos <img src="./media/icons/star.svg" width="18px" alt=""></button>
+                    </a>
+                    <a href="./edit-profile.html">
+                        <button class="btn profile-button" type="submit">Editar perfil <img src="./media/icons/pencil.svg" width="18px" alt=""></button>
+                    </a>
                 </div>
                 
             </div>
@@ -79,6 +84,25 @@
 
         <hr>
 
+        <div class="user-stats-container">
+            <div class="user-stat">
+                <p class="fw-bold"> N° de Post's</p>
+                <hr>
+                <p>3</p>
+            </div>
+
+            <div class="user-stat">
+                <p class="fw-bold"> N° de Comentarios</p>
+                <hr>
+                <p>102</p>
+            </div>
+
+            <div class="user-stat">
+                <p class="fw-bold"> N° de Favoritos</p>
+                <hr>
+                <p>31</p>
+            </div>
+        </div>
     </main>
 
 
