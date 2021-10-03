@@ -50,3 +50,16 @@ body{
     padding: 0;
     /* background-color: rgb(235, 235, 235); */
 }
+
+.categorias.show{
+    padding: 4px;
+    display: flex;
+    min-width: 410px;
+    flex-wrap: wrap;
+}
+
+.categorias.show li{
+    width: 100px;
+    text-align: center;
+
+}
