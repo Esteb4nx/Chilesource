@@ -1,0 +1,30 @@
+[
+    {
+        "title": "Java",
+        "description": "Java Web, Java Server, Deskptop Dev, Game Dev",
+        "icon": "java.png",
+        "path": "java.html"
+    },
+    {
+        "title": "Python",
+        "description": "Matplotlib, Ciencia de datos, Machine learning, discusiones varias de Python, módulos, temas Python",
+        "icon": "python.png",
+        "path": "python.html"
+    },
+    {
+        "title": "C/C++",
+        "description": "Desarrollo en C, embedding, Game Dev, todo lo relacionado a estos lenguajes",
+        "icon": "c-logo.png",
+        "path": "c-cpp.html"
+    },
+    {
+        "title": "JavaScript",
+        "description": "Desarrollo front y backend, frameworks js, módulos js, vue.js, angular, react, entre otras discusiones",
+        "icon": "javascript.png",
+        "path": "javascript.html"
+    },
+    {
+        "title": "Kotlin",
+        "description": ""
+    }
+]

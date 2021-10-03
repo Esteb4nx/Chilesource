@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +12,8 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/include.js"></script>
+    <!-- INCLUDING JQUERY-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
     <style>
         td a {
@@ -31,82 +34,80 @@
     <main class="container pt-5">
         <h1>Foro de Chilesource</h1>
         <p>Comienza en alguna de estas categorías:</p>
-        <table class="table table-bordered table-hover table-categories">
+        <table class="table table-bordered table-hover table-categories" id="tabla-1">
             <thead class="table-dark p-5">
                 <tr>
                     <th colspan="2">Programación</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="align-bottom">
-                <td>
-                    <a href="#" class="text-decoration-none">
-                        Java
-                        <p class="text-secondary">Java Web, Java Server, Deskptop Dev, Game Dev</p>
-                    </a>
-                </td>
-                <td> <!-- FIXME: centrar iconos, encontrar forma de poner icono a las categorias -->
-                    <a href="#" class="text-decoration-none">
-                        <img src="media/icons/java.png" alt="Java icon" class="float-end" style="width: 45px;">
-                    </a>
-                </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#" class="text-decoration-none">
-                            Python
-                            <p class="text-secondary">Descripción</p>
-                        </a>
-                    </td>
-                    <td> <!-- FIXME: centrar iconos, encontrar forma de poner icono a las categorias -->
-                        <a href="#" class="text-decoration-none">
-                            <img src="media/icons/python.png" alt="Python icon" class="float-end" style="width: 45px;">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#" class="text-decoration-none">
-                            C/C++
-                            <p class="text-secondary">Descripción</p>
-                        </a>
-                    </td>
-                    <td> <!-- FIXME: centrar iconos, encontrar forma de poner icono a las categorias -->
-                        <a href="#" class="text-decoration-none">
-                            <img src="media/icons/c-logo.png" alt="C/C++ icon" class="float-end" style="width: 45px;">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#" class="text-decoration-none">
-                            JavaScript
-                            <p class="text-secondary">Descripción</p>
-                        </a>
-                    </td>
-                    <td> <!-- FIXME: centrar iconos, encontrar forma de poner icono a las categorias -->
-                        <a href="#" class="text-decoration-none">
-                            <img src="media/icons/javascript.png" alt="Java icon" class="float-end align-middle" style="width: 45px;">
-                        </a>
-                    </td>
-                </tr>
+            <tbody class="align-middle">
+                <script>
+                    $(document).ready(function () {
+
+                        // RECUPERANDO DATOS DESDE JSON (jQuery)
+                        $.getJSON("./data/programming.json",
+                            function (data) {
+                                var category = '';
+
+                                // ITERACIÓN POR LOS OBJETOS
+                                $.each(data, function (key, value) {
+
+                                    // CONSTRUCCIÓN DE LAS FILAS
+                                    // CON JSON DATA
+                                    category += '<tr>';
+                                    category += '<td><a href="foro/'+ value.path + '" class="text-decoration-none">';
+                                    category += value.title;
+                                    category += '<p class="text-secondary">' + value.description +
+                                        '</p></a></td>';
+                                    category += '<td><a href="foro/' + value.path + '" class="text-decoration-none">' +
+                                        '<img src="media/icons/' + value.icon + '" alt="Ícono categoría" class="float-end" style="width: 45px;">';
+                                    category += '</a></td></tr>';
+                                });
+
+                                // INSERTAR FILA A LA TABLA
+                                $('#tabla-1').append(category);
+                            });
+                    });
+                </script>
             </tbody>
         </table>
-        <table class="table table-bordered table-hover">
-            <thead class="table-dark">
+        <table class="table table-bordered table-hover table-categories" id="tabla-2">
+            <thead class="table-dark p-5">
                 <tr>
-                    <th>Hardware</th>
+                    <th colspan="2">Hardware Y Sistemas Operativos</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>
+            <tbody class="align-middle">
+                <script>
+                    $(document).ready(function () {
 
-                    </td>
-                </tr>
+                        // RECUPERANDO DATOS DESDE JSON (jQuery)
+                        $.getJSON("./data/hardware.json",
+                            function (data) {
+                                var category = '';
+
+                                // ITERACIÓN POR LOS OBJETOS
+                                $.each(data, function (key, value) {
+
+                                    // CONSTRUCCIÓN DE LAS FILAS
+                                    // CON JSON DATA
+                                    category += '<tr>';
+                                    category += '<td><a href="foro/'+ value.path + '" class="text-decoration-none">';
+                                    category += value.title;
+                                    category += '<p class="text-secondary">' + value.description +
+                                        '</p></a></td>';
+                                    category += '<td><a href="foro/' + value.path + '" class="text-decoration-none">' +
+                                        '<img src="media/icons/' + value.icon + '" alt="Ícono categoría" class="float-end" style="width: 45px;">';
+                                    category += '</a></td></tr>';
+                                });
+
+                                // INSERTAR FILA A LA TABLA
+                                $('#tabla-2').append(category);
+                            });
+                    });
+                </script>
             </tbody>
         </table>
-
     </main>
 
 
@@ -117,4 +118,5 @@
         includeHTML();
     </script>
 </body>
+
 </html>

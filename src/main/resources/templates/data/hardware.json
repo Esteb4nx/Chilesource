@@ -1,0 +1,30 @@
+[
+    {
+        "title": "Construye tu PC",
+        "description": "Debate y temáticas relacionadas al armado de computadores de escritorio",
+        "icon": "",
+        "path": "buildyourpc.html"
+    },
+    {
+        "title": "GNU/Linux",
+        "description": "Debate todo lo relacionado a SO's basados en el kernel Linux",
+        "icon": "",
+        "path": ""
+    },
+    {
+        "title": "Windows",
+        "description": "Windows NT, Windows server, Windows OS",
+        "icon": "",
+        "path": ""
+    },
+    {
+        "title": "Android, iOS, otros",
+        "description": "",
+        "icon": "",
+        "path": ""
+    },
+    {
+        "title": "Electrónica y desarrollo de Hardware",
+        "description": ""
+    }
+]
