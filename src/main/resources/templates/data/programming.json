@@ -7,7 +7,7 @@
     },
     {
         "title": "Python",
-        "description": "Matplotlib, Ciencia de datos, Machine learning, discusiones varias de Python, módulos, temas Python",
+        "description": "Python 3.9, Matplotlib, Ciencia de datos, Machine learning, discusiones varias de Python, módulos",
         "icon": "python.png",
         "path": "python.html"
     },
@@ -25,6 +25,8 @@
     },
     {
         "title": "Kotlin",
-        "description": ""
+        "description": "",
+        "icon": "kotlin.png",
+        "path": "kotlin.html"
     }
 ]

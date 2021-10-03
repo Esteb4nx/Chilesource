@@ -2,29 +2,31 @@
     {
         "title": "Construye tu PC",
         "description": "Debate y temáticas relacionadas al armado de computadores de escritorio",
-        "icon": "",
+        "icon": "computer.png",
         "path": "buildyourpc.html"
     },
     {
         "title": "GNU/Linux",
         "description": "Debate todo lo relacionado a SO's basados en el kernel Linux",
-        "icon": "",
+        "icon": "linux-logo.png",
         "path": ""
     },
     {
         "title": "Windows",
         "description": "Windows NT, Windows server, Windows OS",
-        "icon": "",
+        "icon": "windows-logo.png",
         "path": ""
     },
     {
         "title": "Android, iOS, otros",
         "description": "",
-        "icon": "",
+        "icon": "smartphone.png",
         "path": ""
     },
     {
         "title": "Electrónica y desarrollo de Hardware",
-        "description": ""
+        "description": "",
+        "icon": "hardware.png",
+        "path": ""
     }
 ]
