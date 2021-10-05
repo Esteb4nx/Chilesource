@@ -19,18 +19,13 @@
             <script>
               $(document).ready(function () {
                 // RECUPERANDO DATOS DESDE JSON (jQuery)
-                $.getJSON("/data/categories.json",
-                  function (data) {
-                    var category = '';
-
-                    // ITERACIÓN POR LOS OBJETOS y construcción de string
-                    $.each(data, function (key, value) {
-                        category += '<li><a class="dropdown-item" href="foro/' + value.path + '">' + value.title + "</a></li>";
-                    });
-
-                    // INSERTAR FILA A LA lista
-                    $('#categories-dropdown').append(category);
+                $.getJSON("/data/categories.json", function (data) {
+                  var items = [];
+                  $.each(data, function (key, value) {
+                    items.push( '<li><a class="dropdown-item" href="foro/' + value.path + '">' + value.title + "</a></li>");
                   });
+                  $('#categories-dropdown').append(items);
+                });
               });
             </script>
             <!-- <li><a class="dropdown-item" href="#">Frontend</a></li> -->
