@@ -1,0 +1,72 @@
+[
+    {
+        "title": "Java",
+        "description": "Java Web, Java Server, Deskptop Dev, Game Dev",
+        "icon": "java.png",
+        "path": "java.html",
+        "super_category": "programming"
+    },
+    {
+        "title": "Python",
+        "description": "Python 3.9, Matplotlib, Ciencia de datos, Machine learning, discusiones varias de Python, módulos",
+        "icon": "python.png",
+        "path": "python.html",
+        "super_category": "programming"
+    },
+    {
+        "title": "C/C++",
+        "description": "Desarrollo en C, embedding, Game Dev, todo lo relacionado a estos lenguajes",
+        "icon": "c-logo.png",
+        "path": "c-cpp.html",
+        "super_category": "programming"
+    },
+    {
+        "title": "JavaScript",
+        "description": "Desarrollo front y backend, frameworks js, módulos js, vue.js, angular, react, entre otras discusiones",
+        "icon": "javascript.png",
+        "path": "javascript.html",
+        "super_category": "programming"
+    },
+    {
+        "title": "Kotlin",
+        "description": "",
+        "icon": "kotlin.png",
+        "path": "kotlin.html",
+        "super_category": "programming"
+    },
+    {
+        "title": "Construye tu PC",
+        "description": "Debate y temáticas relacionadas al armado de computadores de escritorio",
+        "icon": "computer.png",
+        "path": "buildyourpc.html",
+        "super_category": "hardware"
+    },
+    {
+        "title": "GNU/Linux",
+        "description": "Debate todo lo relacionado a SO's basados en el kernel Linux",
+        "icon": "linux-logo.png",
+        "path": "",
+        "super_category": "hardware"
+    },
+    {
+        "title": "Windows",
+        "description": "Windows NT, Windows server, Windows OS",
+        "icon": "windows-logo.png",
+        "path": "",
+        "super_category": "hardware"
+    },
+    {
+        "title": "Android, iOS, otros",
+        "description": "",
+        "icon": "smartphone.png",
+        "path": "",
+        "super_category": "hardware"
+    },
+    {
+        "title": "Electrónica y desarrollo de Hardware",
+        "description": "",
+        "icon": "hardware.png",
+        "path": "",
+        "super_category": "hardware"
+    }
+]

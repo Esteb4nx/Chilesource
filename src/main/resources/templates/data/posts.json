@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Recomendación de libros Java",
+        "author": "John Doe",
+        "category": "java",
+        "timestamp": "dd-mmm-yyyy hh:mm",
+        "content": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt fugit at tenetur quia atque vero, expedita voluptatibus eveniet natus beatae nisi magnam voluptates? Minus excepturi eligendi necessitatibus suscipit et officiis?",
+        "favorites": 0,
+        "comments": [
+            {
+                "author": "Juan Diego",
+                "timestamp": "dd-mm-yyy hh:mm",
+                "content": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt fugit at tenetur quia atque vero, expedita voluptatibus eveniet natus beatae nisi magnam voluptates? Minus excepturi eligendi necessitatibus suscipit et officiis?"
+            }
+        ]
+    }
+]
