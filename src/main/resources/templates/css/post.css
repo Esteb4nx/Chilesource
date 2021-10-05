@@ -4,8 +4,13 @@ h1{
     font-size: 30px;
 }
 
+hr{
+    margin-bottom: 8px;
+}
+
 p{
     margin: 0;
+    /* font-size: 16px; */
 }
 
 .headdata-container{
@@ -20,6 +25,7 @@ p{
 
 .head-info p{
     margin: 0 6px;
+    font-size: 14px;
 }
 
 .head-info-user{
@@ -65,11 +71,36 @@ p{
     padding: 32px;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgb(194, 194, 194);
+    border-right: 1px solid rgb(194, 194, 194);
 }
 
 .post-body{
     display: flex;
     flex-direction: column;
-    
+    text-align: justify;
+    padding: 12px;
+
+}
+
+.post-body hr{
+    margin-top: 6px;
+}
+
+.post-body img{
+    margin: 12px auto;
+}
+
+.post-body-head{
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-body-head p{
+    margin: 0 4px;
+    font-size: 14px;
+}
+
+.post-body-content{
+ display: flex;
+ flex-direction: column;
 }
