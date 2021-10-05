@@ -128,3 +128,37 @@ p{
  display: flex;
  flex-direction: column;
 }
+
+.post-new-commentary{
+    display: flex;
+    /* flex-direction: column; */
+    /* justify-content: space-between; */
+    border: 1px solid rgb(194, 194, 194);
+    margin-top: 24px;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.commentary-editor{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 400px;
+    justify-content: space-between;
+}
+
+.commentary-editor-button {
+    display: flex;
+    padding: 6px;
+    justify-content: space-between;
+}
+
+
+.wysibb-body{
+    min-height: 300px !important;
+    max-height: 300px !important;
+}
+
+#editor{
+    max-height: 300px;
+}

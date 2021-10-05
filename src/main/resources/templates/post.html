@@ -14,6 +14,21 @@
     <link rel="stylesheet" href="./css/post.css">
     <script src="./js/include.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- Editor de texto -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/js/jquery.wysibb.min.js"></script>
+    <link rel="stylesheet" href="/css/wbbtheme.css" />
+    <script>
+        $(function () {
+                var wbbOpt = {
+                    buttons: "bold,italic,underline,|,img,link,|,code,quote",
+                    autoresize: "false",
+                    resize_maxheight: "400px"
+                }
+                $("#editor").wysibb(wbbOpt);
+            })
+    </script>
+
 
     <title>Chilesource</title>
 </head>
@@ -82,6 +97,33 @@
                         Lorem Ipsum.
                     </p>
                     <img src="/media/img/conding-man.jpg" width="256px" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="post-new-commentary">
+            <div class="post-userinfo">
+                <img class="owner-profile-picture" src="media/img/profile-picture.jpg" width="150px" alt="">
+                <p class="userinfo-username">Usuario</p>
+
+                <div class="userinfo-stats">
+                    <p>Post: 12</p>
+                    <p>Comentarios: 2</p>
+                    <p>Favoritos: 7</p>
+                </div>
+                <div class="userinfo-profile">
+                    <p>Chile<img src="./media/icons/chile-flag.svg" width="22px" alt=""></p>
+                    <p>Hombre<img src="./media/icons/male-gender.svg" width="22px" alt=""></p>
+                </div>
+            </div>
+            <div class="commentary-editor"> 
+                <div>
+                    <textarea id="editor"></textarea>
+                </div>
+                <div class="commentary-editor-button">
+                    <p></p>
+                    <button class="btn profile-button">Enviar comentario<img src="./media/icons/message.png" width="18px"
+                        alt=""></button>
                 </div>
             </div>
         </div>
