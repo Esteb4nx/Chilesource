@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/post.css">
+    <script src="./js/include.js"></script>
+    <title>Chilesource</title>
+</head>
+<body>
+    <!-- Header -->
+    <div w3-include-html="./components/header.html"></div>
+    <script>
+        includeHTML();
+    </script>
+
+    <main class="main-container">
+        <h1>Flutter, la revolución del desarrollo movil</h1>
+        <hr>
+        <div class="headdata-container">
+            <div class="head-info">
+                <div class="head-info-user">
+                    <img src="media/icons/profile-user.svg" width="22px" alt="">
+                    <p>Usuario</p>
+                </div>
+                <div class="head-info-date">
+                    <img src="media/icons/clock.png" width="22px" alt="">
+                    <p>21 de Sep 2021 12:45 PM</p> 
+                </div>
+            </div>
+
+            <div class="head-buttons">
+                <button class="btn profile-button">Editar publicación <img src="./media/icons/pencil.svg" width="18px" alt=""></button>
+            </div>
+        </div>
+
+        <div class="post-container">
+            <div class="post-userinfo">
+                <img src="media/img/profile-picture.jpg" width="150px" alt="">
+                <p>Usuario</p>
+                <p>Datos del usuario</p>
+            </div>
+
+            <div class="post-body">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+                <img src="/media/img/conding-man.jpg" width="256px" alt="">
+            </div>
+        </div>
+        
+    </main>
+
+    
+
+      <!-- Footer -->
+    <div w3-include-html="./components/footer.html"></div>
+    <script>
+        includeHTML();
+    </script>
+</body>
+</html>
