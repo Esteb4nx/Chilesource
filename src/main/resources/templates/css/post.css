@@ -72,6 +72,30 @@ p{
     display: flex;
     flex-direction: column;
     border-right: 1px solid rgb(194, 194, 194);
+    justify-content: space-between;
+    min-width: 220px;
+}
+
+.owner-profile-picture{
+    align-self: center;
+}
+
+.userinfo-username{
+    font-size: 24px;
+}
+
+.userinfo-desc{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.userinfo-profile p{
+    display: inline;
+}
+
+.userinfo-profile img{
+    margin-left: 4px;
 }
 
 .post-body{
