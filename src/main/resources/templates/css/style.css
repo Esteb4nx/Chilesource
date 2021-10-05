@@ -55,8 +55,10 @@ body{
 .categorias.show{
     padding: 4px;
     display: flex;
+    /* flex-direction: column; */
     min-width: 410px;
     flex-wrap: wrap;
+    z-index: 99;
 }
 
 .categorias.show li{
