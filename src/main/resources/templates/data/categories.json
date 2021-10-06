@@ -4,14 +4,16 @@
         "description": "Java Web, Java Server, Deskptop Dev, Game Dev",
         "icon": "java.png",
         "path": "java.html",
-        "super_category": "programming"
+        "super_category": "programming",
+        "category": "java"
     },
     {
         "title": "Python",
         "description": "Python 3.9, Matplotlib, Ciencia de datos, Machine learning, discusiones varias de Python, módulos",
         "icon": "python.png",
         "path": "python.html",
-        "super_category": "programming"
+        "super_category": "programming",
+        "category": "python"
     },
     {
         "title": "C/C++",
