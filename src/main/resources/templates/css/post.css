@@ -39,6 +39,15 @@ p{
 .head-info-date{
     display: flex;
     align-items: center;
+    padding-right: 14px;
+    margin-right: 20px;
+    border-right: 1px solid rgb(194, 194, 194);
+}
+
+.head-info-tags{
+    display: flex;
+    align-items: center;
+
 }
 
 .profile-button{

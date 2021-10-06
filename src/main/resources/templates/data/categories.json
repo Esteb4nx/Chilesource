@@ -35,7 +35,7 @@
         "super_category": "programming"
     },
     {
-        "title": "Construye tu PC",
+        "title": "PC",
         "description": "Debate y temáticas relacionadas al armado de computadores de escritorio",
         "icon": "computer.png",
         "path": "buildyourpc.html",
@@ -45,28 +45,43 @@
         "title": "GNU/Linux",
         "description": "Debate todo lo relacionado a SO's basados en el kernel Linux",
         "icon": "linux-logo.png",
-        "path": "",
+        "path": "java.html",
         "super_category": "hardware"
     },
     {
         "title": "Windows",
         "description": "Windows NT, Windows server, Windows OS",
         "icon": "windows-logo.png",
-        "path": "",
+        "path": "java.html",
         "super_category": "hardware"
     },
     {
-        "title": "Android, iOS, otros",
+        "title": "Movil",
         "description": "",
         "icon": "smartphone.png",
-        "path": "",
+        "path": "java.html",
         "super_category": "hardware"
     },
     {
-        "title": "Electrónica y desarrollo de Hardware",
+        "title": "Hardware",
         "description": "",
         "icon": "hardware.png",
-        "path": "",
+        "path": "java.html",
+        "super_category": "hardware"
+    },
+    {
+        "title": "Electrónica",
+        "description": "",
+        "icon": "hardware.png",
+        "path": "java.html",
+        "super_category": "hardware"
+    },
+    {
+        "title": "DevOps",
+        "description": "",
+        "icon": "hardware.png",
+        "path": "java.html",
         "super_category": "hardware"
     }
+    
 ]
