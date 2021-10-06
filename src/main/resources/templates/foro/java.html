@@ -76,6 +76,8 @@
                         $.getJSON("/data/posts.json",
                             function (data) {
                                 var post = '';
+                                // sort asc y reverse para orden desc. fuente: https://javascript.info/array-methods#transform-an-array
+                                data.sort((a, b) => a.favorites - b.favorites).reverse();
                                 $.each(data, function (key, value) {
                                     if (value.category === "java") {
                                         var lastComment = value.comments.pop();
