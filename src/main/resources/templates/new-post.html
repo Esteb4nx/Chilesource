@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="/css/edit-post.css">
+    <link rel="stylesheet" href="/css/new-post.css">
     <script src="./js/include.js"></script>
     <title>Chilesource</title>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -36,21 +36,68 @@
 
     <main class="main-container">
         <div class="head-container">
-            <h1>Editar: Titulo de publicación</h1>
+            <h1>Nueva publicación</h1>
             <hr>
         </div>
 
         <div class="post-editor">
-            <div class="editor-container"> <textarea id="editor"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum alias, ea totam dolorum libero repellendus molestiae temporibus est, expedita laborum beatae blanditiis quidem illum corporis ipsum tenetur exercitationem nemo praesentium.</textarea></div>
-            <div class="buttons-container">
-                <div style="display: flex;">
-                    <p style="margin: 0 8px;">Tags: </p>
-                    <input type="text" value="Mobile, Android, IOS, Flutter">
+            <div class="title-form">
+                <label for="">Titulo: </label> <input class="form-control" type="text" name="" id="">
+            </div>
+
+            <div class="middle-container">
+                <div class="editor-container"> 
+                    <textarea id="editor"></textarea>
                 </div>
+
+                <div class="selectors-container">
+                    <table class="table table-hover table-bordered lastpost-table">
+                        <thead style="background-color: #0b7fd1; color: white;">
+                            <tr>
+                                <th id="likes" scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Categoría</option>
+                                        <option value="1">Java</option>
+                                        <option value="2">Python</option>
+                                        <option value="3">C/C++</option>
+                                        <option value="4">JavaScript</option>
+                                        <option value="5">Kotlin</option>
+                                        <option value="6">PC</option>
+                                        <option value="7">GNU/Linux</option>
+                                        <option value="8">Windows</option>
+                                    </select>
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    <div style="display: flex;">
+                                        <p style="margin: 0 8px;">Tags: </p>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+
+
+            <div class="buttons-container">
+
+                
+
+
                 <div style="display: flex;">
                     <button class="btn profile-button" style="margin-right: 12px;">Cancelar <img src="./media/icons/remove.png" width="18px"
                         alt=""></button>
-                    <button class="btn profile-button">Guardar cambios <img src="./media/icons/floppy-disk.png" width="18px"
+                    <button class="btn profile-button">Publicar <img src="./media/icons/plus.png" width="18px"
                             alt=""></button>
                 </div>
             </div>
