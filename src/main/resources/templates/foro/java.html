@@ -115,7 +115,9 @@
             var items = [];
             var lastPost;
             $.each(data, function (key, val) {
-                items.push(val);
+                if (val.category === 'java') {
+                    items.push(val);
+                }
             });
             var auxPost = items[0];
             for (let i = 0; i < items.length; i++) {
