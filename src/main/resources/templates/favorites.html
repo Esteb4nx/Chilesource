@@ -57,30 +57,7 @@
                 </tr>
             </thead>
             <tbody>
-                <script>
-                    $(document).ready(function () {
-                        $.getJSON("./data/posts.json",
-                            function (data) {
-                                var category = '';
-                                $.each(data, function (key, value) {
-                                    category += '<tr>';
-                                    category += '<td><a href="/post.html" class="">' + value.title + '</a></td>';
-
-                                    category += '<td><a href="/profile.html">' + value.author + '</a>';
-                                    category += '<p class="text-secondary" style="font-size: 12px;">' + value.rfc2822 + '</p></td>'
-
-                                    category += '<td>' + value.favorites + '</td>';
-
-                                    category += '<td><button type="button" class="btn btn-danger">Eliminar</button></td>';
-
-                                    category += '</tr>';
-                                });
-
-                                // INSERTAR FILA A LA TABLA
-                                $('#tabla-favorites').append(category);
-                            });
-                    });
-                </script>
+                <!-- Publicaciones -->
             </tbody>
         </table>
     </main>

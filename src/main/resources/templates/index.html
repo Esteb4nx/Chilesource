@@ -41,36 +41,7 @@
                 </tr>
             </thead>
             <tbody class="align-middle">
-                <script>
-                    $(document).ready(function () {
-
-                        // RECUPERANDO DATOS DESDE JSON (jQuery)
-                        $.getJSON("./data/categories.json",
-                            function (data) {
-                                var category = '';
-
-                                // ITERACIÓN POR LOS OBJETOS
-                                $.each(data, function (key, value) {
-                                    // Filtrado
-                                    if (value.super_category === "programming") {
-                                        // CONSTRUCCIÓN DE LAS FILAS
-                                        // CON JSON DATA
-                                        category += '<tr>';
-                                        category += '<td><a href="foro/' + value.path + '" class="text-decoration-none">';
-                                        category += value.title;
-                                        category += '<p class="text-secondary">' + value.description +
-                                            '</p></a></td>';
-                                        category += '<td><a href="foro/' + value.path + '" class="text-decoration-none">' +
-                                            '<img src="media/icons/' + value.icon + '" alt="Ícono categoría" class="float-end" style="width: 45px;">';
-                                        category += '</a></td></tr>';
-                                    }
-                                });
-
-                                // INSERTAR FILA A LA TABLA
-                                $('#tabla-1').append(category);
-                            });
-                    });
-                </script>
+                
             </tbody>
         </table>
         <table class="table table-bordered table-hover table-categories" id="tabla-2">
@@ -80,36 +51,7 @@
                 </tr>
             </thead>
             <tbody class="align-middle">
-                <script>
-                    $(document).ready(function () {
-
-                        // RECUPERANDO DATOS DESDE JSON (jQuery)
-                        $.getJSON("./data/categories.json",
-                            function (data) {
-                                var category = '';
-
-                                // ITERACIÓN POR LOS OBJETOS
-                                $.each(data, function (key, value) {
-                                    // Filtrado
-                                    if (value.super_category === "hardware") {
-                                        // CONSTRUCCIÓN DE LAS FILAS
-                                        // CON JSON DATA
-                                        category += '<tr>';
-                                        category += '<td><a href="foro/' + value.path + '" class="text-decoration-none">';
-                                        category += value.title;
-                                        category += '<p class="text-secondary">' + value.description +
-                                            '</p></a></td>';
-                                        category += '<td><a href="foro/' + value.path + '" class="text-decoration-none">' +
-                                            '<img src="media/icons/' + value.icon + '" alt="Ícono categoría" class="float-end" style="width: 45px;">';
-                                        category += '</a></td></tr>';
-                                    }
-                                });
-
-                                // INSERTAR FILA A LA TABLA
-                                $('#tabla-2').append(category);
-                            });
-                    });
-                </script>
+                
             </tbody>
         </table>
     </main>
@@ -121,24 +63,6 @@
     <script>
         includeHTML();
         includeData();
-        // Lo siguiente lo pasé a la función en include.js/includeData()
-        //  FIXME: solo funciona en el index, prioridad baja, en el video se podría mostrar su funcionamiento solo en index para dar a entender el propósito
-        // las demás páginas tendrían un menú dropdown-categories vacío
-        // $(document).ready(function () {
-        //     // RECUPERANDO DATOS DESDE JSON (jQuery)
-        //     $.getJSON("/data/categories.json",
-        //         function (data) {
-        //             var category = '';
-
-        //             // ITERACIÓN POR LOS OBJETOS y construcción de string
-        //             $.each(data, function (key, value) {
-        //                 category += '<li><a class="dropdown-item" href="foro/' + value.path + '">' + value.title + "</a></li>";
-        //             });
-
-        //             // INSERTAR FILA A LA lista
-        //             $('#categories-dropdown').append(category);
-        //         });
-        // });
     </script>
 </body>
 
