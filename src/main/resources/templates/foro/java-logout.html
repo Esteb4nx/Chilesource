@@ -19,13 +19,15 @@
 
 <body>
     <!-- Header -->
-    <div w3-include-html="../components/header.html"></div>
+    <div w3-include-html="../components/header-logout.html"></div>
     <script>
         includeHTML();
     </script>
 
     <main class="main-container">
         <div class="d-flex flex-row justify-content-between">
+            <div class="p-2 bd-highlight">
+            </div class="p-2 bd-highlight">
             <div class="p-2 bd-highlight">
                 <nav aria-label="...">
                     <ul class="pagination">
@@ -46,38 +48,45 @@
         </div>
 
         <hr>
-        <h1>Favoritos</h1>
-        <table class="table table-bordered" id="tabla-favorites">
+        <h1>Foro Java</h1>
+        <p class="text-secondary" id="category-last-post-info">Última publicación: </p>
+        <table class="table table-bordered" id="tabla-java">
             <thead class="table-secondary">
                 <tr>
                     <th scope="col">Publicación</th>
                     <th scope="col">Autor</th>
+                    <th scope="col">Última actividad</th>
+                    <th scope="col">Comentarios</th>
                     <th scope="col">Favoritos</th>
-                    <th scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
                 <script>
                     $(document).ready(function () {
-                        $.getJSON("./data/posts.json",
+                        $.getJSON("/data/posts.json",
                             function (data) {
-                                var category = '';
+                                var post = '';
+                                // sort asc y reverse para orden desc. fuente: https://javascript.info/array-methods#transform-an-array
+                                data.sort((a, b) => a.favorites - b.favorites).reverse();
                                 $.each(data, function (key, value) {
-                                    category += '<tr>';
-                                    category += '<td><a href="/post.html" class="">' + value.title + '</a></td>';
+                                    if (value.category === "java") {
+                                        var lastComment = value.comments.pop();
+                                        post += '<tr>';
+                                        post += '<td><a href="/post-logout.html" class="">' + value.title + '</a></td>';
 
-                                    category += '<td><a href="/profile.html">' + value.author + '</a>';
-                                    category += '<p class="text-secondary" style="font-size: 12px;">' + value.rfc2822 + '</p></td>'
+                                        post += '<td><a href="/profile.html">' + value.author + '</a>';
+                                        post += '<p class="text-secondary" style="font-size: 12px;">' + value.rfc2822 + '</p></td>'
 
-                                    category += '<td>' + value.favorites + '</td>';
+                                        post += '<td><a href="/profile.html">' + lastComment.author + '</a>';
+                                        post += '<p class="text-secondary" style="font-size: 12px;">' + lastComment.rfc2822 + '</p></td>';
 
-                                    category += '<td><button type="button" class="btn btn-danger">Eliminar</button></td>';
+                                        post += '<td>' + (value.comments.length + 1) + '</td>';
 
-                                    category += '</tr>';
+                                        post += '<td>' + value.favorites + '</td>';
+                                        post += '</tr>';
+                                    }
                                 });
-
-                                // INSERTAR FILA A LA TABLA
-                                $('#tabla-favorites').append(category);
+                                $('#tabla-java').append(post);
                             });
                     });
                 </script>
@@ -92,6 +101,23 @@
     <script>
         includeHTML();
         includeData();
+        $.getJSON("/data/posts.json", function (data) {
+            var items = [];
+            var lastPost;
+            $.each(data, function (key, val) {
+                if (val.category === 'java') {
+                    items.push(val);
+                }
+            });
+            var auxPost = items[0];
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].timestamp > auxPost.timestamp) {
+                    auxPost = items[i];
+                }
+            }
+            // append fecha en formato day-name, day month year hour:minute
+            $('#category-last-post-info').append('<a href=/post-logout.html>' + auxPost.title + '</a> | ' + auxPost.rfc2822);
+        });
     </script>
 </body>
 

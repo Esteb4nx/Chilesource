@@ -16,28 +16,29 @@
             Categorias
           </a>
           <ul class="dropdown-menu categorias" aria-labelledby="navbarDropdown" id="categories-dropdown">
-            <li><a class="dropdown-item"">1</a></li>
-            <li><a class=" dropdown-item"">2</a></li>
-            <li><a class="dropdown-item"">3</a></li>
-            <li><a class=" dropdown-item"">4</a></li>
-
-
+            <script>
+              $(document).ready(function () {
+                // RECUPERANDO DATOS DESDE JSON (jQuery)
+                $.getJSON("/data/categories.json", function (data) {
+                  var items = [];
+                  $.each(data, function (key, value) {
+                    items.push('<li><a class="dropdown-item" href="/foro/' + value.path + '">' + value.title + "</a></li>");
+                  });
+                  $('#categories-dropdown').append(items);
+                });
+              });
+            </script>
+            <!-- <li><a class="dropdown-item" href="#">Frontend</a></li> -->
           </ul>
         </li>
-
-        <!-- If el usuario esta logeado -->
-
         <li class="nav-item">
-          <a class="nav-link active" id="new-post" style="color: white;" aria-current="page" href="/new-post.html">Nueva
-            publicación</a>
+          <a class="nav-link active" id="new-post" style="color: white;" aria-current="page" href="/new-post.html">Nueva publicación</a>
         </li>
       </ul>
-
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
         <button class="btn search-button" type="submit">Buscar</button>
       </form>
-
       <div class="btn-group header-username">
         <button type="button" class="btn btn-secondary dropdown-toggle"
           style="background-color: transparent; border: none; box-shadow: none; outline:none;" data-bs-toggle="dropdown"
@@ -50,41 +51,6 @@
           <li> <a href="/index-logout.html"><button class="dropdown-item" type="button">Cerrar sesión</button></a></li>
         </ul>
       </div>
-
-        <!-- If el usuario NO esta logeado -->
-
-
-      <!-- <div class="btn-group header-username">
-        <button type="button" class="btn btn-secondary dropdown-toggle"
-          style="background-color: transparent; border: none; box-shadow: none; outline:none;" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          <img id="username-header-img" src="/media/icons/profile-user.svg" width="20px" alt=""> Invitado
-        </button>
-
-        <div class="dropdown-menu dropdown-menu-end">
-          <form class="px-4 py-3" action="/index.html">
-            <div class="mb-3">
-              <label for="exampleDropdownFormEmail1" class="form-label">Email</label>
-              <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@dominio.com">
-            </div>
-            <div class="mb-3">
-              <label for="exampleDropdownFormPassword1" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Contraseña">
-            </div>
-            <div class="mb-3">
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                <label class="form-check-label" for="dropdownCheck">
-                  Recordarme
-                </label>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Ingresar</button>
-          </form>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/register.html">No tienes cuenta? Registrate!</a>
-        </div>
-      </div> -->
 
     </div>
   </div>

@@ -29,7 +29,7 @@
 
 <body>
     <!-- Header -->
-    <div w3-include-html="./components/header.html"></div>
+    <div w3-include-html="./components/header-logout.html"></div>
 
     <main class="main-container pt-5">
         <h1>Foro de Chilesource</h1>
@@ -56,7 +56,7 @@
                                         // CONSTRUCCIÓN DE LAS FILAS
                                         // CON JSON DATA
                                         category += '<tr>';
-                                        category += '<td><a href="foro/' + value.path + '" class="text-decoration-none">';
+                                        category += '<td><a href="foro/' + value.category + '-logout.html" class="text-decoration-none">';
                                         category += value.title;
                                         category += '<p class="text-secondary">' + value.description +
                                             '</p></a></td>';
@@ -121,24 +121,6 @@
     <script>
         includeHTML();
         includeData();
-        // Lo siguiente lo pasé a la función en include.js/includeData()
-        //  FIXME: solo funciona en el index, prioridad baja, en el video se podría mostrar su funcionamiento solo en index para dar a entender el propósito
-        // las demás páginas tendrían un menú dropdown-categories vacío
-        // $(document).ready(function () {
-        //     // RECUPERANDO DATOS DESDE JSON (jQuery)
-        //     $.getJSON("/data/categories.json",
-        //         function (data) {
-        //             var category = '';
-
-        //             // ITERACIÓN POR LOS OBJETOS y construcción de string
-        //             $.each(data, function (key, value) {
-        //                 category += '<li><a class="dropdown-item" href="foro/' + value.path + '">' + value.title + "</a></li>";
-        //             });
-
-        //             // INSERTAR FILA A LA lista
-        //             $('#categories-dropdown').append(category);
-        //         });
-        // });
     </script>
 </body>
 
