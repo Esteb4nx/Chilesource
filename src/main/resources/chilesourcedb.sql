@@ -15,21 +15,21 @@ CREATE TABLE session (
 
 DROP TABLE IF EXISTS role;
 CREATE TABLE role (
-	role_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-	role_name VARCHAR(50) NOT NULL,
-	PRIMARY KEY (role_id)
+role_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+role_name VARCHAR(50) NOT NULL,
+PRIMARY KEY (role_id)
 );
 
 DROP TABLE IF EXISTS user;
 CREATE TABLE user (
-	user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-	user_name VARCHAR(100) NOT NULL,
-	user_password VARCHAR(100) NOT NULL,
-	user_email VARCHAR(100) NOT NULL,
-	role_id INT UNSIGNED NOT NULL,
-	PRIMARY KEY (user_id),
-	CONSTRAINT fk_user_role
-	    FOREIGN KEY (role_id) REFERENCES role(role_id)
+    user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_name VARCHAR(100) NOT NULL,
+    user_password VARCHAR(100) NOT NULL,
+    user_email VARCHAR(100) NOT NULL,
+    role_id INT UNSIGNED NOT NULL,
+    PRIMARY KEY (user_id),
+    CONSTRAINT fk_user_role
+        FOREIGN KEY (role_id) REFERENCES role(role_id)
 );
 
 # FIXME: Diseño ERD category pertenece a 1 super_category y super_category tiene n category
@@ -45,6 +45,7 @@ CREATE TABLE category (
     category_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     category_name VARCHAR(255) NOT NULL,
     super_category_id INT UNSIGNED,
+    icon_path TINYTEXT,
     PRIMARY KEY (category_id),
     CONSTRAINT fk_category_super_category
         FOREIGN KEY (super_category_id) REFERENCES super_category(scategory_id)
