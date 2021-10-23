@@ -28,7 +28,8 @@ CREATE TABLE user (
 	user_email VARCHAR(100) NOT NULL,
 	role_id INT UNSIGNED NOT NULL,
 	PRIMARY KEY (user_id),
-	CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role(role_id)
+	CONSTRAINT fk_user_role
+	    FOREIGN KEY (role_id) REFERENCES role(role_id)
 );
 
 # FIXME: Diseño ERD category pertenece a 1 super_category y super_category tiene n category
@@ -45,7 +46,8 @@ CREATE TABLE category (
     category_name VARCHAR(255) NOT NULL,
     super_category_id INT UNSIGNED,
     PRIMARY KEY (category_id),
-    CONSTRAINT fk_super_category FOREIGN KEY (super_category_id) REFERENCES super_category(scategory_id)
+    CONSTRAINT fk_category_super_category
+        FOREIGN KEY (super_category_id) REFERENCES super_category(scategory_id)
 );
 
 
@@ -58,21 +60,22 @@ CREATE TABLE post (
     post_date DATETIME NOT NULL,
     post_category_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (post_id),
-    CONSTRAINT fk_post_category_id FOREIGN KEY (post_category_id) REFERENCES category(category_id)
+    CONSTRAINT fk_post_category
+        FOREIGN KEY (post_category_id) REFERENCES category(category_id)
 );
 
 # POSIBLE FIXME ERD: Interpreté Relación Favorite-User como User guarda N Favorites y Favorite Guarda 1 User
 DROP TABLE IF EXISTS favorite;
 CREATE TABLE favorite (
-                          fav_id INT NOT NULL AUTO_INCREMENT,
-                          fav_date DATETIME NOT NULL,
-                          post_id INT UNSIGNED NOT NULL,
-                          user_id INT UNSIGNED NOT NULL,
-                          PRIMARY KEY (fav_id),
-                          CONSTRAINT fk_post
-                              FOREIGN KEY (post_id) REFERENCES post(post_id),
-                          CONSTRAINT fk_user
-                              FOREIGN KEY (user_id) REFERENCES user(user_id)
+    fav_id INT NOT NULL AUTO_INCREMENT,
+    fav_date DATETIME NOT NULL,
+    post_id INT UNSIGNED NOT NULL,
+    user_id INT UNSIGNED NOT NULL,
+    PRIMARY KEY (fav_id),
+    CONSTRAINT fk_favorite_post
+      FOREIGN KEY (post_id) REFERENCES post(post_id),
+    CONSTRAINT fk_favorite_user
+      FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
 DROP TABLE IF EXISTS commentary;
@@ -83,7 +86,8 @@ CREATE TABLE commentary (
 	c_likes INT UNSIGNED DEFAULT 0,
 	post_id INT UNSIGNED NOT NULL,
 	PRIMARY KEY (commentary_id),
-    CONSTRAINT fk_post FOREIGN KEY (post_id) REFERENCES post(post_id)
+    CONSTRAINT fk_commentary_post
+        FOREIGN KEY (post_id) REFERENCES post(post_id)
 );
 
 SHOW TABLES;
