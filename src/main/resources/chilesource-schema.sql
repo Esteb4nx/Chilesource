@@ -7,12 +7,6 @@ USE chilesourcedb;
 #################
 ##### Tables
 ##################
-DROP TABLE IF EXISTS session;
-CREATE TABLE session (
-    session_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY (session_id)
-);
-
 DROP TABLE IF EXISTS role;
 CREATE TABLE role (
     role_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -32,6 +26,15 @@ CREATE TABLE user (
         FOREIGN KEY (role_id) REFERENCES role(role_id)
 );
 
+DROP TABLE IF EXISTS session;
+CREATE TABLE session (
+    session_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id INT UNSIGNED NOT NULL,
+    PRIMARY KEY (session_id),
+    CONSTRAINT fk_session_user
+        FOREIGN KEY (user_id) REFERENCES user(user_id)
+);
+
 # FIXME: Diseño ERD category pertenece a 1 super_category y super_category tiene n category
 DROP TABLE IF EXISTS super_category;
 CREATE TABLE super_category (
@@ -44,6 +47,7 @@ DROP TABLE IF EXISTS category;
 CREATE TABLE category (
     category_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     category_name VARCHAR(255) NOT NULL,
+    description VARCHAR(255), # TODO UPDATE ERD: Agregar descripción como atributo de category
     super_category_id INT UNSIGNED,
     icon_path TINYTEXT,
     PRIMARY KEY (category_id),
