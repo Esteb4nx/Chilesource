@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -10,16 +11,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/include.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <!-- INCLUDING JQUERY-->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
     <style>
         td a {
             display: block;
-            /* border: 1px solid transparent; */
-            /* padding: 16px; */
         }
     </style>
 
@@ -29,7 +27,7 @@
 
 <body>
     <!-- Header -->
-    <div w3-include-html="./components/header.html"></div>
+    <div th:insert="components/header"></div>
 
     <main class="main-container pt-5">
         <h1>Foro de Chilesource</h1>
@@ -61,7 +59,7 @@
                                         category += '<p class="text-secondary">' + value.description +
                                             '</p></a></td>';
                                         category += '<td><a href="foro/' + value.path + '" class="text-decoration-none">' +
-                                            '<img src="media/icons/' + value.icon + '" alt="Ícono categoría" class="float-end" style="width: 45px;">';
+                                            '<img src=' + value.icon + '"../static/media/icons/" alt="Ícono categoría" class="float-end" style="width: 45px;">';
                                         category += '</a></td></tr>';
                                     }
                                 });
@@ -100,7 +98,7 @@
                                         category += '<p class="text-secondary">' + value.description +
                                             '</p></a></td>';
                                         category += '<td><a href="foro/' + value.path + '" class="text-decoration-none">' +
-                                            '<img src="media/icons/' + value.icon + '" alt="Ícono categoría" class="float-end" style="width: 45px;">';
+                                            '<img src=' + value.icon + '"../static/media/icons/" alt="Ícono categoría" class="float-end" style="width: 45px;">';
                                         category += '</a></td></tr>';
                                     }
                                 });
@@ -117,29 +115,7 @@
 
 
     <!-- Footer -->
-    <div w3-include-html="./components/footer.html"></div>
-    <script>
-        includeHTML();
-        includeData();
-        // Lo siguiente lo pasé a la función en include.js/includeData()
-        //  FIXME: solo funciona en el index, prioridad baja, en el video se podría mostrar su funcionamiento solo en index para dar a entender el propósito
-        // las demás páginas tendrían un menú dropdown-categories vacío
-        // $(document).ready(function () {
-        //     // RECUPERANDO DATOS DESDE JSON (jQuery)
-        //     $.getJSON("/data/categories.json",
-        //         function (data) {
-        //             var category = '';
-
-        //             // ITERACIÓN POR LOS OBJETOS y construcción de string
-        //             $.each(data, function (key, value) {
-        //                 category += '<li><a class="dropdown-item" href="foro/' + value.path + '">' + value.title + "</a></li>";
-        //             });
-
-        //             // INSERTAR FILA A LA lista
-        //             $('#categories-dropdown').append(category);
-        //         });
-        // });
-    </script>
+    <div th:insert ="/components/footer"></div>
 </body>
 
 </html>

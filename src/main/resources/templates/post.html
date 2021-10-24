@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -10,14 +11,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/post.css">
-    <script src="./js/include.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/post.css}">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <!-- Editor de texto -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="/js/jquery.wysibb.min.js"></script>
-    <link rel="stylesheet" href="/css/wbbtheme.css" />
+    <link rel="stylesheet" th:href="@{/css/wbbtheme.css}"/>
+
     <script>
         $(function () {
                 var wbbOpt = {
@@ -35,41 +36,40 @@
 
 <body>
     <!-- Header -->
-    <div w3-include-html="./components/header.html"></div>
-    <script>
-        includeHTML();
-    </script>
+    <div th:insert="components/header"></div>
 
+
+    <!--  -->
     <main class="main-container">
-        <h1>Programación funcional en Java</h1>
+        <h1 id="post_titulo">Titulo de la publicacion</h1>
         <hr>
         <div class="headdata-container">
             <div class="head-info">
                 <div class="head-info-user">
-                    <img src="media/icons/profile-user.svg" width="20px" alt="">
-                    <p>Usuario</p>
+                    <img src="/media/icons/profile-user.svg" width="20px" alt="">
+                    <p id="post_owner">Usuario</p>
                 </div>
                 <div class="head-info-date">
-                    <img src="media/icons/clock.png" width="20px" alt="">
-                    <p>Martes, 05 Oct 2021 15:00</p>
+                    <img src="/media/icons/clock.png" width="20px" alt="">
+                    <p id="post_date">Martes, 05 Oct 2021 15:00</p>
                 </div>
                 <div class="head-info-tags">
-                    <img src="media/icons/tag.png" width="20px" alt="">
-                    <p>Tags: <p>Java, Funcional, JDK 17</p> </p>
+                    <img src="/media/icons/tag.png" width="20px" alt="">
+                    <p>Tags: <p id="post_tags">Java, Funcional, JDK 17</p> </p>
                 </div>
             </div>
 
             <div class="head-buttons">
                 <a href="/edit-post.html">
-                    <button class="btn profile-button">Editar publicación <img src="./media/icons/pencil.svg" width="18px"
-                            alt=""></button>
+                    <button class="btn profile-button">Editar publicación <img src="/media/icons/pencil.svg" width="18px"
+                                                                               alt=""></button>
                 </a>
             </div>
         </div>
 
         <div class="post-container">
             <div class="post-userinfo">
-                <img class="owner-profile-picture" src="media/img/profile-picture.jpg" width="150px" alt="">
+                <img class="owner-profile-picture" src="./media/img/profile-picture.jpg" width="150px" alt="">
                 <p class="userinfo-username">Usuario</p>
 
                 <div class="userinfo-stats">
@@ -78,8 +78,8 @@
                     <p>Favoritos: 7</p>
                 </div>
                 <div class="userinfo-profile">
-                    <p>Chile<img src="./media/icons/chile-flag.svg" width="22px" alt=""></p>
-                    <p>Hombre<img src="./media/icons/male-gender.svg" width="22px" alt=""></p>
+                    <p>Chile<img src="/media/icons/chile-flag.svg" width="22px" alt=""></p>
+                    <p>Hombre<img src="/media/icons/male-gender.svg" width="22px" alt=""></p>
                 </div>
             </div>
 
@@ -109,7 +109,7 @@
 
         <div class="post-new-commentary">
             <div class="post-userinfo">
-                <img class="owner-profile-picture" src="media/img/profile-picture.jpg" width="150px" alt="">
+                <img class="owner-profile-picture" src="/media/img/profile-picture.jpg" width="150px" alt="">
                 <p class="userinfo-username">Usuario</p>
 
                 <div class="userinfo-stats">
@@ -118,8 +118,8 @@
                     <p>Favoritos: 7</p>
                 </div>
                 <div class="userinfo-profile">
-                    <p>Chile<img src="./media/icons/chile-flag.svg" width="22px" alt=""></p>
-                    <p>Hombre<img src="./media/icons/male-gender.svg" width="22px" alt=""></p>
+                    <p>Chile<img src="/media/icons/chile-flag.svg" width="22px" alt=""></p>
+                    <p>Hombre<img src="/media/icons/male-gender.svg" width="22px" alt=""></p>
                 </div>
             </div>
             <div class="commentary-editor"> 
@@ -128,8 +128,8 @@
                 </div>
                 <div class="commentary-editor-button">
                     <p></p>
-                    <button class="btn profile-button">Enviar comentario<img src="./media/icons/message.png" width="18px"
-                        alt=""></button>
+                    <button class="btn profile-button">Enviar comentario<img src="/media/icons/message.png" width="18px"
+                                                                             alt=""></button>
                 </div>
             </div>
         </div>
@@ -139,11 +139,8 @@
 
 
     <!-- Footer -->
-    <div w3-include-html="./components/footer.html"></div>
-    <script>
-        includeHTML();
-        includeData();
-    </script>
+    <div th:insert="components/footer"></div>
+
 </body>
 
 </html>

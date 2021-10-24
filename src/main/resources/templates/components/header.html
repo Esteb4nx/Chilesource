@@ -16,23 +16,16 @@
             Categorias
           </a>
           <ul class="dropdown-menu categorias" aria-labelledby="navbarDropdown" id="categories-dropdown">
-            <script>
-              $(document).ready(function () {
-                // RECUPERANDO DATOS DESDE JSON (jQuery)
-                $.getJSON("/data/categories.json", function (data) {
-                  var items = [];
-                  $.each(data, function (key, value) {
-                    items.push('<li><a class="dropdown-item" href="/foro/' + value.path + '">' + value.title + "</a></li>");
-                  });
-                  $('#categories-dropdown').append(items);
-                });
-              });
-            </script>
+
+            <li><a class="dropdown-item" href="/foro/ruta">1</a></li>
+            <li><a class="dropdown-item" href="/foro/ruta">1</a></li>
+            <li><a class="dropdown-item" href="/foro/ruta">1</a></li>
+
             <!-- <li><a class="dropdown-item" href="#">Frontend</a></li> -->
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" id="new-post" style="color: white;" aria-current="page" href="/new-post.html">Nueva publicación</a>
+          <a class="nav-link active" id="new-post" style="color: white;" aria-current="page" href="/new-post">Nueva publicación</a>
         </li>
       </ul>
       <form class="d-flex">
@@ -46,12 +39,13 @@
           <img id="username-header-img" src="/media/icons/profile-user.svg" width="20px" alt=""> Usuario
         </button>
         <ul class="dropdown-menu dropdown-menu-end user-menu">
-          <li> <a href="/profile.html"><button class="dropdown-item" type="button">Perfil</button></a></li>
-          <li> <a href="/favorites.html"><button class="dropdown-item" type="button">Favoritos</button></a></li>
-          <li> <a href="/index-logout.html"><button class="dropdown-item" type="button">Cerrar sesión</button></a></li>
+          <li> <a href="/profile"><button class="dropdown-item" type="button">Perfil</button></a></li>
+          <li> <a href="/favorites"><button class="dropdown-item" type="button">Favoritos</button></a></li>
+          <li> <a href="/"><button class="dropdown-item" type="button">Cerrar sesión</button></a></li>
         </ul>
       </div>
 
     </div>
   </div>
 </nav>
+
