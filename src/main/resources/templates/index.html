@@ -39,7 +39,7 @@
                 </tr>
             </thead>
             <tbody class="align-middle">
-                <tr th:each="category : ${categorias}">
+                <tr th:each="category : ${categories}">
                     <td>
                         <a th:href="@{/forum(id=${category.id})}" class="text-decoration-none">
                             <p th:text="${category.name}" class=""></p>
