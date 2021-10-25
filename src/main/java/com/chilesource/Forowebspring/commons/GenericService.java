@@ -7,8 +7,6 @@ package com.chilesource.Forowebspring.commons;
 
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -19,35 +17,59 @@ import java.util.Optional;
  * @version 1.0
  */
 public class GenericService<T, ID> {
-    private final CrudRepository<T, Integer> repository;
+    private CrudRepository<T, ID> repository;
 
-    public GenericService(CrudRepository<T, Integer> repository) {
+    public GenericService(CrudRepository<T, ID> repository) {
         this.repository = repository;
     }
 
-    // Obtener todos los registros utilizando el método
-    // findAll() de CrudRepository
-    public List<T> findAll() {
-        List<T> list = new ArrayList<>();
-        Iterable<T> objects = repository.findAll();
-        objects.forEach(list::add);
-        return list;
+    public Iterable<T> findAll() {
+        return repository.findAll();
     }
 
-    public Optional<T> find(int id) {
-        return repository.findById(id);
+    public T findById(ID id) {
+        Optional<T> category = repository.findById(id);
+        return category.orElse(null);
     }
 
-    public T create(T obj) {
-        return repository.save(obj);
+    public T save(T category) {
+        return repository.save(category);
     }
 
-    public T update(T newObj) {
-        return repository.save(newObj);
+    public Iterable<T> saveAll(Iterable<T> objects) {
+        return repository.saveAll(objects);
     }
 
-    public void delete(int id) {
+    boolean existsById(ID id) {
+        return repository.existsById(id);
+    }
+
+    Iterable<T> findAllById(Iterable<ID> ids) {
+        return repository.findAllById(ids);
+    }
+
+    long count() {
+        return repository.count();
+    }
+
+    void deleteById(ID id) {
         repository.deleteById(id);
+    }
+
+    void delete(T entity) {
+        repository.delete(entity);
+    }
+
+    void deleteAllById(Iterable<? extends ID> ids) {
+        repository.deleteAllById(ids);
+    }
+
+    void deleteAll(Iterable<? extends T> entities) {
+        repository.deleteAll(entities);
+    }
+
+    void deleteAll() {
+        repository.deleteAll();
     }
 
 }

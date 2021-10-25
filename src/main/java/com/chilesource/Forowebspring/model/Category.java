@@ -5,6 +5,8 @@
 
 package com.chilesource.Forowebspring.model;
 
+import com.chilesource.Forowebspring.model.SuperCategory;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,17 +23,33 @@ public class Category {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "super_category_id")
-    private int superCategoryId;
-
     @Column(name = "icon_path")
     private String iconPath;
 
-    public Category(int id, String name, String description, int superCategoryId, String iconPath) {
+    /**
+     * Deprecated
+     * Probando relación ManyToOne L36
+     */
+//    @Column(name = "super_category_id")
+//    private int superCategoryId;
+
+    @ManyToOne
+    @JoinColumn(name = "super_category_id")
+    private SuperCategory superCategory;
+
+    public SuperCategory getSuperCategory() {
+        return superCategory;
+    }
+
+    public void setSuperCategory(SuperCategory superCategory) {
+        this.superCategory = superCategory;
+    }
+
+    public Category(int id, String name, String description, SuperCategory superCategory, String iconPath) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.superCategoryId = superCategoryId;
+        this.superCategory = superCategory;
         this.iconPath = iconPath;
     }
 
@@ -64,13 +82,13 @@ public class Category {
         this.description = description;
     }
 
-    public int getSuperCategoryId() {
-        return superCategoryId;
-    }
-
-    public void setSuperCategoryId(int superCategoryId) {
-        this.superCategoryId = superCategoryId;
-    }
+//    public int getSuperCategoryId() {
+//        return superCategoryId;
+//    }
+//
+//    public void setSuperCategoryId(int superCategoryId) {
+//        this.superCategoryId = superCategoryId;
+//    }
 
     public String getIconPath() {
         return iconPath;
