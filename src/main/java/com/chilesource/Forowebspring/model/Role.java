@@ -23,7 +23,6 @@ public class Role {
     }
 
     public Role() {
-
     }
 
     // Getter y setters

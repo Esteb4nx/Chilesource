@@ -24,7 +24,6 @@ public class SuperCategory {
     }
 
     public SuperCategory() {
-
     }
 
     // Getters y setters

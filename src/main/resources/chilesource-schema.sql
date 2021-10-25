@@ -22,6 +22,7 @@ CREATE TABLE user (
     user_email VARCHAR(100) NOT NULL,
     profile_description TEXT,
     profile_picture TEXT,
+
     role_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (user_id),
     CONSTRAINT fk_user_role
@@ -66,9 +67,12 @@ CREATE TABLE post (
     post_body TEXT NOT NULL,
     post_date DATETIME NOT NULL,
     post_category_id INT UNSIGNED NOT NULL,
+    author_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (post_id),
     CONSTRAINT fk_post_category
-        FOREIGN KEY (post_category_id) REFERENCES category(category_id)
+        FOREIGN KEY (post_category_id) REFERENCES category(category_id),
+    CONSTRAINT fk_post_author
+        FOREIGN KEY (author_id) REFERENCES user(user_id)
 );
 
 # POSIBLE FIXME ERD: Interpreté Relación Favorite-User como User guarda N Favorites y Favorite Guarda 1 User

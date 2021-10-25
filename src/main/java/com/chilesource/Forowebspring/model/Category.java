@@ -54,7 +54,6 @@ public class Category {
     }
 
     public Category() {
-
     }
 
     // Getters y setters

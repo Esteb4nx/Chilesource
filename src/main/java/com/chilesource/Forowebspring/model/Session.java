@@ -14,16 +14,16 @@ public class Session {
     @Column(name = "session_id")
     private int sessionId;
 
-    @Column(name = "user_id")
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public Session(int sessionId, int userId) {
+    public Session(int sessionId, User user) {
         this.sessionId = sessionId;
-        this.userId = userId;
+        this.user = user;
     }
 
     public Session() {
-
     }
 
     // Getters y setters
@@ -35,11 +35,11 @@ public class Session {
         this.sessionId = sessionId;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

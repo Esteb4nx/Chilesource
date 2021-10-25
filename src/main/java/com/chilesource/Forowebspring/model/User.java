@@ -29,19 +29,19 @@ public class User {
     @Column(name = "profile_picture")
     private String profile_picture;
 
-    @Column(name = "role_id")
-    private int roleId;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
-    public User(int id, String name, String password, String email, int roleId) {
+    public User(int id, String name, String password, String email, Role role) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.email = email;
-        this.roleId = roleId;
+        this.role = role;
     }
 
     public User() {
-
     }
 
     // Getters y setters
@@ -77,12 +77,12 @@ public class User {
         this.email = email;
     }
 
-    public int getRoleId() {
-        return roleId;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getProfile_description() {
