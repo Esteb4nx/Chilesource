@@ -32,15 +32,17 @@
     <main class="main-container pt-5">
         <h1>Foro de Chilesource</h1>
         <p>Comienza en alguna de estas categorías:</p>
-        <table class="table table-bordered table-hover table-categories" id="tabla-1">
+        <table th:each="superCategory : ${superCategories}" class="table table-bordered table-hover table-categories" id="tabla-1">
             <thead class="table-dark p-5">
                 <tr>
-                    <th colspan="2">Programación</th>
+                    <th th:text="${superCategory.name}" colspan="2"></th>
                 </tr>
             </thead>
-            <tbody class="align-middle">
-                <tr th:each="category : ${categories}">
+            <tbody  class="align-middle">
+            <!-- TODO: O(n^2) evaluar si se puede hacer más eficiente la siguiente estructura  -->
+                <tr th:each="category : ${categories}" th:if="${superCategory.id} == ${category.getSuperCategory().getId()}">
                     <td>
+                        <!-- FIXME: Fusionar celda visualmente con el td de icon, eliminar borde derecho de la celda -->
                         <a th:href="@{/forum(id=${category.id})}" class="text-decoration-none">
                             <p th:text="${category.name}" class=""></p>
                             <p th:text="${category.description}" class="text-secondary"></p>
@@ -52,45 +54,6 @@
                         </a>
                     </td>
                 </tr>
-            </tbody>
-        </table>
-        <table class="table table-bordered table-hover table-categories" id="tabla-2">
-            <thead class="table-dark p-5">
-                <tr>
-                    <th colspan="2">Hardware Y Sistemas Operativos</th>
-                </tr>
-            </thead>
-            <tbody class="align-middle">
-                <script>
-                    $(document).ready(function () {
-
-                        // RECUPERANDO DATOS DESDE JSON (jQuery)
-                        $.getJSON("./data/categories.json",
-                            function (data) {
-                                var category = '';
-
-                                // ITERACIÓN POR LOS OBJETOS
-                                $.each(data, function (key, value) {
-                                    // Filtrado
-                                    if (value.super_category === "hardware") {
-                                        // CONSTRUCCIÓN DE LAS FILAS
-                                        // CON JSON DATA
-                                        category += '<tr>';
-                                        category += '<td><a href="foro/' + value.path + '" class="text-decoration-none">';
-                                        category += value.title;
-                                        category += '<p class="text-secondary">' + value.description +
-                                            '</p></a></td>';
-                                        category += '<td><a href="foro/' + value.path + '" class="text-decoration-none">' +
-                                            '<img src=' + value.icon + '"../static/media/icons/" alt="Ícono categoría" class="float-end" style="width: 45px;">';
-                                        category += '</a></td></tr>';
-                                    }
-                                });
-
-                                // INSERTAR FILA A LA TABLA
-                                $('#tabla-2').append(category);
-                            });
-                    });
-                </script>
             </tbody>
         </table>
     </main>

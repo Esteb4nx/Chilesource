@@ -21,8 +21,8 @@ public class MainController {
     @Autowired
     private CategoryService categoryService;
 
-//    @Autowired
-//    private SuperCategoryService supCategoryService;
+    @Autowired
+    private SuperCategoryService superCategoryService;
 
     // Este constructor serviria en cada controlador, finalmente dejé la etiqueta Autowired en su lugar
     // ya que dos atributos me dejó de compilar por lo que probablemente haya que hacer más de un controlador
@@ -36,10 +36,11 @@ public class MainController {
     public String index(Model model) {
         // Consultar todos los registros
 //        model.addAttribute("superCategories", supCategoryService.findAll());
+        model.addAttribute("superCategories", superCategoryService.findAll());
         model.addAttribute("categories", categoryService.findAll());
 
-        // Consultar por id
-        model.addAttribute("category_1", categoryService.findById(1));
+//        // Consultar por id
+//        model.addAttribute("category_1", categoryService.findById(1));
         return "index";
     }
 
