@@ -13,6 +13,7 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "session_id")
     private int sessionId;
+
     @Column(name = "user_id")
     private int userId;
 

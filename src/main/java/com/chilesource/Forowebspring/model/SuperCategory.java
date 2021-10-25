@@ -10,11 +10,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "super_category")
 public class SuperCategory {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "scategory_id")
     private int id;
+
     @Column(name = "scategory_name")
     private String name;
 

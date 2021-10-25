@@ -10,17 +10,20 @@ import javax.persistence.*;
 @Entity
 //@Table(name = "category")
 public class Category {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
     private int id;
+
     @Column(name = "category_name")
     private String name;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "super_category_id")
     private int superCategoryId;
+
     @Column(name = "icon_path")
     private String iconPath;
 
