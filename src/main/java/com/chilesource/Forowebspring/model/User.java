@@ -23,6 +23,12 @@ public class User {
     @Column(name = "user_email")
     private String email;
 
+    @Column(name = "profile_description")
+    private String profile_description;
+
+    @Column(name = "profile_picture")
+    private String profile_picture;
+
     @Column(name = "role_id")
     private int roleId;
 
@@ -77,5 +83,21 @@ public class User {
 
     public void setRoleId(int roleId) {
         this.roleId = roleId;
+    }
+
+    public String getProfile_description() {
+        return profile_description;
+    }
+
+    public void setProfile_description(String profile_description) {
+        this.profile_description = profile_description;
+    }
+
+    public String getProfile_picture() {
+        return profile_picture;
+    }
+
+    public void setProfile_picture(String profile_picture) {
+        this.profile_picture = profile_picture;
     }
 }

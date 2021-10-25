@@ -9,6 +9,8 @@
    flex-direction: column;
    margin-left: 18px;
    justify-content: space-between;
+    min-width: 460px;
+    max-width: 460px;
 }
 
 .profile-lastpost{

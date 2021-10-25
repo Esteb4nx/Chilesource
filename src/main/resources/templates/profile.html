@@ -27,16 +27,14 @@
     <main class="main-container">
         <!-- <h1>Perfil</h1>
         <hr> -->
+
+
         <div class="profile-container">
-            <div class="profile-picture"><img src="/media/img/profile-picture.jpg" width="256px" alt=""></div>
+            <div class="profile-picture"><img th:src="${user.getProfile_picture()}" width="256px" alt=""></div>
             <div class="profile-info">
                 <div style="padding-top: 8px;">
-                    <h2>Usuario</h2>
-                    <p id="profile-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt fugit
-                        at tenetur quia atque vero,
-                        expedita voluptatibus eveniet natus beatae nisi magnam voluptates? Minus excepturi eligendi
-                        necessitatibus
-                        suscipit et officiis?</p>
+                    <h2 th:text="${user.getName()}"></h2>
+                    <p th:text="${user.getProfile_description()}" id="profile-description"></p>
                 </div>
                 <div id="profile-data">
                     <p>Chile<img src="/media/icons/chile-flag.svg" width="22px" alt=""></p>

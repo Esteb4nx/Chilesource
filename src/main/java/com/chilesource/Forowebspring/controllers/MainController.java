@@ -43,11 +43,6 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/profile")
-    public String profile() {
-
-        return "profile";
-    }
 
     @RequestMapping("/favorites")
     public String favorites() {

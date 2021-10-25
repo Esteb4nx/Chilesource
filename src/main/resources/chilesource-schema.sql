@@ -20,6 +20,8 @@ CREATE TABLE user (
     user_name VARCHAR(100) NOT NULL,
     user_password VARCHAR(100) NOT NULL,
     user_email VARCHAR(100) NOT NULL,
+    profile_description TEXT,
+    profile_picture TEXT,
     role_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (user_id),
     CONSTRAINT fk_user_role
