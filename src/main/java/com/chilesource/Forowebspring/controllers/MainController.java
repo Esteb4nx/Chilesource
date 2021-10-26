@@ -35,12 +35,10 @@ public class MainController {
     @RequestMapping("/")
     public String index(Model model) {
         // Consultar todos los registros
-//        model.addAttribute("superCategories", supCategoryService.findAll());
         model.addAttribute("superCategories", superCategoryService.findAll());
         model.addAttribute("categories", categoryService.findAll());
 
-//        // Consultar por id
-//        model.addAttribute("category_1", categoryService.findById(1));
+
         return "index";
     }
 
@@ -57,19 +55,6 @@ public class MainController {
         return "new-post";
     }
 
-    @GetMapping("/post")
-    //@PathVariable("id") int id
-    public String post() {
-
-        return "post";
-    }
-
-//    @GetMapping("/forum")
-//    //@PathVariable("id") int id
-//    public String forum() {
-//
-//        return "forum";
-//    }
 
     @RequestMapping("/register")
     public String register() {

@@ -71,10 +71,10 @@
             <!--<tr th:each="category : ${categories}" th:if="${superCategory.id} == ${category.getSuperCategory().getId()}">-->
                 <tr th:each="post : ${posts}">
                     <td>
-                        <a th:text="${post.title}" th:href="@{/post/{id} (id=${post.id})}" class=""></a>
+                        <a th:text="${post.title}" th:href="@{/post(id=${post.id})}" class=""></a>
                     </td>
                     <td>
-                        <a th:href="@{/profile/{id} (id = ${post.author.getId()})}">
+                        <a th:href="@{/profile(id = ${post.author.getId()})}">
                             <p th:text="${post.author.getName()}" class="text-secondary" style="font-size: 12px;"></p>
                         </a>
 

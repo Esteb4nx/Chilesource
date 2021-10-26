@@ -6,18 +6,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- include libraries(jQuery, bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
+
+    <!-- stylesheets -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/post.css}">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <!-- Editor de texto -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="/js/jquery.wysibb.min.js"></script>
-    <link rel="stylesheet" th:href="@{/css/wbbtheme.css}"/>
+
+
+    <!-- include summernote css/js-->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.js"></script>
 
     <script>
         $(function () {
@@ -47,7 +52,7 @@
             <div class="head-info">
                 <div class="head-info-user">
                     <img src="/media/icons/profile-user.svg" width="20px" alt="">
-                    <a th:href="@{/profile/{id} (id = ${post.author.getId()})}">
+                    <a th:href="@{/profile(id = ${post.author.getId()})}">
                         <p th:text="${post.author.name}" id="post_owner"></p>
                     </a>
 
@@ -117,15 +122,23 @@
                     <p>Hombre<img src="/media/icons/male-gender.svg" width="22px" alt=""></p>
                 </div>
             </div>
-            <div class="commentary-editor"> 
-                <div>
-                    <textarea id="editor"></textarea>
-                </div>
-                <div class="commentary-editor-button">
-                    <p></p>
-                    <button class="btn profile-button">Enviar comentario<img src="/media/icons/message.png" width="18px"
-                                                                             alt=""></button>
-                </div>
+            <div class="container commentary-editor">
+                <form method="post" th:object="${commentary}">
+                    <div class="form-group">
+                        <label for="content">Contenido:</label>
+                        <textarea type="text" rows="4" id="content" placeholder="Añade contenido a tu publicación"
+                                  class="form-control" th:field="*{content}" autocomplete="off"></textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit form</button>
+                </form>
+<!--                <div>-->
+<!--                    <textarea id="editor"></textarea>-->
+<!--                </div>-->
+<!--                <div class="commentary-editor-button">-->
+<!--                    <p></p>-->
+<!--                    <button class="btn profile-button">Enviar comentario<img src="/media/icons/message.png" width="18px"-->
+<!--                                                                             alt=""></button>-->
+<!--                </div>-->
             </div>
         </div>
 
@@ -135,6 +148,12 @@
 
     <!-- Footer -->
     <div th:insert="components/footer"></div>
+
+    <script>
+        $('#content').summernote({
+            height: 200
+        });
+    </script>
 
 </body>
 

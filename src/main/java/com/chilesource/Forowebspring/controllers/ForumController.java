@@ -37,7 +37,6 @@ public class ForumController {
     @GetMapping("/forum")
     public String forum(@RequestParam(value = "id") int id, Model model) {
         model.addAttribute("category", categoryService.findById(id));
-        //Iterable<Post> posts = postService.findAll();
         model.addAttribute("posts", postService.findAllByCategoryId(id));
 
         return "forum";
