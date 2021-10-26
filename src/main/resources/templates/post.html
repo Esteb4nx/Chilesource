@@ -41,26 +41,29 @@
 
     <!--  -->
     <main class="main-container">
-        <h1 id="post_titulo">Titulo de la publicacion</h1>
+        <h1 th:text="${post.title}" id="post_titulo"></h1>
         <hr>
         <div class="headdata-container">
             <div class="head-info">
                 <div class="head-info-user">
                     <img src="/media/icons/profile-user.svg" width="20px" alt="">
-                    <p id="post_owner">Usuario</p>
+                    <a th:href="@{/profile/{id} (id = ${post.author.getId()})}">
+                        <p th:text="${post.author.name}" id="post_owner"></p>
+                    </a>
+
                 </div>
                 <div class="head-info-date">
                     <img src="/media/icons/clock.png" width="20px" alt="">
-                    <p id="post_date">Martes, 05 Oct 2021 15:00</p>
+                    <p th:text="${post.date}" id="post_date"></p>
                 </div>
                 <div class="head-info-tags">
                     <img src="/media/icons/tag.png" width="20px" alt="">
-                    <p>Tags: <p id="post_tags">Java, Funcional, JDK 17</p> </p>
+                    <p>Tags: <p th:text="${post.category.name}" id="post_tags"></p> </p>
                 </div>
             </div>
 
             <div class="head-buttons">
-                <a href="/edit-post.html">
+                <a th:href="@{/post/edit(id=${post.id})}">
                     <button class="btn profile-button">Editar publicación <img src="/media/icons/pencil.svg" width="18px"
                                                                                alt=""></button>
                 </a>
@@ -69,8 +72,8 @@
 
         <div class="post-container">
             <div class="post-userinfo">
-                <img class="owner-profile-picture" src="./media/img/profile-picture.jpg" width="150px" alt="">
-                <p class="userinfo-username">Usuario</p>
+                <img class="owner-profile-picture" th:src="${post.author.profile_picture}" width="150px" alt="">
+                <p  th:text="${post.author.name}" class="userinfo-username"></p>
 
                 <div class="userinfo-stats">
                     <p>Post: 12</p>
@@ -93,16 +96,8 @@
                     </div>
                 </div>
                 <hr>
-                <div class="post-body-content">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                        but also the leap into electronic typesetting, remaining essentially unchanged. It was
-                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                        and more recently with desktop publishing software like Aldus PageMaker including versions of
-                        Lorem Ipsum.
-                    </p>
-                    <img src="/media/img/conding-man.jpg" width="256px" alt="">
+                <div th:text="${post.body}" class="post-body-content">
+
                 </div>
             </div>
         </div>
