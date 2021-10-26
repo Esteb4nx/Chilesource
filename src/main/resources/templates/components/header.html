@@ -17,9 +17,7 @@
           </a>
           <ul class="dropdown-menu categorias" aria-labelledby="navbarDropdown" id="categories-dropdown">
 
-            <li><a class="dropdown-item" href="/foro/ruta">1</a></li>
-            <li><a class="dropdown-item" href="/foro/ruta">1</a></li>
-            <li><a class="dropdown-item" href="/foro/ruta">1</a></li>
+            <li th:each="category : ${categories}"><a class="dropdown-item" th:text="${category.name}" th:href="@{/forum(id=${category.id})}"></a></li>
 
             <!-- <li><a class="dropdown-item" href="#">Frontend</a></li> -->
           </ul>

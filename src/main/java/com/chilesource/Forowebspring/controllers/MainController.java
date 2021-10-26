@@ -57,20 +57,6 @@ public class MainController {
         return "new-post";
     }
 
-    @GetMapping("/post")
-    //@PathVariable("id") int id
-    public String post() {
-
-        return "post";
-    }
-
-//    @GetMapping("/forum")
-//    //@PathVariable("id") int id
-//    public String forum() {
-//
-//        return "forum";
-//    }
-
     @RequestMapping("/register")
     public String register() {
 
