@@ -65,7 +65,7 @@ CREATE TABLE post (
     /* post_commentary VARCHAR(n) NOT NULL # creo que esta columna no va, FIXME: en ese caso eliminar del ERD */
     post_title VARCHAR(120) NOT NULL,
     post_body TEXT NOT NULL,
-    post_date DATETIME NOT NULL,
+    post_date DATE NOT NULL,
     post_category_id INT UNSIGNED NOT NULL,
     author_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (post_id),

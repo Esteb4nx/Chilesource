@@ -68,35 +68,31 @@
                 </tr>
             </thead>
             <tbody>
-                <script>
-                    $(document).ready(function () {
-                        $.getJSON("/data/posts.json",
-                            function (data) {
-                                var post = '';
-                                // sort asc y reverse para orden desc. fuente: https://javascript.info/array-methods#transform-an-array
-                                data.sort((a, b) => a.favorites - b.favorites).reverse();
-                                $.each(data, function (key, value) {
-                                    if (value.category === "java") {
-                                        var lastComment = value.comments.pop();
-                                        post += '<tr>';
-                                        post += '<td><a href="/post.html" class="">' + value.title + '</a></td>';
+            <!--<tr th:each="category : ${categories}" th:if="${superCategory.id} == ${category.getSuperCategory().getId()}">-->
+                <tr th:each="post : ${posts}" th:if="${post.category.getId()} == ${#request.getParameter('id')}">
+                    <td>
+                        <a th:text="${post.title}" href="/post.html" class=""></a>
+                    </td>
+                    <td>
+                        <a th:href="@{/profile/{id} (id = ${post.author.getId()})}">
+                            <p th:text="${post.author.getName()}" class="text-secondary" style="font-size: 12px;"></p>
+                        </a>
 
-                                        post += '<td><a href="/profile.html">' + value.author + '</a>';
-                                        post += '<p class="text-secondary" style="font-size: 12px;">' + value.rfc2822 + '</p></td>'
+                    </td>
+                    <td>
+                        <a href="/profile.html"></a>
+                        <p class="text-secondary" style="font-size: 12px;">Unknow</p>
+                    </td>
+                    <td>
+                        <a href="/profile.html"></a>
+                        <p class="text-secondary" style="font-size: 12px;">unknow</p>
+                    </td>
+                    <td>
+                        <a href="/profile.html"></a>
+                        <p th:text="${post.category.getId()}" class="text-secondary" style="font-size: 12px;"></p>
+                    </td>
+                </tr>
 
-                                        post += '<td><a href="/profile.html">' + lastComment.author + '</a>';
-                                        post += '<p class="text-secondary" style="font-size: 12px;">' + lastComment.rfc2822 + '</p></td>';
-
-                                        post += '<td>' + (value.comments.length + 1) + '</td>';
-
-                                        post += '<td>' + value.favorites + '</td>';
-                                        post += '</tr>';
-                                    }
-                                });
-                                $('#tabla-java').append(post);
-                            });
-                    });
-                </script>
             </tbody>
         </table>
     </main>

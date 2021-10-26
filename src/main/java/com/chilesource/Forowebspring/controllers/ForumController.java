@@ -6,6 +6,7 @@
 package com.chilesource.Forowebspring.controllers;
 
 import com.chilesource.Forowebspring.model.Category;
+import com.chilesource.Forowebspring.model.Post;
 import com.chilesource.Forowebspring.service.CategoryService;
 import com.chilesource.Forowebspring.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class ForumController {
     @GetMapping("/forum")
     public String forum(@RequestParam(value = "id") int id, Model model) {
         model.addAttribute("category", categoryService.findById(id));
+        //Iterable<Post> posts = postService.findAll();
+        model.addAttribute("posts", postService.findAll());
+
         return "forum";
     }
 

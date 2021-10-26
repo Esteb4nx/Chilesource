@@ -47,11 +47,18 @@ VALUES (NULL, 'PC', 'Debate y temáticas relacionadas al armado de computadores 
        (NULL, 'GNU/Linux', 'Debate todo lo relacionado a SO''s basados en el kernel Linux', 2, '/media/icons/linux-logo.png'),
        (NULL, 'Windows', 'Windows NT, Windows server, Windows OS', 2, '/media/icons/windows-logo.png');
 
-# Lo comenté para poder ejecutar el script entero
-# INSERT INTO role(role_name)
-# VALUES ('Invitado'),('Usuario'),('Administrador');
-#
-# INSERT INTO user (user_id, user_name, user_password, user_email, profile_description, user_gender, profile_picture, role_id)
-#  VALUES (1, 'Esteban', '123', 'admin@example.com', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt fugit at tenetur quia atque vero, expedita voluptatibus eveniet natus beatae nisi magnam voluptates? Minus excepturi eligendi necessitatibus suscipit et officiis?', null, '/media/img/profile-picture.jpg', 3),
-#         (2, 'Jorge', '123', 'admin@example.com', 'Lorem ipsum dolor sit amet, consectetur adip', null, 'https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture.jpg', 3),
-#         (3, 'Administrador', '123', 'admin@example.com', 'Lorem ipsum dolor sit amet, consectetur adip', null, 'https://scontent.fzco1-1.fna.fbcdn.net/v/t31.18172-8/16825970_748869598613762_9006949948895762754_o.jpg?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=PxqCs5YLgO8AX-dJovO&_nc_ht=scontent.fzco1-1.fna&oh=2a9ff0bb897953035dc6da10850f1219&oe=619AB6D6', 3);
+
+INSERT INTO role(role_name)
+VALUES ('Invitado'),('Usuario'),('Administrador');
+
+INSERT INTO user (user_id, user_name, user_password, user_email, profile_description, profile_picture, role_id)
+VALUES (1, 'Esteban', '123', 'admin@example.com', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt fugit at tenetur quia atque vero, expedita voluptatibus eveniet natus beatae nisi magnam voluptates? Minus excepturi eligendi necessitatibus suscipit et officiis?', '/media/img/profile-picture.jpg', 3),
+       (2, 'Jorge', '123', 'admin@example.com', 'Lorem ipsum dolor sit amet, consectetur adip', 'https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture.jpg', 3),
+       (3, 'Administrador', '123', 'admin@example.com', 'Lorem ipsum dolor sit amet, consectetur adip', 'https://scontent.fzco1-1.fna.fbcdn.net/v/t31.18172-8/16825970_748869598613762_9006949948895762754_o.jpg?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=PxqCs5YLgO8AX-dJovO&_nc_ht=scontent.fzco1-1.fna&oh=2a9ff0bb897953035dc6da10850f1219&oe=619AB6D6', 3);
+
+INSERT INTO post(post_title, post_body, post_date, post_category_id, author_id)
+VALUES ('Crear foro con Spring Boot','TEXTO DE PRUEBA', '2021-10-26',1,1),
+       ('QT Framework con C++','TEXTO DE PRUEBA', '2021-10-26',3,2),
+       ('Express con Node.js','TEXTO DE PRUEBA', '2021-10-26',4,3),
+       ('Como instalar Ubuntu Server','TEXTO DE PRUEBA', '2021-10-26',7,1),
+       ('Descargar Windows 11','TEXTO DE PRUEBA', '2021-10-26',8,2);
