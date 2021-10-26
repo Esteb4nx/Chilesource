@@ -15,4 +15,8 @@ public class PostService extends GenericService<Post, Integer> {
     public PostService(PostRepository repository) {
         super(repository);
     }
+
+    public Iterable<Post> findAllByCategoryId(int categoryId) {
+        return ((PostRepository) repository).findAllByCategoryId(categoryId);
+    }
 }

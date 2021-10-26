@@ -69,7 +69,7 @@
             </thead>
             <tbody>
             <!--<tr th:each="category : ${categories}" th:if="${superCategory.id} == ${category.getSuperCategory().getId()}">-->
-                <tr th:each="post : ${posts}" th:if="${post.category.getId()} == ${#request.getParameter('id')}">
+                <tr th:each="post : ${posts}">
                     <td>
                         <a th:text="${post.title}" href="/post.html" class=""></a>
                     </td>

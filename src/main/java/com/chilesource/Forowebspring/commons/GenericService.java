@@ -17,7 +17,7 @@ import java.util.Optional;
  * @version 1.0
  */
 public class GenericService<T, ID> {
-    private CrudRepository<T, ID> repository;
+    protected CrudRepository<T, ID> repository;
 
     public GenericService(CrudRepository<T, ID> repository) {
         this.repository = repository;
