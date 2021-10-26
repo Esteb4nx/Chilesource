@@ -64,12 +64,12 @@ public class MainController {
         return "post";
     }
 
-    @GetMapping("/forum")
-    //@PathVariable("id") int id
-    public String forum() {
-
-        return "forum";
-    }
+//    @GetMapping("/forum")
+//    //@PathVariable("id") int id
+//    public String forum() {
+//
+//        return "forum";
+//    }
 
     @RequestMapping("/register")
     public String register() {
