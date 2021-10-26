@@ -55,7 +55,6 @@ public class MainController {
         return "new-post";
     }
 
-
     @RequestMapping("/register")
     public String register() {
 
