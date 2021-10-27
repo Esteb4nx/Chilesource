@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
@@ -55,7 +57,11 @@ public class NewPostController {
         if (result.hasErrors()) {
             return "new-post";
         }
-        post.setDate(new Date());
+
+        Date date = new Date();
+        java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(date.getTime());
+
+        post.setDate(sqlTimeStamp);
         post.setAuthor(userService.findById(1));
         post.setCategory(categoryService.findById(1));
         postService.save(post);
