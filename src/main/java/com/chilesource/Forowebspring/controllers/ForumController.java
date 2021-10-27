@@ -39,6 +39,9 @@ public class ForumController {
         model.addAttribute("category", categoryService.findById(id));
         model.addAttribute("posts", postService.findAllByCategoryId(id));
 
+        //Lastpost
+        model.addAttribute("lastPost", postService.findAllByCategoryIdOrderByDateAsc(id));
+
         return "forum";
     }
 

@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends CrudRepository<Post, Integer> {
     Iterable<Post> findAllByCategoryId(int categoryId);
+
+    Iterable<Post> findAllByCategoryIdOrderByDateAsc(int categoryId);
 }
