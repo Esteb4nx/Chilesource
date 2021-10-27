@@ -44,7 +44,8 @@ public class NewPostController {
         Date date = new Date();
         java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(date.getTime());
         post.setDate(sqlTimeStamp);
-        post.setAuthor(userService.findById(1));
+        int randomUserId = 1 + (int) (Math.random() * 3);
+        post.setAuthor(userService.findById(randomUserId));
         postService.save(post);
         return "redirect:/post?id=" + post.getId();
     }

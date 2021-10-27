@@ -42,8 +42,8 @@ public class ForumController {
         // Header component query
         model.addAttribute("categories", categoryService.findAll());
 
-        // Lastpost
-        model.addAttribute("lastPost", postService.findAllByCategoryIdOrderByDateDesc(id));
+        // Lastposts
+        model.addAttribute("lastPosts", postService.findAllByCategoryIdOrderByDateDesc(id));
 
         return "forum";
     }
