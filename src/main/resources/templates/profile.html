@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+
+    <title>Chilesource</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+</head>
+
+<body>
+    <!-- Header -->
+    <div th:insert="components/header"></div>
+
+    <!-- Body -->
+    <main class="main-container">
+        <!-- <h1>Perfil</h1>
+        <hr> -->
+
+
+        <div class="profile-container">
+            <div class="profile-picture"><img th:src="${user.getProfile_picture()}" width="256px" alt=""></div>
+            <div class="profile-info">
+                <div style="padding-top: 8px;">
+                    <h2 th:text="${user.getName()}"></h2>
+                    <p th:text="${user.getProfile_description()}" id="profile-description"></p>
+                </div>
+                <div id="profile-data">
+                    <p>Chile<img src="/media/icons/chile-flag.svg" width="22px" alt=""></p>
+                    <p id="profile-data">Hombre<img src="/media/icons/male-gender.svg" width="22px" alt=""></p>
+                </div>
+            </div>
+            <div class="profile-lastpost">
+                <table class="table table-hover table-bordered lastpost-table">
+                    <thead style="background-color: #0b7fd1; color: white;">
+                        <tr>
+                            <th id="likes" scope="col">Ultimos post</th>
+                            <th id="likes" scope="col">Likes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="post : ${posts}">
+                            <th scope="row"><a th:text="${post.title}" th:href="@{/post(id=${post.id})}"></a></th>
+                            <td id="likes">?</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="profile-buttons-container">
+                    <a href="./favorites.html">
+                        <button class="btn profile-button" type="submit">Favoritos <img src="/media/icons/star.svg" width="18px" alt=""></button>
+                    </a>
+                    <a href="./edit-profile.html">
+                        <button class="btn profile-button" type="submit">Editar perfil <img src="/media/icons/pencil.svg" width="18px" alt=""></button>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="user-stats-container">
+            <div class="user-stat">
+                <p class="fw-bold"> N° de Post's</p>
+                <hr>
+                <p>3</p>
+            </div>
+
+            <div class="user-stat">
+                <p class="fw-bold"> N° de Comentarios</p>
+                <hr>
+                <p>102</p>
+            </div>
+
+            <div class="user-stat">
+                <p class="fw-bold"> N° de Favoritos</p>
+                <hr>
+                <p>31</p>
+            </div>
+        </div>
+    </main>
+
+
+
+    <!-- Footer -->
+    <div th:insert="components/footer"></div>
+</body>
+
+</html>

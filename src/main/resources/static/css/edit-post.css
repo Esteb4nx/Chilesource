@@ -1,0 +1,43 @@
+h1{
+    font-size: 36px;
+    margin-left: 12px;
+}
+
+.post-editor{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: max-content;
+    border: 1px solid rgb(194, 194, 194);
+    width: 900px;
+    margin: auto;
+}
+
+
+.buttons-container{
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.profile-button{
+    display: flex;
+    color: white;   
+    background-color: #0b7fd1;;
+    border: 1px solid white;
+    align-items: center;
+}
+
+.profile-button:hover{
+    color: white;
+    background-color: #0962a1;
+    border: 1px solid white;
+}
+
+.profile-button img{
+    margin-left: 5px;
+}

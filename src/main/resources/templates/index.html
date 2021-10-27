@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <style>
+        td a {
+            display: block;
+        }
+    </style>
+
+    <title>Chilesource</title>
+    <!-- Proyecto aplicación Foro web Chilesource, oct.-d 2021  -->
+</head>
+
+<body>
+    <!-- Header -->
+    <div th:insert="components/header"></div>
+
+    <main class="main-container pt-5">
+        <h1>Foro de Chilesource</h1>
+        <p>Comienza en alguna de estas categorías:</p>
+        <table th:each="superCategory : ${superCategories}" class="table table-bordered table-hover table-categories" id="tabla-1">
+            <thead class="table-dark p-5">
+                <tr>
+                    <th th:text="${superCategory.name}" colspan="2"></th>
+                </tr>
+            </thead>
+            <tbody  class="align-middle">
+            <!-- TODO: O(n^2) evaluar si se puede hacer más eficiente la siguiente estructura  -->
+                <tr th:each="category : ${categories}" th:if="${superCategory.id} == ${category.getSuperCategory().getId()}">
+                    <td>
+                        <!-- FIXME: Fusionar celda visualmente con el td de icon, eliminar borde derecho de la celda -->
+                        <a th:href="@{/forum(id=${category.id})}" class="text-decoration-none">
+                            <p th:text="${category.name}" class=""></p>
+                            <p th:text="${category.description}" class="text-secondary"></p>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{/forum(id=${category.id})}" class="text-decoration-none">
+                            <img src="" th:attrappend="src=${category.iconPath}" alt="Ícono categoría" class="float-end" style="width: 45px;">
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+
+
+    <!-- Footer -->
+    <div th:insert ="/components/footer"></div>
+</body>
+
+</html>

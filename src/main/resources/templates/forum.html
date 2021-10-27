@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <title>Chilesource</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <div th:insert="components/header"></div>
+
+    <main class="main-container">
+        <div class="d-flex flex-row justify-content-between">
+            <div class="p-2 bd-highlight">
+
+                <a class="btn btn-primary" href="/new-post" role="button">
+                    <!-- FIXME: alinear verticalmente al centro SVG con el texto -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0z" />
+                    </svg>
+                    Nueva publicación
+                </a>
+            </div>
+            <div class="p-2 bd-highlight">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link">Anterior</a>
+                        </li>
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Siguiente</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <hr>
+        <h1>Foro <span th:text="${category.getName()}"></span></h1>
+        <p style="display: flex;" class="text-secondary" id="category-last-post-info">
+            Última publicación:
+            <a th:if="${lastPosts != null}" th:href="@{/post(id=${lastPosts[0].id})}" style="margin-left: 8px" th:text="${lastPosts[0].title}"></a>
+        </p>
+        <table class="table table-bordered" id="tabla-java">
+            <thead class="table-secondary">
+                <tr>
+                    <th scope="col">Publicación</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Última actividad</th>
+                    <th scope="col">Comentarios</th>
+                    <th scope="col">Favoritos</th>
+                </tr>
+            </thead>
+            <tbody>
+            <!--<tr th:each="category : ${categories}" th:if="${superCategory.id} == ${category.getSuperCategory().getId()}">-->
+                <tr th:each="post : ${posts}">
+                    <td>
+                        <a th:text="${post.title}" th:href="@{/post(id=${post.id})}" class=""></a>
+                    </td>
+                    <td>
+                        <a th:text="${post.author.getName()}" th:href="@{/profile(id = ${post.author.getId()})}"></a>
+                        <p th:text="${post.date}" class="text-secondary" style="font-size: 12px;"></p>
+                    </td>
+                    <td>
+                        <a href="/profile.html"></a>
+                        <p class="text-secondary" style="font-size: 12px;">Unknown</p>
+                    </td>
+                    <td>
+                        <a href="/profile.html"></a>
+                        <p class="text-secondary" style="font-size: 12px;">Unknown</p>
+                    </td>
+                    <td>
+                        <a href="/profile.html"></a>
+                        <p th:text="${post.category.getId()}" class="text-secondary" style="font-size: 12px;"></p>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </main>
+
+
+
+    <!-- Footer -->
+    <div th:insert="components/footer"></div>
+
+
+</body>
+
+</html>

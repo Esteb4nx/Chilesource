@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <script src="../../static/js/include.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <title>Chilesource</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <div w3-include-html="../components/header.html"></div>
+    <script>
+        includeHTML();
+    </script>
+
+    <main class="main-container">
+        <div class="d-flex flex-row justify-content-between">
+            <div class="p-2 bd-highlight">
+
+                <a class="btn btn-primary" href="/new-post.html" role="button">
+                    <!-- FIXME: alinear verticalmente al centro SVG con el texto -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0z" />
+                    </svg>
+                    Nueva publicación
+                </a>
+            </div class="p-2 bd-highlight">
+            <div class="p-2 bd-highlight">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link">Anterior</a>
+                        </li>
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Siguiente</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <hr>
+        <h1>Foro Java</h1>
+        <p class="text-secondary" id="category-last-post-info">Última publicación: </p>
+        <table class="table table-bordered" id="tabla-java">
+            <thead class="table-secondary">
+                <tr>
+                    <th scope="col">Publicación</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Última actividad</th>
+                    <th scope="col">Comentarios</th>
+                    <th scope="col">Favoritos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <script>
+                    $(document).ready(function () {
+                        $.getJSON("/data/posts.json",
+                            function (data) {
+                                var post = '';
+                                // sort asc y reverse para orden desc. fuente: https://javascript.info/array-methods#transform-an-array
+                                data.sort((a, b) => a.favorites - b.favorites).reverse();
+                                $.each(data, function (key, value) {
+                                    if (value.category === "python") {
+                                        var lastComment = value.comments.pop();
+                                        post += '<tr>';
+                                        post += '<td><a href="/post.html" class="">' + value.title + '</a></td>';
+
+                                        post += '<td><a href="/profile.html">' + value.author + '</a>';
+                                        post += '<p class="text-secondary" style="font-size: 12px;">' + value.rfc2822 + '</p></td>'
+
+                                        post += '<td><a href="/profile.html">' + lastComment.author + '</a>';
+                                        post += '<p class="text-secondary" style="font-size: 12px;">' + lastComment.rfc2822 + '</p></td>';
+
+                                        post += '<td>' + (value.comments.length + 1) + '</td>';
+
+                                        post += '<td>' + value.favorites + '</td>';
+                                        post += '</tr>';
+                                    }
+                                });
+                                $('#tabla-java').append(post);
+                            });
+                    });
+                </script>
+            </tbody>
+        </table>
+    </main>
+
+
+
+    <!-- Footer -->
+    <div w3-include-html="../components/footer.html"></div>
+    <script>
+        includeHTML();
+        includeData();
+        $.getJSON("/data/posts.json", function (data) {
+            var items = [];
+            var lastPost;
+            $.each(data, function (key, val) {
+                if (val.category === 'python') {
+                    items.push(val);
+                }
+            });
+            var auxPost = items[0];
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].timestamp > auxPost.timestamp) {
+                    auxPost = items[i];
+                }
+            }
+            // append fecha en formato day-name, day month year hour:minute
+            $('#category-last-post-info').append('<a href=/post.html>' + auxPost.title + '</a> | ' + auxPost.rfc2822);
+        });
+    </script>
+</body>
+
+</html>

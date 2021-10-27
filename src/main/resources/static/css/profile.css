@@ -1,0 +1,99 @@
+.profile-container{
+    margin-top: 44px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-info{
+   display: flex;
+   flex-direction: column;
+   margin-left: 18px;
+   justify-content: space-between;
+    min-width: 460px;
+    max-width: 460px;
+}
+
+.profile-lastpost{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 340px;
+}
+
+#profile-description{
+    text-align: justify;
+    max-width: 460px;
+}
+
+#profile-data{
+    display: flex;
+}
+#profile-data p{
+    margin-right: 18px;
+}
+
+#profile-data img{
+    margin-left: 4px;
+}
+
+.lastpost-table{
+    align-items: flex-end;
+    width: 95%;
+}
+
+#likes{
+    text-align: center;
+}
+
+.profile-buttons-container{
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.profile-button{
+    display: flex;
+    margin-right: 8px;
+    color: white;   
+    background-color: #0b7fd1;;
+    border: 1px solid white;
+    align-items: center;
+}
+
+.profile-button:hover{
+    color: white;
+    background-color: #0962a1;
+    border: 1px solid white;
+}
+
+.profile-button img{
+    margin-left: 5px;
+}
+
+.user-stats-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 820px;
+}
+
+.user-stat{
+    margin: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 180px;
+}
+
+.user-stat p{
+    margin-top: 12px;
+    margin-bottom: 12px;
+    font-size: 18px;
+    text-align: center;
+
+}
+
+.user-stat hr{
+    margin: 0;
+}
