@@ -56,7 +56,7 @@
 
         <hr>
         <h1>Foro <span th:text="${category.name}"></span></h1>
-        <p style="display: flex;" class="text-secondary" id="category-last-post-info">Última publicación: <a th:href="@{/post(id=${lastPost[0].id})}" style="margin-left: 8px" th:text="${lastPost[0].title}"></a></p>
+        <p style="display: flex;" class="text-secondary" id="category-last-post-info">Última publicación: <a th:if="${lastpost != null}" th:href="@{/post(id=${lastPost[0].id})}" style="margin-left: 8px" th:text="${lastPost[0].title}"></a></p>
         <table class="table table-bordered" id="tabla-java">
             <thead class="table-secondary">
                 <tr>
