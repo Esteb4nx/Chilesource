@@ -21,20 +21,27 @@
 
 
     <!-- include summernote css/js-->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
     <script>
-        $(function () {
-                var wbbOpt = {
-                    buttons: "bold,italic,underline,|,img,link,|,code,quote",
-                    autoresize: "false",
-                    resize_maxheight: "400px"
-                }
-                $("#editor").wysibb(wbbOpt);
-            })
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                placeholder: 'Escribe aquí tu comentario',
+                tabsize: 2,
+                height: 355,
+                maxHeigth: 300,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link', 'picture', 'video']],
+                ]
+            });
+        });
     </script>
-
 
     <title>Chilesource</title>
 </head>
@@ -44,7 +51,7 @@
     <div th:insert="components/header"></div>
 
 
-    <!--  -->
+    <!-- Main container -->
     <main class="main-container">
         <h1 th:text="${post.title}" id="post_titulo"></h1>
         <hr>
@@ -124,7 +131,7 @@
             </div>
             <div class="commentary-editor">
                 <div>
-                    <textarea id="editor"></textarea>
+                    <textarea id="summernote"></textarea>
                 </div>
                 <div class="commentary-editor-button">
                     <p></p>
@@ -136,11 +143,8 @@
 
     </main>
 
-
-
     <!-- Footer -->
     <div th:insert="components/footer"></div>
 
 </body>
-
 </html>

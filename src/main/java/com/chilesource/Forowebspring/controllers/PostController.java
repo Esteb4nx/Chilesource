@@ -18,11 +18,17 @@ import java.util.Date;
 public class PostController {
 
     @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
     private PostService postService;
 
     @GetMapping
     public String main(@RequestParam(value = "id") int id, Model model) {
         model.addAttribute("post", postService.findById(id));
+
+        // Header component query
+        model.addAttribute("categories", categoryService.findAll());
 
         return  "post";
     }
@@ -31,6 +37,9 @@ public class PostController {
     @GetMapping("/edit")
     public String editPostForm(@RequestParam(value = "id") int id, Model model) {
         model.addAttribute("post", postService.findById(id));
+
+        // Header component query
+        model.addAttribute("categories", categoryService.findAll());
 
         return  "edit-post";
     }
