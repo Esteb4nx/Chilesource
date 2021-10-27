@@ -42,7 +42,7 @@ public class ForumController {
         // Header component query
         model.addAttribute("categories", categoryService.findAll());
 
-        //Lastpost
+        // Lastpost
         model.addAttribute("lastPost", postService.findAllByCategoryIdOrderByDateDesc(id));
 
         return "forum";

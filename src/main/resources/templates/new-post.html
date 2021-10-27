@@ -103,10 +103,12 @@
 
             <div class="buttons-container">
                 <div style="display: flex;">
-                    <button class="btn profile-button" th:href="@{/}" style="margin-right: 12px;">Cancelar <img src="/media/icons/remove.png" width="18px"
-                                                                                                                alt=""></button>
-                    <button type="submit" class="btn profile-button">Publicar <img src="/media/icons/plus.png" width="18px"
-                                                                                   alt="Botón de publicar"></button>
+                    <button type="reset" class="btn profile-button" th:href="@{/}" style="margin-right: 12px;">
+                        Limpiar <img src="/media/icons/remove.png" width="18px" alt="Cancelar publicación">
+                    </button>
+                    <button type="submit" class="btn profile-button">
+                        Publicar <img src="/media/icons/plus.png" width="18px" alt="Botón de publicar">
+                    </button>
                 </div>
             </div>
         </form>
