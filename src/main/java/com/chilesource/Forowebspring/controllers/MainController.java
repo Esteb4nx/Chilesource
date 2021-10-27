@@ -49,12 +49,6 @@ public class MainController {
         return "favorites";
     }
 
-    @RequestMapping("/new-post")
-    public String newPost() {
-
-        return "new-post";
-    }
-
     @RequestMapping("/register")
     public String register() {
 

@@ -122,23 +122,15 @@
                     <p>Hombre<img src="/media/icons/male-gender.svg" width="22px" alt=""></p>
                 </div>
             </div>
-            <div class="container commentary-editor">
-                <form method="post" th:object="${commentary}">
-                    <div class="form-group">
-                        <label for="content">Contenido:</label>
-                        <textarea type="text" rows="4" id="content" placeholder="Añade contenido a tu publicación"
-                                  class="form-control" th:field="*{content}" autocomplete="off"></textarea>
-                    </div>
-                    <button class="btn btn-primary" type="submit">Submit form</button>
-                </form>
-<!--                <div>-->
-<!--                    <textarea id="editor"></textarea>-->
-<!--                </div>-->
-<!--                <div class="commentary-editor-button">-->
-<!--                    <p></p>-->
-<!--                    <button class="btn profile-button">Enviar comentario<img src="/media/icons/message.png" width="18px"-->
-<!--                                                                             alt=""></button>-->
-<!--                </div>-->
+            <div class="commentary-editor">
+                <div>
+                    <textarea id="editor"></textarea>
+                </div>
+                <div class="commentary-editor-button">
+                    <p></p>
+                    <button class="btn profile-button">Enviar comentario<img src="/media/icons/message.png" width="18px"
+                                                                             alt=""></button>
+                </div>
             </div>
         </div>
 
@@ -148,12 +140,6 @@
 
     <!-- Footer -->
     <div th:insert="components/footer"></div>
-
-    <script>
-        $('#content').summernote({
-            height: 200
-        });
-    </script>
 
 </body>
 

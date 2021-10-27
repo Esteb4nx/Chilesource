@@ -6,7 +6,9 @@
 package com.chilesource.Forowebspring.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+//import java.sql.Date;
+import java.util.Date;
+
 
 @Entity
 public class Post {
