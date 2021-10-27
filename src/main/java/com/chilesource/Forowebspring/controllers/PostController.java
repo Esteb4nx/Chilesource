@@ -1,6 +1,7 @@
 package com.chilesource.Forowebspring.controllers;
 
 
+import com.chilesource.Forowebspring.model.Post;
 import com.chilesource.Forowebspring.service.CategoryService;
 import com.chilesource.Forowebspring.service.CommentaryService;
 import com.chilesource.Forowebspring.service.PostService;
@@ -34,11 +35,6 @@ public class PostController {
         return  "edit-post";
     }
 
-<<<<<<< HEAD
-
-
-
-=======
     @PostMapping("/edit-post")
     public String editPostSubmit(@ModelAttribute Post post){
         postService.save(post);
@@ -46,11 +42,5 @@ public class PostController {
         return "redirect:/";
     }
 
-//    @PostMapping
-//    public String saveCommentary(Commentary commentary, Post post, Model model) {
-//        model.addAttribute("post", postService.findById())
-//        commentaryService.save(commmentary);
-//        return "post";
-//    }
->>>>>>> 47c3bb1472600dcefa162f9b81fe48cc3bc4da78
+
 }
