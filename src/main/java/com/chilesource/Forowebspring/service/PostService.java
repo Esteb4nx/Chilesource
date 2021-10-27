@@ -25,4 +25,8 @@ public class PostService extends GenericService<Post, Integer> {
     public Iterable<Post> findAllByCategoryIdOrderByDateAsc(int categoryId){
         return ((PostRepository) repository).findAllByCategoryIdOrderByDateAsc(categoryId);
     }
+
+    public Iterable<Post> findAllByAuthorIdOrderByDateAsc(int userId){
+        return ((PostRepository) repository).findAllByAuthorIdOrderByDateAsc(userId);
+    }
 }
