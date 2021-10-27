@@ -19,8 +19,13 @@
     <link rel="stylesheet" th:href="@{/css/post.css}">
 
     <!-- include summernote css/js-->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote();
+        });
+    </script>
 
     <title>Chilesource | Nueva publicación</title>
 </head>
@@ -35,9 +40,10 @@
         <hr>
     </div>
 
+
     <div class="post-editor">
 
-        <form th:action="@{/new-post/addpost}" th:object="${post}" method="post">
+        <form th:action="@{/new-post}" th:object="${post}" method="post">
             <input hidden >
             <div class="title-form">
                 <label for="title">Titulo: </label>
@@ -60,16 +66,9 @@
                         <tbody>
                         <tr>
                             <th>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Categoría</option>
-                                    <option value="1">Java</option>
-                                    <option value="2">Python</option>
-                                    <option value="3">C/C++</option>
-                                    <option value="4">JavaScript</option>
-                                    <option value="5">Kotlin</option>
-                                    <option value="6">PC</option>
-                                    <option value="7">GNU/Linux</option>
-                                    <option value="8">Windows</option>
+                                <select name="category" class="form-select" aria-label="Default select example" required>
+                                    <option value="" selected>Categoría</option>
+                                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
                                 </select>
                             </th>
                         </tr>
@@ -104,10 +103,6 @@
 
 <!-- Footer -->
 <div th:insert="components/footer"></div>
-<script>
-    $(document).ready(function() {
-        $('#summernote').summernote();
-    });
-</script>
+
 </body>
 </html>
