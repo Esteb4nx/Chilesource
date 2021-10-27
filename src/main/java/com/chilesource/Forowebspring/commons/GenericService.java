@@ -40,35 +40,35 @@ public class GenericService<T, ID> {
         return repository.saveAll(objects);
     }
 
-    boolean existsById(ID id) {
+    public boolean existsById(ID id) {
         return repository.existsById(id);
     }
 
-    Iterable<T> findAllById(Iterable<ID> ids) {
+    public Iterable<T> findAllById(Iterable<ID> ids) {
         return repository.findAllById(ids);
     }
 
-    long count() {
+    public long count() {
         return repository.count();
     }
 
-    void deleteById(ID id) {
+    public void deleteById(ID id) {
         repository.deleteById(id);
     }
 
-    void delete(T entity) {
+    public void delete(T entity) {
         repository.delete(entity);
     }
 
-    void deleteAllById(Iterable<? extends ID> ids) {
+    public void deleteAllById(Iterable<? extends ID> ids) {
         repository.deleteAllById(ids);
     }
 
-    void deleteAll(Iterable<? extends T> entities) {
+    public void deleteAll(Iterable<? extends T> entities) {
         repository.deleteAll(entities);
     }
 
-    void deleteAll() {
+    public void deleteAll() {
         repository.deleteAll();
     }
 
