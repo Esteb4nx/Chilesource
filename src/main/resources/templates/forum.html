@@ -55,7 +55,7 @@
         </div>
 
         <hr>
-        <h1>Foro <span th:text="${category.name}"></span></h1>
+        <h1>Foro <span th:text="${category.getName()}"></span></h1>
         <p style="display: flex;" class="text-secondary" id="category-last-post-info">
             Última publicación:
             <a th:if="${lastPosts != null}" th:href="@{/post(id=${lastPosts[0].id})}" style="margin-left: 8px" th:text="${lastPosts[0].title}"></a>
