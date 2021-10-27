@@ -41,7 +41,9 @@ public class NewPostController {
 
     @PostMapping
     public String save(@ModelAttribute Post post) {
-        post.setDate(new Date());
+        Date date = new Date();
+        java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(date.getTime());
+        post.setDate(sqlTimeStamp);
         post.setAuthor(userService.findById(1));
         postService.save(post);
         return "redirect:/post?id=" + post.getId();

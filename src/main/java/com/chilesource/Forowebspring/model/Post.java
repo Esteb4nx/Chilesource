@@ -6,8 +6,8 @@
 package com.chilesource.Forowebspring.model;
 
 import javax.persistence.*;
-//import java.sql.Date;
-import java.util.Date;
+import java.sql.Timestamp;
+
 
 
 @Entity
@@ -24,7 +24,7 @@ public class Post {
     private String body;
 
     @Column(name = "post_date")
-    private Date date;
+    private Timestamp date;
 
     @ManyToOne
     @JoinColumn(name = "post_category_id")
@@ -34,7 +34,7 @@ public class Post {
     @JoinColumn(name = "author_id")
     private User author;
 
-    public Post(int id, String title, String body, Date date, Category category, User author) {
+    public Post(int id, String title, String body, Timestamp date, Category category, User author) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -71,11 +71,11 @@ public class Post {
         this.body = body;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 

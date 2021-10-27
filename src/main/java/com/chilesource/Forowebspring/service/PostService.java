@@ -22,8 +22,8 @@ public class PostService extends GenericService<Post, Integer> {
     }
 
     //@Query("SELECT '*' FROM post ORDER BY post_date ASC")
-    public Iterable<Post> findAllByCategoryIdOrderByDateAsc(int categoryId){
-        return ((PostRepository) repository).findAllByCategoryIdOrderByDateAsc(categoryId);
+    public Iterable<Post> findAllByCategoryIdOrderByDateDesc(int categoryId){
+        return ((PostRepository) repository).findAllByCategoryIdOrderByDateDesc(categoryId);
     }
 
     public Iterable<Post> findAllByAuthorIdOrderByDateAsc(int userId){
