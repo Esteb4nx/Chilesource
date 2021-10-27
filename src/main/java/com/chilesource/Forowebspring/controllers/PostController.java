@@ -1,7 +1,6 @@
 package com.chilesource.Forowebspring.controllers;
 
-import com.chilesource.Forowebspring.model.Commentary;
-import com.chilesource.Forowebspring.model.Post;
+
 import com.chilesource.Forowebspring.service.CategoryService;
 import com.chilesource.Forowebspring.service.CommentaryService;
 import com.chilesource.Forowebspring.service.PostService;
@@ -29,13 +28,29 @@ public class PostController {
 
     // Corresponde a ruta /post/edit
     @GetMapping("/edit")
-    public String editPost(@RequestParam(value = "id") int id, Model modelo) {
-        modelo.addAttribute("post", postService.findById(id));
+    public String editPostForm(@RequestParam(value = "id") int id, Model model) {
+        model.addAttribute("post", postService.findById(id));
 
         return  "edit-post";
     }
 
+<<<<<<< HEAD
 
 
 
+=======
+    @PostMapping("/edit-post")
+    public String editPostSubmit(@ModelAttribute Post post){
+        postService.save(post);
+
+        return "redirect:/";
+    }
+
+//    @PostMapping
+//    public String saveCommentary(Commentary commentary, Post post, Model model) {
+//        model.addAttribute("post", postService.findById())
+//        commentaryService.save(commmentary);
+//        return "post";
+//    }
+>>>>>>> 47c3bb1472600dcefa162f9b81fe48cc3bc4da78
 }
