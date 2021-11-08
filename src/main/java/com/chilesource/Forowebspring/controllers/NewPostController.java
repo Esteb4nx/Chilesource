@@ -34,6 +34,7 @@ public class NewPostController {
 
     @GetMapping
     public String main(Model model) {
+        // FIXME buena práctica: nombrar atributo como newPost
         model.addAttribute("post", new Post());
         model.addAttribute("categories", categoryService.findAll());
         return "new-post";
