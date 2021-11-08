@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FavoriteRepository extends CrudRepository<Favorite, Integer> {
 
+    Iterable<Favorite> findAllByUserIdOrderByDateAsc(int userId);
 }

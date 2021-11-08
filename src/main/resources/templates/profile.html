@@ -57,7 +57,7 @@
                     </tbody>
                 </table>
                 <div class="profile-buttons-container">
-                    <a href="./favorites.html">
+                    <a th:href="@{/favorites(id = ${user.getId()})}">
                         <button class="btn profile-button" type="submit">Favoritos <img src="/media/icons/star.svg" width="18px" alt=""></button>
                     </a>
                     <a href="./edit-profile.html">
