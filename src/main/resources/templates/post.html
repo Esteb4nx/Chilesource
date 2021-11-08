@@ -74,7 +74,11 @@
                 </div>
             </div>
 
-            <div class="head-buttons">
+            <div class="head-buttons" style="display: flex;">
+                <a th:href="@{/post/edit(id=${post.id})}">
+                    <button class="btn profile-button">Añadir a favoritos <img src="/media/icons/star.svg" width="18px"
+                                                                               alt=""></button>
+                </a>
                 <a th:href="@{/post/edit(id=${post.id})}">
                     <button class="btn profile-button">Editar publicación <img src="/media/icons/pencil.svg" width="18px"
                                                                                alt=""></button>

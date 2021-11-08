@@ -83,6 +83,7 @@ p{
     border-right: 1px solid rgb(194, 194, 194);
     justify-content: space-between;
     min-width: 220px;
+    max-height: 380px;
 }
 
 .owner-profile-picture{
