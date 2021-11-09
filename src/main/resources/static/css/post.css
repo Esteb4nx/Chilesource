@@ -80,7 +80,6 @@ p{
     padding: 32px;
     display: flex;
     flex-direction: column;
-    border-right: 1px solid rgb(194, 194, 194);
     justify-content: space-between;
     min-width: 220px;
     max-height: 380px;
@@ -113,6 +112,8 @@ p{
     flex-direction: column;
     text-align: justify;
     padding: 12px;
+    border-left: 1px solid rgb(194, 194, 194);
+    width: 100%;
 
 }
 

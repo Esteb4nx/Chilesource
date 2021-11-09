@@ -7,6 +7,7 @@ package com.chilesource.Forowebspring.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 public class Favorite {
@@ -16,7 +17,7 @@ public class Favorite {
     private int id;
 
     @Column(name = "fav_date")
-    private Date date;
+    private Timestamp date;
 
     @ManyToOne
     @JoinColumn(name = "post_id")
@@ -26,7 +27,7 @@ public class Favorite {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Favorite(int id, Date date, Post post, User user) {
+    public Favorite(int id, Timestamp date, Post post, User user) {
         this.id = id;
         this.date = date;
         this.post = post;
@@ -45,11 +46,11 @@ public class Favorite {
         this.id = id;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 

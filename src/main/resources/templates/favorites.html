@@ -57,12 +57,14 @@
                 <tr th:each="favorite : ${favorites}">
                     <!-- Autor -->
                     <td>
-                        <a th:href="@{/profile(id = ${favorite.user.getId()})}" th:text="${favorite.user.getName()}"></a>
+                        <a th:href="@{/profile(id = ${favorite.post.getAuthor().getId()})}" th:text="${favorite.post.getAuthor().getName()}"></a>
                     </td>
 
                     <!-- Titulo post -->
                     <td>
-                        <p th:text="${favorite.post.getTitle()}" class="text-secondary" style="font-size: 12px;"></p>
+                        <a th:href="@{/post(id=${favorite.getPost().getId()})}" th:text="${favorite.post.getTitle()}">
+                            <p  class="text-secondary" style="font-size: 12px;"></p>
+                        </a>
                     </td>
 
                     <!-- Fecha -->
