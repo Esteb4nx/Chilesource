@@ -45,4 +45,13 @@ public class FavoriteController {
         favoriteService.save(favorite);
         return "redirect:/favorites?user_id=" + favorite.getUser().getId();
     }
+
+    @GetMapping("/favorite/delete")
+    public String deleteFavorite(@RequestParam(value = "fav_id") int id){
+        int user_id = favoriteService.findById(id).getUser().getId();
+
+        favoriteService.deleteById(id);
+
+        return "redirect:/favorites?user_id=" + user_id;
+    }
 }

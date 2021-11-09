@@ -69,7 +69,11 @@
 
                     <!-- Fecha -->
                     <td th:text="${favorite.getDate()}"></td>
-                    <td><button type="button" class="btn btn-danger">Eliminar</button></td>
+                    <td>
+                        <a th:href="@{/favorite/delete(fav_id=${favorite.getId()})}">
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>
