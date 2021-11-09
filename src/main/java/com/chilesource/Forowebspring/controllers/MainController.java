@@ -41,4 +41,12 @@ public class MainController {
         return "register";
     }
 
+    @RequestMapping("/404")
+    public String error(Model model) {
+        model.addAttribute("superCategories", superCategoryService.findAll());
+        model.addAttribute("categories", categoryService.findAll());
+
+        return "404";
+    }
+
 }

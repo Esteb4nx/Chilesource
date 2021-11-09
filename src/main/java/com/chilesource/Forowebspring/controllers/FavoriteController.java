@@ -1,7 +1,6 @@
 package com.chilesource.Forowebspring.controllers;
 
 import com.chilesource.Forowebspring.model.Favorite;
-import com.chilesource.Forowebspring.model.Post;
 import com.chilesource.Forowebspring.service.FavoriteService;
 import com.chilesource.Forowebspring.service.PostService;
 import com.chilesource.Forowebspring.service.UserService;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.Date;
 
 @Controller
