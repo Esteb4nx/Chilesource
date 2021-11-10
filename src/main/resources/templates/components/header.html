@@ -30,16 +30,17 @@
         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
         <button class="btn search-button" type="submit">Buscar</button>
       </form>
-      <div class="btn-group header-username">
+      <div th:inline="text" class="btn-group header-username">
         <button type="button" class="btn btn-secondary dropdown-toggle"
           style="background-color: transparent; border: none; box-shadow: none; outline:none;" data-bs-toggle="dropdown"
           aria-expanded="false">
-          <img id="username-header-img" src="/media/icons/profile-user.svg" width="20px" alt=""> Usuario
+          <img id="username-header-img" src="/media/icons/profile-user.svg" width="20px" alt="">
+          [[${#httpServletRequest.remoteUser}]]
         </button>
         <ul class="dropdown-menu dropdown-menu-end user-menu">
           <li> <a href="/profile"><button class="dropdown-item" type="button">Perfil</button></a></li>
           <li> <a href="/favorites"><button class="dropdown-item" type="button">Favoritos</button></a></li>
-          <li> <a href="/"><button class="dropdown-item" type="button">Cerrar sesión</button></a></li>
+          <li> <a th:href="@{/logout}"><button class="dropdown-item" type="button">Cerrar sesión</button></a></li>
         </ul>
       </div>
 

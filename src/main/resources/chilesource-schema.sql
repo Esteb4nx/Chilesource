@@ -1,4 +1,6 @@
-# 23 oct. 2021 Jorge Mainhard
+# 23 oct. 2021
+# Authors: Jorge Mainhard, Esteban Esparza
+# Chilesource DDL
 DROP DATABASE IF EXISTS chilesourcedb;
 CREATE DATABASE chilesourcedb /*!40100 COLLATE 'utf8mb4_general_ci' */;
 
