@@ -8,6 +8,7 @@ package com.chilesource.Forowebspring.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 public class Commentary {
@@ -20,7 +21,7 @@ public class Commentary {
     private String content;
 
     @Column(name = "c_date")
-    private Date date;
+    private Timestamp date;
 
     @Column(name = "c_likes")
     private int likes;
@@ -29,12 +30,18 @@ public class Commentary {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    public Commentary(int id, String content, Date date, int likes, Post post) {
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User user;
+
+
+    public Commentary(int id, String content, Timestamp date, int likes, Post post, User user) {
         this.id = id;
         this.content = content;
         this.date = date;
         this.likes = likes;
         this.post = post;
+        this.user = user;
     }
 
     public Commentary() {
@@ -57,11 +64,11 @@ public class Commentary {
         this.content = content;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
@@ -79,6 +86,14 @@ public class Commentary {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 

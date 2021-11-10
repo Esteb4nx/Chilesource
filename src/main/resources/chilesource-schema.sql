@@ -96,9 +96,12 @@ CREATE TABLE commentary (
 	c_date DATETIME NOT NULL,
 	c_likes INT UNSIGNED DEFAULT 0,
 	post_id INT UNSIGNED NOT NULL,
+	author_id INT UNSIGNED NOT NULL,
 	PRIMARY KEY (commentary_id),
     CONSTRAINT fk_commentary_post
-        FOREIGN KEY (post_id) REFERENCES post(post_id)
+        FOREIGN KEY (post_id) REFERENCES post(post_id),
+    CONSTRAINT fk_commentary_author
+        FOREIGN KEY (author_id) REFERENCES user(user_id)
 );
 
 SHOW TABLES;
