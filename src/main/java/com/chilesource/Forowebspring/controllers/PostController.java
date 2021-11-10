@@ -1,6 +1,7 @@
 package com.chilesource.Forowebspring.controllers;
 
 
+import com.chilesource.Forowebspring.model.Commentary;
 import com.chilesource.Forowebspring.model.Post;
 import com.chilesource.Forowebspring.service.CategoryService;
 import com.chilesource.Forowebspring.service.CommentaryService;
@@ -16,6 +17,8 @@ import java.util.Date;
 @Controller
 @RequestMapping("/post")
 public class PostController {
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private CategoryService categoryService;
@@ -23,12 +26,18 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private CommentaryService commentaryService;
+
     @GetMapping
     public String main(@RequestParam(value = "id") int id, Model model) {
         model.addAttribute("post", postService.findById(id));
 
         // Header component query
         model.addAttribute("categories", categoryService.findAll());
+
+        //Comentarios
+        model.addAttribute("commentaries", commentaryService.findAllByPostIdOrderByDateAsc(id));
 
         return  "post";
     }
@@ -55,6 +64,20 @@ public class PostController {
     public String deletePost(@RequestParam(value = "id") int id, Model model) {
         postService.deleteById(id);
         return "redirect:/";
+    }
+
+
+    //Comentarios
+    @PostMapping("/new-comment")
+    public String newComment(@ModelAttribute Commentary commentary){
+        Date date = new Date();
+        java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(date.getTime());
+        commentary.setDate(sqlTimeStamp);
+        int randomUserId = 1 + (int) (Math.random() * 3);
+        commentary.setUser(userService.findById(randomUserId));
+        commentaryService.save(commentary);
+
+        return "redirect:/post?id="+ commentary.getPost().getId();
     }
 
 
