@@ -32,4 +32,5 @@ public class PostService extends GenericService<Post, Integer> {
     public Iterable<Post> findAllByAuthorIdOrderByDateAsc(int userId){
         return ((PostRepository) repository).findAllByAuthorIdOrderByDateAsc(userId);
     }
+
 }

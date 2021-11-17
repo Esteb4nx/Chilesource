@@ -1,5 +1,7 @@
 package com.chilesource.Forowebspring.controllers;
 
+import com.chilesource.Forowebspring.model.Post;
+import com.chilesource.Forowebspring.model.User;
 import com.chilesource.Forowebspring.service.CategoryService;
 import com.chilesource.Forowebspring.service.PostService;
 import com.chilesource.Forowebspring.service.UserService;
@@ -24,12 +26,18 @@ public class UserController {
 
     @GetMapping("/profile")
     public String profile(@RequestParam(value = "id") int id, Model model){
-        model.addAttribute("user",userService.findById(id));
-        model.addAttribute("posts", postService.findAllByAuthorIdOrderByDateAsc(id));
 
-        // Header component query
-        model.addAttribute("categories", categoryService.findAll());
+        User user = userService.findById(id);
 
-        return "profile";
+        if(user != null){
+            model.addAttribute("user",user);
+            model.addAttribute("posts", postService.findAllByAuthorIdOrderByDateAsc(id));
+
+            return "profile";
+        }else{
+            model.addAttribute("categories", categoryService.findAll());
+            return "404";
+        }
+
     }
 }

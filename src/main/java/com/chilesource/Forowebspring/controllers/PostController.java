@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/post")
@@ -31,15 +32,23 @@ public class PostController {
 
     @GetMapping
     public String main(@RequestParam(value = "id") int id, Model model) {
-        model.addAttribute("post", postService.findById(id));
 
-        // Header component query
-        model.addAttribute("categories", categoryService.findAll());
+        Post post = postService.findById(id);
 
-        //Comentarios
-        model.addAttribute("commentaries", commentaryService.findAllByPostIdOrderByDateAsc(id));
+        if(post != null){
+            model.addAttribute("post", post);
+            // Header component query
+            model.addAttribute("categories", categoryService.findAll());
 
-        return  "post";
+            //Comentarios
+            model.addAttribute("commentaries", commentaryService.findAllByPostIdOrderByDateAsc(id));
+
+            return "post";
+        }else{
+            model.addAttribute("categories", categoryService.findAll());
+            return "404";
+        }
+
     }
 
     // Corresponde a ruta /post/edit
