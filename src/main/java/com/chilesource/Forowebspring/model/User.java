@@ -6,7 +6,6 @@
 package com.chilesource.Forowebspring.model;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,11 +25,12 @@ public class User {
     private String email;
 
     @Column(name = "profile_description")
-    private String profile_description;
+    private String profileDescription;
 
     @Column(name = "profile_picture")
-    private String profile_picture;
+    private String profilePicture;
 
+    // FIXME: revisar este tema, roles serán hardcodeados hasta entonces
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
@@ -87,20 +87,20 @@ public class User {
         this.roles = role;
     }
 
-    public String getProfile_description() {
-        return profile_description;
+    public String getProfileDescription() {
+        return profileDescription;
     }
 
-    public void setProfile_description(String profile_description) {
-        this.profile_description = profile_description;
+    public void setProfileDescription(String profile_description) {
+        this.profileDescription = profile_description;
     }
 
-    public String getProfile_picture() {
-        return profile_picture;
+    public String getProfilePicture() {
+        return profilePicture;
     }
 
-    public void setProfile_picture(String profile_picture) {
-        this.profile_picture = profile_picture;
+    public void setProfilePicture(String profile_picture) {
+        this.profilePicture = profile_picture;
     }
 
     @Override
@@ -110,8 +110,8 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", profile_description='" + profile_description + '\'' +
-                ", profile_picture='" + profile_picture + '\'' +
+                ", profile_description='" + profileDescription + '\'' +
+                ", profile_picture='" + profilePicture + '\'' +
                 ", roles=" + roles +
                 '}';
     }

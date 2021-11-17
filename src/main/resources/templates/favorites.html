@@ -50,7 +50,7 @@
                     <th scope="col">Autor</th>
                     <th scope="col">Publicación</th>
                     <th scope="col">Fecha</th>
-                    <th scope="col">Eliminar</th>
+                    <th th:if="${isAuthor}" scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,7 +69,7 @@
 
                     <!-- Fecha -->
                     <td th:text="${favorite.getDate()}"></td>
-                    <td>
+                    <td th:if="${isAuthor}">
                         <a th:href="@{/favorite/delete(fav_id=${favorite.getId()})}">
                             <button type="button" class="btn btn-danger">Eliminar</button>
                         </a>

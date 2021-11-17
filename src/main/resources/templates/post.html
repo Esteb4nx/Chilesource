@@ -90,7 +90,7 @@
 
         <div class="post-container">
             <div class="post-userinfo">
-                <img class="owner-profile-picture" th:src="${post.author.profile_picture}" width="150px" alt="">
+                <img class="owner-profile-picture" th:src="${post.author.profilePicture}" width="150px" alt="">
                 <p th:text="${post.author.userName}" class="userinfo-username"></p>
 
                 <div class="userinfo-stats">
@@ -123,7 +123,7 @@
         <!-- Comentarios relacionados a este post -->
         <div th:each="commentary : ${commentaries}" class="commentary">
             <div class="post-userinfo">
-                <img class="owner-profile-picture" th:src="${commentary.getUser().getProfile_picture()}" width="150px" alt="">
+                <img class="owner-profile-picture" th:src="${commentary.getUser().getProfilePicture()}" width="150px" alt="">
                 <p class="userinfo-username" th:text="${commentary.getUser().getUserName()}"></p>
 
                 <div class="userinfo-stats">
@@ -159,7 +159,7 @@
                 <div class="post-new-commentary">
                     <div class="post-userinfo">
                         <img class="owner-profile-picture" src="/media/img/profile-picture.jpg" width="150px" alt="">
-                        <p class="userinfo-username">Usuario</p>
+                        <p th:inline="text" class="userinfo-username">[[${#httpServletRequest.remoteUser}]]</p>
 
                         <div class="userinfo-stats">
                             <p>Post: 12</p>
