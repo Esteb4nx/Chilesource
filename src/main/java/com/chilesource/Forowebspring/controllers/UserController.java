@@ -30,15 +30,21 @@ public class UserController {
     public String profile(@RequestParam(value = "id") int id, Model model, Principal p){
 
         User user = userService.findById(id);
+        boolean isAuthor = false;
 
         if (p != null) {
+            isAuthor = p.getName().equals(user.getUserName());
+
+
             int userId = userService.findByUserName(p.getName()).getId();
             model.addAttribute("userId", userId);
         }
 
         if(user != null){
+            model.addAttribute("isAuthor", isAuthor);
             model.addAttribute("user",user);
             model.addAttribute("posts", postService.findAllByAuthorIdOrderByDateAsc(id));
+            model.addAttribute("categories", categoryService.findAll());
 
             return "profile";
         }else{
