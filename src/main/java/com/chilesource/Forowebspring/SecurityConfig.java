@@ -39,15 +39,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/post/delete**").hasAuthority("ADMIN")
-                    .antMatchers("/new-post", "/edit**").hasAuthority("USER")
+                    .antMatchers("/new-post", "/edit**").hasAnyAuthority("ADMIN", "USER")
                     .antMatchers(resources).permitAll()
-                    .antMatchers("/", "/post**", "/forum**", "/login", "/register").permitAll()
+                    .antMatchers("/", "/post**", "/forum**", "/login", "/register", "/new-user").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
                     .permitAll()
                     .and()
                 .logout()
+                    .logoutSuccessUrl("/")
                     .permitAll();
     }
 

@@ -6,16 +6,14 @@ import com.chilesource.Forowebspring.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.security.Principal;
 
 @Controller
 public class MainController {
@@ -30,10 +28,12 @@ public class MainController {
     private SuperCategoryService superCategoryService;
 
     @Autowired
-    private PostService postService;
+    private BCryptPasswordEncoder encoder;
 
-    @Autowired
-    private RoleService roleService;
+
+    public String currentUserName(Principal p) {
+        return principal.getName();
+    }
 
 
     @RequestMapping("/")
@@ -42,9 +42,11 @@ public class MainController {
         model.addAttribute("superCategories", superCategoryService.findAll());
         model.addAttribute("categories", categoryService.findAll());
 
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        User user = userService.findByUserName(auth.getName());
-//        model.addAttribute("user", user);
+        // Otra forma de obtener info del usuario logeado (distinta a la utilizada en PostController.java)
+        // Fuentes: https://www.baeldung.com/get-user-in-spring-security
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        int userId = userService.findByUserName(auth.getName()).getId();
+        model.addAttribute("userId", userId);
 
         return "index";
     }
@@ -73,7 +75,9 @@ public class MainController {
         System.out.println(user);
 
         // Save
-        userService.saveUser(user);
+//        userService.saveUser(user);
+        user.setPassword(encoder.encode(user.getPassword()));
+        userService.save(user);
 
         // Debug
         System.out.println(user);

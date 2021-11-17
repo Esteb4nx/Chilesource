@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.Date;
 
 @Controller
@@ -28,13 +31,26 @@ public class PostController {
     @Autowired
     private CommentaryService commentaryService;
 
-    @GetMapping
-    public String main(@RequestParam(value = "id") int id, Model model) {
 
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserName(Principal principal) {
+        return principal.getName();
+    }
+
+    @GetMapping
+    public String main(@RequestParam(value = "id") int id, Model model, Principal principal) {
         Post post = postService.findById(id);
+        boolean isAuthor = false;
+
+        if (principal != null) {
+            isAuthor = principal.getName().equals(post.getAuthor().getUserName());
+        }
 
         if(post != null){
             model.addAttribute("post", post);
+            model.addAttribute("isAuthor", isAuthor);
+
             // Header component query
             model.addAttribute("categories", categoryService.findAll());
 

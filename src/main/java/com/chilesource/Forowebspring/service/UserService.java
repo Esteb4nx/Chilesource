@@ -42,6 +42,7 @@ public class UserService extends GenericService<User, Integer> implements UserDe
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = findByUserName(username);
 
+        // Aqui implementar lógica de obtener permisos de la base de datos (Esto es harcode)
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ADMIN"));
 

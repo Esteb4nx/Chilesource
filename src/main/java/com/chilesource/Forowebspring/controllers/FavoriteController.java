@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.security.Principal;
 import java.util.Date;
 
 @Controller
@@ -32,13 +34,15 @@ public class FavoriteController {
     }
 
     @GetMapping("/favorite/add")
-    public String addFavorite(@RequestParam(value = "post_id") int id, @ModelAttribute Favorite favorite){
+    public String addFavorite(@RequestParam(value = "post_id") int id,
+                              @ModelAttribute Favorite favorite,
+                              Principal principal) {
         Date date = new Date();
         java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(date.getTime());
         favorite.setDate(sqlTimeStamp);
 
         favorite.setPost(postService.findById(id));
-        favorite.setUser(userService.findById(1));
+        favorite.setUser(userService.findByUserName(principal.getName()));
 
         favoriteService.save(favorite);
         return "redirect:/favorites?user_id=" + favorite.getUser().getId();
