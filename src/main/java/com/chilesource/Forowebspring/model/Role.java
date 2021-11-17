@@ -15,11 +15,11 @@ public class Role {
     private int id;
 
     @Column(name = "role_name")
-    private String name;
+    private String roleName;
 
     public Role(int id, String name) {
         this.id = id;
-        this.name = name;
+        this.roleName = name;
     }
 
     public Role() {
@@ -34,11 +34,11 @@ public class Role {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoleName(String name) {
+        this.roleName = name;
     }
 }

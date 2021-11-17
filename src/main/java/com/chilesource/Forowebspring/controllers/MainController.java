@@ -30,7 +30,10 @@ public class MainController {
     }
 
     @RequestMapping("/favorites")
-    public String favorites() {
+    public String favorites(Model model) {
+
+        // Header component query
+        model.addAttribute("categories", categoryService.findAll());
 
         return "favorites";
     }

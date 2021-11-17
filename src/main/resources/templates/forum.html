@@ -78,7 +78,7 @@
                         <a th:text="${post.title}" th:href="@{/post(id=${post.id})}" class=""></a>
                     </td>
                     <td>
-                        <a th:text="${post.author.getName()}" th:href="@{/profile(id = ${post.author.getId()})}"></a>
+                        <a th:text="${post.author.getUserName()}" th:href="@{/profile(id = ${post.author.getId()})}"></a>
                         <p th:text="${post.date}" class="text-secondary" style="font-size: 12px;"></p>
                     </td>
                     <td>

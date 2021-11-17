@@ -15,7 +15,7 @@ public class User {
     private int id;
 
     @Column(name = "user_name")
-    private String name;
+    private String userName;
 
     @Column(name = "user_password")
     private String password;
@@ -33,9 +33,9 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    public User(int id, String name, String password, String email, Role role) {
+    public User(int id, String userName, String password, String email, Role role) {
         this.id = id;
-        this.name = name;
+        this.userName = userName;
         this.password = password;
         this.email = email;
         this.role = role;
@@ -53,12 +53,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String name) {
+        this.userName = name;
     }
 
     public String getPassword() {

@@ -60,7 +60,7 @@
                 <div class="head-info-user">
                     <img src="/media/icons/profile-user.svg" width="20px" alt="">
                     <a th:href="@{/profile(id = ${post.author.getId()})}">
-                        <p th:text="${post.author.name}" id="post_owner"></p>
+                        <p th:text="${post.author.userName}" id="post_owner"></p>
                     </a>
 
                 </div>
@@ -89,7 +89,7 @@
         <div class="post-container">
             <div class="post-userinfo">
                 <img class="owner-profile-picture" th:src="${post.author.profile_picture}" width="150px" alt="">
-                <p  th:text="${post.author.name}" class="userinfo-username"></p>
+                <p th:text="${post.author.userName}" class="userinfo-username"></p>
 
                 <div class="userinfo-stats">
                     <p>Post: 12</p>
@@ -122,7 +122,7 @@
         <div th:each="commentary : ${commentaries}" class="commentary">
             <div class="post-userinfo">
                 <img class="owner-profile-picture" th:src="${commentary.getUser().getProfile_picture()}" width="150px" alt="">
-                <p class="userinfo-username" th:text="${commentary.getUser().getName()}"></p>
+                <p class="userinfo-username" th:text="${commentary.getUser().getUserName()}"></p>
 
                 <div class="userinfo-stats">
                     <p>Post: 12</p>
