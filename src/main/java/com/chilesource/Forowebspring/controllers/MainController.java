@@ -32,7 +32,7 @@ public class MainController {
 
 
     public String currentUserName(Principal p) {
-        return principal.getName();
+        return p.getName();
     }
 
 
