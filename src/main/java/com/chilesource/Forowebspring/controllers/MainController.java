@@ -68,12 +68,15 @@ public class MainController {
     }
 
     @PostMapping("/new-user")
-    public String newUser(@ModelAttribute User user){
-        // User role 1 por default (Ahora seteado en método saveUser)
-//        user.setRoles(new HashSet<Role>(List.of(roleService.findById(2))));
-//        user.setPassword(encoder.encode(user.getPassword()));
+    public String newUser(@ModelAttribute User user) {
+        // Debug
+        System.out.println(user);
+
+        // Save
         userService.saveUser(user);
 
+        // Debug
+        System.out.println(user);
         return "redirect:/";
     }
 

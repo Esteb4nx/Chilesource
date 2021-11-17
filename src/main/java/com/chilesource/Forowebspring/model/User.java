@@ -102,4 +102,17 @@ public class User {
     public void setProfile_picture(String profile_picture) {
         this.profile_picture = profile_picture;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", profile_description='" + profile_description + '\'' +
+                ", profile_picture='" + profile_picture + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }
