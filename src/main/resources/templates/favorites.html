@@ -43,7 +43,7 @@
         </div>
 
         <hr>
-        <h1>Favoritos de <text th:text="${user.getName()}"></text></h1>
+        <h1>Favoritos de <text th:text="${user.getUserName()}"></text></h1>
         <table class="table table-bordered" id="tabla-favorites">
             <thead class="table-secondary">
                 <tr>
@@ -57,7 +57,7 @@
                 <tr th:each="favorite : ${favorites}">
                     <!-- Autor -->
                     <td>
-                        <a th:href="@{/profile(id = ${favorite.post.getAuthor().getId()})}" th:text="${favorite.post.getAuthor().getName()}"></a>
+                        <a th:href="@{/profile(id = ${favorite.post.getAuthor().getId()})}" th:text="${favorite.post.getAuthor().getUserName()}"></a>
                     </td>
 
                     <!-- Titulo post -->
