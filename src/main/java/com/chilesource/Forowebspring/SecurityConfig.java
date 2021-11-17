@@ -5,15 +5,20 @@
 
 package com.chilesource.Forowebspring;
 
+import com.chilesource.Forowebspring.service.MyUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -21,16 +26,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     String[] resources = {"/css/**", "/media/**"};
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(bCryptPasswordEncoder);
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/post/delete**").hasRole("MANAGER")
-                    .antMatchers("/new-post", "/edit**").hasRole("USER")
+                    .antMatchers("/post/delete**").hasAuthority("ADMIN")
+                    .antMatchers("/new-post", "/edit**").hasAuthority("USER")
                     .antMatchers(resources).permitAll()
-                    .antMatchers("/", "/post**", "/forum**", "/register").permitAll()
+                    .antMatchers("/", "/post**", "/forum**", "/login", "/register").permitAll()
                     .anyRequest().authenticated()
                     .and()
+//                .csrf().
+//                    disable()
                 .formLogin()
 //                    .loginPage("/login")
                     .permitAll()
@@ -40,34 +61,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
-        // Usando defaultPasswordEncoder como test, no pasar a producción
-        // Hardcode users
-        UserDetails adminUser = User.withDefaultPasswordEncoder()
-                .username("esteban")
-                .password("abcdef")
-                .roles("USER", "MANAGER")
-                .build();
-
-        UserDetails adminUser_2 = User.withDefaultPasswordEncoder()
-                .username("jorge")
-                .password("spring boot learning")
-                .roles("USER", "MANAGER")
-                .build();
-
-        UserDetails adminUser_3 = User.withDefaultPasswordEncoder()
-                .username("administrador")
-                .password("chilesource admin")
-                .roles("USER", "MANAGER")
-                .build();
-
-        UserDetails basicUser = User.withDefaultPasswordEncoder()
-                .username("chilesource_user")
-                .password("chilesource_user")
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(adminUser, adminUser_2, adminUser_3, basicUser);
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
+
 }

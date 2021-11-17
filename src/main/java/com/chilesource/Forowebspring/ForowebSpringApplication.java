@@ -12,9 +12,4 @@ public class ForowebSpringApplication {
 		SpringApplication.run(ForowebSpringApplication.class, args);
 	}
 
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
 }

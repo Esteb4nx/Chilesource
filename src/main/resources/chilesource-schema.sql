@@ -24,11 +24,13 @@ CREATE TABLE user (
     user_email VARCHAR(100) NOT NULL,
     profile_description TEXT,
     profile_picture TEXT,
+    PRIMARY KEY (user_id)
+);
 
+CREATE TABLE user_role (
+    user_id INT UNSIGNED NOT NULL,
     role_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (user_id),
-    CONSTRAINT fk_user_role
-        FOREIGN KEY (role_id) REFERENCES role(role_id)
+    PRIMARY KEY (user_id, role_id)
 );
 
 DROP TABLE IF EXISTS session;

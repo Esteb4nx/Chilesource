@@ -11,11 +11,20 @@ import com.chilesource.Forowebspring.model.User;
 import com.chilesource.Forowebspring.repository.RoleRepository;
 import com.chilesource.Forowebspring.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 @Service
-public class UserService extends GenericService<User, Integer> {
+public class UserService extends GenericService<User, Integer> implements UserDetailsService {
 
     private RoleRepository roleRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -29,14 +38,28 @@ public class UserService extends GenericService<User, Integer> {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = findByUserName(username);
+
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ADMIN"));
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getUserName(),
+                user.getPassword(),
+                authorities
+        );
+    }
+
     public User findByUserName(String name) {
         return ((UserRepository) repository).findByUserName(name);
     }
 
     public User saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        Role userRole = roleRepository.findByRole("ADMIN");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-        return userRepository.save(user);
+        Role userRole = roleRepository.findByRoleName("ADMIN");
+        user.setRoles(new HashSet<Role>(List.of(userRole)));
+        return repository.save(user);
     }
 }

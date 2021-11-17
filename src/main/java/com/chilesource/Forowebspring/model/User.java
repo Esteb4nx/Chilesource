@@ -6,6 +6,8 @@
 package com.chilesource.Forowebspring.model;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -29,16 +31,16 @@ public class User {
     @Column(name = "profile_picture")
     private String profile_picture;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
-    public User(int id, String userName, String password, String email, Role role) {
+    public User(int id, String userName, String password, String email, Set<Role> roles) {
         this.id = id;
         this.userName = userName;
         this.password = password;
         this.email = email;
-        this.role = role;
+        this.roles = roles;
     }
 
     public User() {
@@ -77,12 +79,12 @@ public class User {
         this.email = email;
     }
 
-    public Role getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(Set<Role> role) {
+        this.roles = role;
     }
 
     public String getProfile_description() {

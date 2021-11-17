@@ -1,13 +1,21 @@
 package com.chilesource.Forowebspring.controllers;
 
+import com.chilesource.Forowebspring.model.Role;
 import com.chilesource.Forowebspring.model.User;
 import com.chilesource.Forowebspring.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -34,6 +42,10 @@ public class MainController {
         model.addAttribute("superCategories", superCategoryService.findAll());
         model.addAttribute("categories", categoryService.findAll());
 
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        User user = userService.findByUserName(auth.getName());
+//        model.addAttribute("user", user);
+
         return "index";
     }
 
@@ -57,12 +69,20 @@ public class MainController {
 
     @PostMapping("/new-user")
     public String newUser(@ModelAttribute User user){
-        user.setRole(roleService.findById(1));
-        userService.save(user);
+        // User role 1 por default (Ahora seteado en método saveUser)
+//        user.setRoles(new HashSet<Role>(List.of(roleService.findById(2))));
+//        user.setPassword(encoder.encode(user.getPassword()));
+        userService.saveUser(user);
 
         return "redirect:/";
     }
 
+//    @GetMapping("/login")
+//    public String login(Model model) {
+//        // Header component query
+//        model.addAttribute("categories", categoryService.findAll());
+//        return "login";
+//    }
 
     @RequestMapping("/404")
     public String error(Model model) {

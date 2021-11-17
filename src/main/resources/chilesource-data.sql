@@ -23,12 +23,14 @@ VALUES (NULL, 'PC', 'Debate y temáticas relacionadas al armado de computadores 
 
 
 INSERT INTO role(role_name)
-VALUES ('Invitado'),('Usuario'),('Administrador');
+VALUES ('GUEST'),('USER'),('ADMIN');
 
-INSERT INTO user (user_id, user_name, user_password, user_email, profile_description, profile_picture, role_id)
-VALUES (1, 'Esteban', '123', 'admin@example.com', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt fugit at tenetur quia atque vero, expedita voluptatibus eveniet natus beatae nisi magnam voluptates? Minus excepturi eligendi necessitatibus suscipit et officiis?', '/media/img/profile-picture.jpg', 3),
-       (2, 'Jorge', '123', 'admin@example.com', 'Lorem ipsum dolor sit amet, consectetur adip', 'https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture.jpg', 3),
-       (3, 'Administrador', '123', 'admin@example.com', 'Lorem ipsum dolor sit amet, consectetur adip', 'https://scontent.fzco1-1.fna.fbcdn.net/v/t31.18172-8/16825970_748869598613762_9006949948895762754_o.jpg?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=PxqCs5YLgO8AX-dJovO&_nc_ht=scontent.fzco1-1.fna&oh=2a9ff0bb897953035dc6da10850f1219&oe=619AB6D6', 3);
+INSERT INTO user (user_id, user_name, user_password, user_email, profile_description, profile_picture)
+VALUES (1, 'Esteban', '123', 'admin@example.com', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt fugit at tenetur quia atque vero, expedita voluptatibus eveniet natus beatae nisi magnam voluptates? Minus excepturi eligendi necessitatibus suscipit et officiis?', '/media/img/profile-picture.jpg'),
+       (2, 'Jorge', '123', 'admin@example.com', 'Lorem ipsum dolor sit amet, consectetur adip', 'https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture.jpg'),
+       (3, 'Administrador', '123', 'admin@example.com', 'Lorem ipsum dolor sit amet, consectetur adip', 'https://scontent.fzco1-1.fna.fbcdn.net/v/t31.18172-8/16825970_748869598613762_9006949948895762754_o.jpg?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=PxqCs5YLgO8AX-dJovO&_nc_ht=scontent.fzco1-1.fna&oh=2a9ff0bb897953035dc6da10850f1219&oe=619AB6D6');
+
+INSERT INTO user_role (user_id, role_id) VALUES (1, 3), (2, 3), (3, 3);
 
 # Poblar tabla post
 INSERT INTO chilesourcedb.post (post_id, post_title, post_body, post_date, post_category_id, author_id) VALUES (NULL, 'Crear foro con Spring Boot', '<p align="center">Donec imperdiet sapien mollis facilisis placerat. Ut at dui condimentum,
