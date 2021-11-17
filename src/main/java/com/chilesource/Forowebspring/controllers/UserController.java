@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 @Controller
 public class UserController {
 
@@ -25,9 +27,14 @@ public class UserController {
     private PostService postService;
 
     @GetMapping("/profile")
-    public String profile(@RequestParam(value = "id") int id, Model model){
+    public String profile(@RequestParam(value = "id") int id, Model model, Principal p){
 
         User user = userService.findById(id);
+
+        if (p != null) {
+            int userId = userService.findByUserName(p.getName()).getId();
+            model.addAttribute("userId", userId);
+        }
 
         if(user != null){
             model.addAttribute("user",user);

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.Date;
 
 @Controller
@@ -33,20 +34,29 @@ public class NewPostController {
     private CategoryService categoryService;
 
     @GetMapping
-    public String main(Model model) {
+    public String main(Model model, Principal p) {
         // FIXME buena práctica: nombrar atributo como newPost
         model.addAttribute("post", new Post());
         model.addAttribute("categories", categoryService.findAll());
+
+        if (p != null) {
+            int userId = userService.findByUserName(p.getName()).getId();
+            model.addAttribute("userId", userId);
+        }
+
         return "new-post";
     }
 
     @PostMapping
-    public String save(@ModelAttribute Post post) {
+    public String save(@ModelAttribute Post post, Principal p) {
         Date date = new Date();
         java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(date.getTime());
         post.setDate(sqlTimeStamp);
         int randomUserId = 1 + (int) (Math.random() * 3);
-        post.setAuthor(userService.findById(randomUserId));
+        if (p != null) {
+            int userId = userService.findByUserName(p.getName()).getId();
+            post.setAuthor(userService.findById(userId));
+        }
         postService.save(post);
         return "redirect:/post?id=" + post.getId();
     }

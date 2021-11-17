@@ -1,11 +1,8 @@
 package com.chilesource.Forowebspring.controllers;
 
-import com.chilesource.Forowebspring.model.Role;
 import com.chilesource.Forowebspring.model.User;
 import com.chilesource.Forowebspring.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,40 +28,32 @@ public class MainController {
     private BCryptPasswordEncoder encoder;
 
 
-    public String currentUserName(Principal p) {
-        return p.getName();
-    }
-
-
     @RequestMapping("/")
-    public String index(Model model) {
-        // Consultar todos los registros
+    public String index(Model model, Principal p) {
+        // Consultar todos los registros de categorias y supercategorias
         model.addAttribute("superCategories", superCategoryService.findAll());
         model.addAttribute("categories", categoryService.findAll());
 
-        // Otra forma de obtener info del usuario logeado (distinta a la utilizada en PostController.java)
-        // Fuentes: https://www.baeldung.com/get-user-in-spring-security
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        int userId = userService.findByUserName(auth.getName()).getId();
-        model.addAttribute("userId", userId);
+        if (p != null) {
+            // Logged user info
+            int userId = userService.findByUserName(p.getName()).getId();
+            model.addAttribute("userId", userId);
+        }
 
         return "index";
     }
 
-    @RequestMapping("/favorites")
-    public String favorites(Model model) {
-
-        // Header component query
-        model.addAttribute("categories", categoryService.findAll());
-
-        return "favorites";
-    }
-
     @RequestMapping("/register")
-    public String register(Model model) {
+    public String register(Model model, Principal p) {
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("user", new User());
 
+        // FIXME: remplazar por redirect a otra página al ser usuario logeado
+        if (p != null) {
+            // Logged user info
+            int userId = userService.findByUserName(p.getName()).getId();
+            model.addAttribute("userId", userId);
+        }
 
         return "register";
     }
@@ -84,17 +73,16 @@ public class MainController {
         return "redirect:/";
     }
 
-//    @GetMapping("/login")
-//    public String login(Model model) {
-//        // Header component query
-//        model.addAttribute("categories", categoryService.findAll());
-//        return "login";
-//    }
-
     @RequestMapping("/404")
-    public String error(Model model) {
+    public String error(Model model, Principal p) {
         model.addAttribute("superCategories", superCategoryService.findAll());
         model.addAttribute("categories", categoryService.findAll());
+
+        if (p != null) {
+            // Logged user info
+            int userId = userService.findByUserName(p.getName()).getId();
+            model.addAttribute("userId", userId);
+        }
 
         return "404";
     }

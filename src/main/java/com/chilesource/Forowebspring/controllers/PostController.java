@@ -39,12 +39,16 @@ public class PostController {
     }
 
     @GetMapping
-    public String main(@RequestParam(value = "id") int id, Model model, Principal principal) {
+    public String main(@RequestParam(value = "id") int id, Model model, Principal p) {
         Post post = postService.findById(id);
+        // Se necesita la var fuera para el caso del user guest
         boolean isAuthor = false;
 
-        if (principal != null) {
-            isAuthor = principal.getName().equals(post.getAuthor().getUserName());
+        if (p != null) {
+            isAuthor = p.getName().equals(post.getAuthor().getUserName());
+            // Logged user info
+            int userId = userService.findByUserName(p.getName()).getId();
+            model.addAttribute("userId", userId);
         }
 
         if(post != null){
@@ -67,11 +71,17 @@ public class PostController {
 
     // Corresponde a ruta /post/edit
     @GetMapping("/edit")
-    public String editPostForm(@RequestParam(value = "id") int id, Model model) {
+    public String editPostForm(@RequestParam(value = "id") int id, Model model, Principal p) {
         model.addAttribute("post", postService.findById(id));
 
         // Header component query
         model.addAttribute("categories", categoryService.findAll());
+
+        if (p != null) {
+            // Logged user info
+            int userId = userService.findByUserName(p.getName()).getId();
+            model.addAttribute("userId", userId);
+        }
 
         return  "edit-post";
     }
@@ -89,17 +99,19 @@ public class PostController {
         return "redirect:/";
     }
 
-
     //Comentarios
     @PostMapping("/new-comment")
-    public String newComment(@ModelAttribute Commentary commentary){
+    public String newComment(@ModelAttribute Commentary commentary, Principal p){
         Date date = new Date();
         java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(date.getTime());
         commentary.setDate(sqlTimeStamp);
-        int randomUserId = 1 + (int) (Math.random() * 3);
-        commentary.setUser(userService.findById(randomUserId));
-        commentaryService.save(commentary);
 
+        if (p != null) {
+            // Logged user info
+            commentary.setUser(userService.findByUserName(p.getName()));
+        }
+
+        commentaryService.save(commentary);
         return "redirect:/post?id="+ commentary.getPost().getId();
     }
 

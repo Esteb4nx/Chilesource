@@ -27,22 +27,31 @@ public class FavoriteController {
     private PostService postService;
 
     @GetMapping("/favorites")
-    public String favorites(@RequestParam(value = "user_id") int id, Model model){
+    public String favorites(@RequestParam(value = "user_id") int id, Model model, Principal p){
         model.addAttribute("user", userService.findById(id));
         model.addAttribute("favorites", favoriteService.findAllByAuthorIdOrderByDateAsc(id));
+
+        if (p != null) {
+            // Logged user info
+            int userId = userService.findByUserName(p.getName()).getId();
+            model.addAttribute("userId", userId);
+        }
+
         return "favorites";
     }
 
     @GetMapping("/favorite/add")
     public String addFavorite(@RequestParam(value = "post_id") int id,
                               @ModelAttribute Favorite favorite,
-                              Principal principal) {
+                              Principal p) {
         Date date = new Date();
         java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(date.getTime());
         favorite.setDate(sqlTimeStamp);
 
-        favorite.setPost(postService.findById(id));
-        favorite.setUser(userService.findByUserName(principal.getName()));
+        if (p != null) {
+            favorite.setPost(postService.findById(id));
+            favorite.setUser(userService.findByUserName(p.getName()));
+        }
 
         favoriteService.save(favorite);
         return "redirect:/favorites?user_id=" + favorite.getUser().getId();

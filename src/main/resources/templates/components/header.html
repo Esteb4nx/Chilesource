@@ -40,7 +40,7 @@
         </button>
         <ul class="dropdown-menu dropdown-menu-end user-menu">
           <li> <a th:href="@{/profile(id=${userId})}"><button class="dropdown-item" type="button">Perfil</button></a></li>
-          <li> <a href="/favorites"><button class="dropdown-item" type="button">Favoritos</button></a></li>
+          <li> <a th:href="@{/favorites(user_id=${userId})}"><button class="dropdown-item" type="button">Favoritos</button></a></li>
           <li> <a th:href="@{/logout}"><button class="dropdown-item" type="button">Cerrar sesión</button></a></li>
         </ul>
       </div>
