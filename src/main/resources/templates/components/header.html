@@ -1,3 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0b7fd1;">
   <div class="container-fluid">
     <a class="navbar-brand" style="color: white; font-size: 22px; " href="/">Chilesource</a>
@@ -22,7 +23,7 @@
             <!-- <li><a class="dropdown-item" href="#">Frontend</a></li> -->
           </ul>
         </li>
-        <li class="nav-item">
+        <li th:if="(${#httpServletRequest.remoteUser})" class="nav-item">
           <a class="nav-link active" id="new-post" style="color: white;" aria-current="page" href="/new-post">Nueva publicación</a>
         </li>
       </ul>
@@ -30,7 +31,7 @@
         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
         <button class="btn search-button" type="submit">Buscar</button>
       </form>
-      <div th:inline="text" class="btn-group header-username">
+      <div th:if="(${#httpServletRequest.remoteUser})" th:inline="text" class="btn-group header-username">
         <button type="button" class="btn btn-secondary dropdown-toggle"
           style="background-color: transparent; border: none; box-shadow: none; outline:none;" data-bs-toggle="dropdown"
           aria-expanded="false">
@@ -42,6 +43,12 @@
           <li> <a href="/favorites"><button class="dropdown-item" type="button">Favoritos</button></a></li>
           <li> <a th:href="@{/logout}"><button class="dropdown-item" type="button">Cerrar sesión</button></a></li>
         </ul>
+      </div>
+
+      <!-- Vista para usuarios sin inicio de sesión (Invitado) -->
+      <div th:unless="(${#httpServletRequest.remoteUser})" class="btn-group header-username">
+          <a class="btn btn-success me-2" th:href="@{/login}" role="button">Iniciar sesión</a>
+          <a class="btn btn-success me-2" th:href="@{/register}" role="button">Registrarse</a>
       </div>
 
     </div>

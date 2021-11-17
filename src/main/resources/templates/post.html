@@ -118,8 +118,7 @@
             </div>
         </div>
 
-        <p>Comentarios</p>
-
+        <!-- Comentarios relacionados a este post -->
         <div th:each="commentary : ${commentaries}" class="commentary">
             <div class="post-userinfo">
                 <img class="owner-profile-picture" th:src="${commentary.getUser().getProfile_picture()}" width="150px" alt="">
@@ -146,17 +145,13 @@
                 </div>
                 <hr>
                 <div th:utext="${commentary.getContent()}" class="post-body-content">
-
                 </div>
-
             </div>
-
         </div>
 
+        <hr>
 
-
-        <p>Nuevo Comentario</p>
-
+        <!-- Nuevo comentario -->
         <form th:action="@{/post/new-comment}" method="post">
             <input type="hidden" name="post" th:value="${post.getId()}">
             <div class="post-new-commentary">

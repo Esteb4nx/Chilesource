@@ -19,17 +19,20 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    String[] resources = {"/css/**", "/media/**"};
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                     .antMatchers("/post/delete**").hasRole("MANAGER")
-                    .antMatchers("/new-post").hasRole("USER")
-                    .antMatchers("/edit**").hasRole("USER")
-//                    .antMatchers("/").permitAll()
+                    .antMatchers("/new-post", "/edit**").hasRole("USER")
+                    .antMatchers(resources).permitAll()
+                    .antMatchers("/", "/post**", "/forum**", "/register").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
+//                    .loginPage("/login")
                     .permitAll()
                     .and()
                 .logout()
