@@ -26,26 +26,22 @@
 		<h1 style="text-align: center;">Registrarse</h1>
 		<hr>
 		<div class="register-container">
-			<form class="row g-3">
+			<form class="row g-3" method="post" th:action="@{/new-user}" th:object="${user}">
 				<div class="col-md-4 username-input">
-					<label for="validationDefaultUsername" class="form-label">Username</label>
+					<label for="name" class="form-label">Username</label>
 					<div class="input-group">
 						<span class="input-group-text" id="inputGroupPrepend2">@</span>
-						<input type="text" class="form-control " id="validationDefaultUsername"
+						<input type="text" class="form-control " name="name" id="name"
 							aria-describedby="inputGroupPrepend2" required>
 					</div>
 				</div>
 				<div class="mb-3">
-					<label for="exampleInputEmail1" class="form-label">Email</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+					<label for="email" class="form-label">Email</label>
+					<input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
 				</div>
 				<div class="mb-3">
-					<label for="exampleInputPassword1" class="form-label">Contraseña</label>
-					<input type="password" class="form-control" id="exampleInputPassword1">
-				</div>
-				<div class="mb-3">
-					<label for="exampleInputPassword1" class="form-label">Repetir Contraseña</label>
-					<input type="password" class="form-control" id="exampleInputPassword1">
+					<label for="password" class="form-label">Contraseña</label>
+					<input type="password" class="form-control" name="password" id="password">
 				</div>
 
 				<div class="col-12">
