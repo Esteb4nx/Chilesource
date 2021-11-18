@@ -27,7 +27,13 @@
     <!-- Header -->
     <div th:insert="components/header"></div>
 
-    <main class="main-container pt-5">
+    <main class="main-container pt-4">
+
+        <div th:if="${param.logout!=null}" th:unless="(${#httpServletRequest.remoteUser})" class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>¡Sesión cerrada!</strong> Esperamos volver a verte :)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
         <h1>Foro de Chilesource</h1>
         <p>Comienza en alguna de estas categorías:</p>
         <table th:each="superCategory : ${superCategories}" class="table table-bordered table-hover table-categories" id="tabla-1">
@@ -58,6 +64,8 @@
 
     <!-- Footer -->
     <div th:insert ="/components/footer"></div>
+
 </body>
+
 
 </html>

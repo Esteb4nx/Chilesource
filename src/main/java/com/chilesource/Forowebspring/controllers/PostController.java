@@ -37,14 +37,17 @@ public class PostController {
         // Se necesita la var fuera para el caso del user guest
         boolean isAuthor = false;
 
-        if (p != null) {
-            isAuthor = p.getName().equals(post.getAuthor().getUserName());
-            // Logged user info
-            int userId = userService.findByUserName(p.getName()).getId();
-            model.addAttribute("userId", userId);
-        }
+
 
         if(post != null){
+
+            if (p != null) {
+                isAuthor = p.getName().equals(post.getAuthor().getUserName());
+                // Logged user info
+                int userId = userService.findByUserName(p.getName()).getId();
+                model.addAttribute("userId", userId);
+            }
+
             model.addAttribute("post", post);
             model.addAttribute("isAuthor", isAuthor);
 
@@ -56,6 +59,13 @@ public class PostController {
 
             return "post";
         }else{
+
+            if (p != null) {
+                // Logged user info
+                int userId = userService.findByUserName(p.getName()).getId();
+                model.addAttribute("userId", userId);
+            }
+
             model.addAttribute("categories", categoryService.findAll());
             return "404";
         }
