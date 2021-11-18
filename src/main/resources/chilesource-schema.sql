@@ -33,14 +33,15 @@ CREATE TABLE user_role (
     PRIMARY KEY (user_id, role_id)
 );
 
-DROP TABLE IF EXISTS session;
-CREATE TABLE session (
-    session_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    user_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (session_id),
-    CONSTRAINT fk_session_user
-        FOREIGN KEY (user_id) REFERENCES user(user_id)
-);
+# Tabla en desuso
+# DROP TABLE IF EXISTS session;
+# CREATE TABLE session (
+#     session_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+#     user_id INT UNSIGNED NOT NULL,
+#     PRIMARY KEY (session_id),
+#     CONSTRAINT fk_session_user
+#         FOREIGN KEY (user_id) REFERENCES user(user_id)
+# );
 
 # FIXME: Diseño ERD category pertenece a 1 super_category y super_category tiene n category
 DROP TABLE IF EXISTS super_category;
