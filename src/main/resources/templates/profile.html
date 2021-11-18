@@ -60,7 +60,7 @@
                     <a th:href="@{/favorites(user_id = ${user.getId()})}">
                         <button class="btn profile-button" type="submit">Favoritos <img src="/media/icons/star.svg" width="18px" alt=""></button>
                     </a>
-                    <a th:if="${isAuthor}" href="/profile/edit">
+                    <a th:if="${isAuthor}" th:href="@{/profile/edit(user_id = ${user.getId()})}">
                         <button class="btn profile-button" type="submit">Editar perfil <img src="/media/icons/pencil.svg" width="18px" alt=""></button>
                     </a>
                 </div>

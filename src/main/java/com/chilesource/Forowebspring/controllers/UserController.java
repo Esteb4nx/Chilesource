@@ -53,4 +53,23 @@ public class UserController {
         }
 
     }
+
+    @GetMapping("/profile/edit")
+    public String editProfile(@RequestParam(value = "user_id") int id, Model model, Principal p){
+
+        // Header component query
+        model.addAttribute("categories", categoryService.findAll());
+
+        model.addAttribute("user", userService.findById(id));
+
+
+        if (p != null) {
+            // Logged user info
+            int userId = userService.findByUserName(p.getName()).getId();
+            model.addAttribute("userId", userId);
+        }
+
+        return "edit-profile";
+
+    }
 }
