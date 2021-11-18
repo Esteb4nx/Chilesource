@@ -35,7 +35,7 @@
         <button type="button" class="btn btn-secondary dropdown-toggle"
           style="background-color: transparent; border: none; box-shadow: none; outline:none;" data-bs-toggle="dropdown"
           aria-expanded="false">
-          <img id="username-header-img" th:src="" width="22px" alt="">
+          <img id="username-header-img" th:src="@{https://avatars.dicebear.com/api/initials/}+${#httpServletRequest.remoteUser}+@{.svg?r=50&backgroundColors[]=pink&backgroundColors[]=purple&backgroundColors[]=red&backgroundColors[]=teal&backgroundColors[]=yellow&backgroundColors[]=lime&backgroundColors[]=orange&backgroundColors[]=lightGreen&backgroundColors[]=indigo&backgroundColors[]=grey&backgroundColors[]=green&backgroundColors[]=deepPurple&backgroundColors[]=deepOrange&backgroundColors[]=brown&backgroundColors[]=amber&fontSize=56}" width="22px" alt="">
           [[${#httpServletRequest.remoteUser}]]
         </button>
         <ul class="dropdown-menu dropdown-menu-end user-menu">
