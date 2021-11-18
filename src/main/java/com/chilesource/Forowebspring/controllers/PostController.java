@@ -31,13 +31,6 @@ public class PostController {
     @Autowired
     private CommentaryService commentaryService;
 
-
-    @RequestMapping(value = "/username", method = RequestMethod.GET)
-    @ResponseBody
-    public String currentUserName(Principal principal) {
-        return principal.getName();
-    }
-
     @GetMapping
     public String main(@RequestParam(value = "id") int id, Model model, Principal p) {
         Post post = postService.findById(id);
