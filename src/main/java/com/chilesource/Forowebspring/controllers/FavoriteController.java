@@ -31,7 +31,6 @@ public class FavoriteController {
         model.addAttribute("user", userService.findById(id));
         model.addAttribute("favorites", favoriteService.findAllByAuthorIdOrderByDateAsc(id));
         boolean isAuthor = false;
-
         if (p != null) {
             // FIXME refactor: extraer variable
             isAuthor = p.getName().equals(userService.findById(id).getUserName());
