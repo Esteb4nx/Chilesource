@@ -65,7 +65,7 @@ public class MainController {
 
         // Save
 //        userService.saveUser(user);
-        user.setProfilePicture("/media/img/profile-picture.jpg");
+        user.setProfilePicture("https://avatars.dicebear.com/api/initials/"+user.getUserName()+".svg");
         user.setPassword(encoder.encode(user.getPassword()));
         userService.save(user);
 
