@@ -5,6 +5,7 @@
 
 package com.chilesource.Forowebspring.controllers;
 
+import com.chilesource.Forowebspring.model.Category;
 import com.chilesource.Forowebspring.service.CategoryService;
 import com.chilesource.Forowebspring.service.PostService;
 import com.chilesource.Forowebspring.service.UserService;
@@ -39,21 +40,36 @@ public class ForumController {
      */
     @GetMapping("/forum")
     public String forum(@RequestParam(value = "id") int id, Model model, Principal p) {
-        model.addAttribute("category", categoryService.findById(id));
-        model.addAttribute("posts", postService.findAllByCategoryId(id));
+        Category category = categoryService.findById(id);
 
-        // Header component query
-        model.addAttribute("categories", categoryService.findAll());
+        if(category != null){
+            model.addAttribute("category", category);
+            model.addAttribute("posts", postService.findAllByCategoryId(id));
 
-        // Lastposts
-        model.addAttribute("lastPosts", postService.findAllByCategoryIdOrderByDateDesc(id));
+            // Header component query
+            model.addAttribute("categories", categoryService.findAll());
 
-        if (p != null) {
-            int userId = userService.findByUserName(p.getName()).getId();
-            model.addAttribute("userId", userId);
+            // Lastposts
+            model.addAttribute("lastPosts", postService.findAllByCategoryIdOrderByDateDesc(id));
+
+            if (p != null) {
+                int userId = userService.findByUserName(p.getName()).getId();
+                model.addAttribute("userId", userId);
+            }
+
+            return "forum";
+        }else{
+            // Header component query
+            model.addAttribute("categories", categoryService.findAll());
+
+            if (p != null) {
+                int userId = userService.findByUserName(p.getName()).getId();
+                model.addAttribute("userId", userId);
+            }
+            return "404";
         }
 
-        return "forum";
+
     }
 
 

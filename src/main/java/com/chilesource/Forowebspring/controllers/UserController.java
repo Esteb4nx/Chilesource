@@ -32,15 +32,17 @@ public class UserController {
         User user = userService.findById(id);
         boolean isAuthor = false;
 
-        if (p != null) {
-            isAuthor = p.getName().equals(user.getUserName());
 
-
-            int userId = userService.findByUserName(p.getName()).getId();
-            model.addAttribute("userId", userId);
-        }
 
         if(user != null){
+
+            if (p != null) {
+                isAuthor = p.getName().equals(user.getUserName());
+
+                int userId = userService.findByUserName(p.getName()).getId();
+                model.addAttribute("userId", userId);
+            }
+
             model.addAttribute("isAuthor", isAuthor);
             model.addAttribute("user",user);
             model.addAttribute("posts", postService.findAllByAuthorIdOrderByDateAsc(id));
@@ -49,6 +51,12 @@ public class UserController {
             return "profile";
         }else{
             model.addAttribute("categories", categoryService.findAll());
+
+            if (p != null) {
+                // Logged user info
+                int userId = userService.findByUserName(p.getName()).getId();
+                model.addAttribute("userId", userId);
+            }
             return "404";
         }
 
