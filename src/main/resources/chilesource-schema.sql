@@ -1,4 +1,6 @@
-# 23 oct. 2021 Jorge Mainhard
+# 23 oct. 2021
+# Authors: Jorge Mainhard, Esteban Esparza
+# Chilesource DDL
 DROP DATABASE IF EXISTS chilesourcedb;
 CREATE DATABASE chilesourcedb /*!40100 COLLATE 'utf8mb4_general_ci' */;
 
@@ -22,11 +24,13 @@ CREATE TABLE user (
     user_email VARCHAR(100) NOT NULL,
     profile_description TEXT,
     profile_picture TEXT,
+    PRIMARY KEY (user_id)
+);
 
+CREATE TABLE user_role (
+    user_id INT UNSIGNED NOT NULL,
     role_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (user_id),
-    CONSTRAINT fk_user_role
-        FOREIGN KEY (role_id) REFERENCES role(role_id)
+    PRIMARY KEY (user_id, role_id)
 );
 
 DROP TABLE IF EXISTS session;
@@ -96,9 +100,12 @@ CREATE TABLE commentary (
 	c_date DATETIME NOT NULL,
 	c_likes INT UNSIGNED DEFAULT 0,
 	post_id INT UNSIGNED NOT NULL,
+	author_id INT UNSIGNED NOT NULL,
 	PRIMARY KEY (commentary_id),
     CONSTRAINT fk_commentary_post
-        FOREIGN KEY (post_id) REFERENCES post(post_id)
+        FOREIGN KEY (post_id) REFERENCES post(post_id),
+    CONSTRAINT fk_commentary_author
+        FOREIGN KEY (author_id) REFERENCES user(user_id)
 );
 
 SHOW TABLES;

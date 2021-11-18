@@ -30,11 +30,11 @@
 
 
         <div class="profile-container">
-            <div class="profile-picture"><img th:src="${user.getProfile_picture()}" width="256px" alt=""></div>
+            <div class="profile-picture"><img th:src="${user.getProfilePicture()}" width="256px" alt=""></div>
             <div class="profile-info">
                 <div style="padding-top: 8px;">
-                    <h2 th:text="${user.getName()}"></h2>
-                    <p th:text="${user.getProfile_description()}" id="profile-description"></p>
+                    <h2 th:text="${user.getUserName()}"></h2>
+                    <p th:text="${user.getProfileDescription()}" id="profile-description"></p>
                 </div>
                 <div id="profile-data">
                     <p>Chile<img src="/media/icons/chile-flag.svg" width="22px" alt=""></p>
@@ -57,10 +57,10 @@
                     </tbody>
                 </table>
                 <div class="profile-buttons-container">
-                    <a href="./favorites.html">
+                    <a th:href="@{/favorites(user_id = ${user.getId()})}">
                         <button class="btn profile-button" type="submit">Favoritos <img src="/media/icons/star.svg" width="18px" alt=""></button>
                     </a>
-                    <a href="./edit-profile.html">
+                    <a th:if="${isAuthor}" th:href="@{/profile/edit(user_id = ${user.getId()})}">
                         <button class="btn profile-button" type="submit">Editar perfil <img src="/media/icons/pencil.svg" width="18px" alt=""></button>
                     </a>
                 </div>

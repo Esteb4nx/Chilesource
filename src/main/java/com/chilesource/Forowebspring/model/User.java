@@ -6,6 +6,7 @@
 package com.chilesource.Forowebspring.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -15,7 +16,7 @@ public class User {
     private int id;
 
     @Column(name = "user_name")
-    private String name;
+    private String userName;
 
     @Column(name = "user_password")
     private String password;
@@ -24,21 +25,22 @@ public class User {
     private String email;
 
     @Column(name = "profile_description")
-    private String profile_description;
+    private String profileDescription;
 
     @Column(name = "profile_picture")
-    private String profile_picture;
+    private String profilePicture;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+    // FIXME: revisar este tema, roles serán hardcodeados hasta entonces
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
-    public User(int id, String name, String password, String email, Role role) {
+    public User(int id, String userName, String password, String email, Set<Role> roles) {
         this.id = id;
-        this.name = name;
+        this.userName = userName;
         this.password = password;
         this.email = email;
-        this.role = role;
+        this.roles = roles;
     }
 
     public User() {
@@ -53,12 +55,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String name) {
+        this.userName = name;
     }
 
     public String getPassword() {
@@ -77,27 +79,40 @@ public class User {
         this.email = email;
     }
 
-    public Role getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(Set<Role> role) {
+        this.roles = role;
     }
 
-    public String getProfile_description() {
-        return profile_description;
+    public String getProfileDescription() {
+        return profileDescription;
     }
 
-    public void setProfile_description(String profile_description) {
-        this.profile_description = profile_description;
+    public void setProfileDescription(String profile_description) {
+        this.profileDescription = profile_description;
     }
 
-    public String getProfile_picture() {
-        return profile_picture;
+    public String getProfilePicture() {
+        return profilePicture;
     }
 
-    public void setProfile_picture(String profile_picture) {
-        this.profile_picture = profile_picture;
+    public void setProfilePicture(String profile_picture) {
+        this.profilePicture = profile_picture;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", profile_description='" + profileDescription + '\'' +
+                ", profile_picture='" + profilePicture + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }

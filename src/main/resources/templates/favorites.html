@@ -43,41 +43,38 @@
         </div>
 
         <hr>
-        <h1>Favoritos</h1>
+        <h1>Favoritos de <text th:text="${user.getUserName()}"></text></h1>
         <table class="table table-bordered" id="tabla-favorites">
             <thead class="table-secondary">
                 <tr>
-                    <th scope="col">Publicación</th>
                     <th scope="col">Autor</th>
-                    <th scope="col">Favoritos</th>
-                    <th scope="col">Eliminar</th>
+                    <th scope="col">Publicación</th>
+                    <th scope="col">Fecha</th>
+                    <th th:if="${isAuthor}" scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                <script>
-                    $(document).ready(function () {
-                        $.getJSON("./data/posts.json",
-                            function (data) {
-                                var category = '';
-                                $.each(data, function (key, value) {
-                                    category += '<tr>';
-                                    category += '<td><a href="/post.html" class="">' + value.title + '</a></td>';
+                <tr th:each="favorite : ${favorites}">
+                    <!-- Autor -->
+                    <td>
+                        <a th:href="@{/profile(id = ${favorite.post.getAuthor().getId()})}" th:text="${favorite.post.getAuthor().getUserName()}"></a>
+                    </td>
 
-                                    category += '<td><a href="/profile.html">' + value.author + '</a>';
-                                    category += '<p class="text-secondary" style="font-size: 12px;">' + value.rfc2822 + '</p></td>'
+                    <!-- Titulo post -->
+                    <td>
+                        <a th:href="@{/post(id=${favorite.getPost().getId()})}" th:text="${favorite.post.getTitle()}">
+                            <p  class="text-secondary" style="font-size: 12px;"></p>
+                        </a>
+                    </td>
 
-                                    category += '<td>' + value.favorites + '</td>';
-
-                                    category += '<td><button type="button" class="btn btn-danger">Eliminar</button></td>';
-
-                                    category += '</tr>';
-                                });
-
-                                // INSERTAR FILA A LA TABLA
-                                $('#tabla-favorites').append(category);
-                            });
-                    });
-                </script>
+                    <!-- Fecha -->
+                    <td th:text="${favorite.getDate()}"></td>
+                    <td th:if="${isAuthor}">
+                        <a th:href="@{/favorite/delete(fav_id=${favorite.getId()})}">
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </main>

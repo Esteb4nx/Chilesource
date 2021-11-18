@@ -80,9 +80,9 @@ p{
     padding: 32px;
     display: flex;
     flex-direction: column;
-    border-right: 1px solid rgb(194, 194, 194);
     justify-content: space-between;
     min-width: 220px;
+    height: 380px;
 }
 
 .owner-profile-picture{
@@ -112,6 +112,8 @@ p{
     flex-direction: column;
     text-align: justify;
     padding: 12px;
+    border-left: 1px solid rgb(194, 194, 194);
+    width: 100%;
 
 }
 
@@ -140,8 +142,6 @@ p{
 
 .post-new-commentary{
     display: flex;
-    /* flex-direction: column; */
-    /* justify-content: space-between; */
     border: 1px solid rgb(194, 194, 194);
     margin-top: 24px;
     margin-left: 12px;
@@ -152,22 +152,37 @@ p{
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 400px;
+    height: max-content;
     justify-content: space-between;
 }
 
 .commentary-editor-button {
     display: flex;
     padding: 6px;
-    justify-content: space-between;
-}
-
-
-.wysibb-body{
-    min-height: 300px !important;
-    max-height: 300px !important;
+    justify-content: end;
 }
 
 #editor{
     max-height: 300px;
+}
+
+.commentary{
+    display: flex;
+    border: 1px solid rgb(194, 194, 194);
+    margin-top: 24px;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.commentary-body{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    padding: 12px;
+    border-left: 1px solid rgb(194, 194, 194);
+    width: 100%;
+}
+
+.commentary-body hr{
+    margin-top: 6px;
 }

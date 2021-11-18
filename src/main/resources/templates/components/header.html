@@ -1,3 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0b7fd1;">
   <div class="container-fluid">
     <a class="navbar-brand" style="color: white; font-size: 22px; " href="/">Chilesource</a>
@@ -22,7 +23,7 @@
             <!-- <li><a class="dropdown-item" href="#">Frontend</a></li> -->
           </ul>
         </li>
-        <li class="nav-item">
+        <li th:if="(${#httpServletRequest.remoteUser})" class="nav-item">
           <a class="nav-link active" id="new-post" style="color: white;" aria-current="page" href="/new-post">Nueva publicación</a>
         </li>
       </ul>
@@ -30,18 +31,54 @@
         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
         <button class="btn search-button" type="submit">Buscar</button>
       </form>
-      <div class="btn-group header-username">
+      <div th:if="(${#httpServletRequest.remoteUser})" th:inline="text" class="btn-group header-username">
         <button type="button" class="btn btn-secondary dropdown-toggle"
           style="background-color: transparent; border: none; box-shadow: none; outline:none;" data-bs-toggle="dropdown"
           aria-expanded="false">
-          <img id="username-header-img" src="/media/icons/profile-user.svg" width="20px" alt=""> Usuario
+          <img id="username-header-img" src="/media/icons/profile-user.svg" width="20px" alt="">
+          [[${#httpServletRequest.remoteUser}]]
         </button>
         <ul class="dropdown-menu dropdown-menu-end user-menu">
-          <li> <a href="/profile"><button class="dropdown-item" type="button">Perfil</button></a></li>
-          <li> <a href="/favorites"><button class="dropdown-item" type="button">Favoritos</button></a></li>
-          <li> <a href="/"><button class="dropdown-item" type="button">Cerrar sesión</button></a></li>
+          <li> <a th:href="@{/profile(id=${userId})}"><button class="dropdown-item" type="button">Perfil</button></a></li>
+          <li> <a th:href="@{/favorites(user_id=${userId})}"><button class="dropdown-item" type="button">Favoritos</button></a></li>
+          <form
+                  th:action="@{/logout}"
+                  method="post">
+            <li> <button class="dropdown-item" type="submit">Cerrar sesión</button></li>
+          </form>
         </ul>
       </div>
+
+      <!-- Vista para usuarios sin inicio de sesión (Invitado) -->
+
+      <div th:unless="(${#httpServletRequest.remoteUser})" class="btn-group header-username">
+        <button type="button" class="btn btn-secondary dropdown-toggle" style="background-color: transparent; border: none; box-shadow: none; outline:none;" data-bs-toggle="dropdown" aria-expanded="false">
+          <img id="username-header-img" src="/media/icons/profile-user.svg" width="20px" alt=""> Invitado
+        </button>
+        <div class="dropdown-menu dropdown-menu-end">
+          <form class="form-signin px-4 py-3" method="post" action="/perform_login" data-bitwarden-watching="1">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" name="username" class="form-control" id="username" placeholder="Username">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña">
+            </div>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+          </form>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/register">No tienes cuenta? Registrate!</a>
+        </div>
+      </div>
+
+
+
+<!--      <div th:unless="(${#httpServletRequest.remoteUser})" class="btn-group header-username">-->
+<!--          <a class="btn btn-success me-2" th:href="@{/login}" role="button">Iniciar sesión</a>-->
+<!--          <a class="btn btn-success me-2" th:href="@{/register}" role="button">Registrarse</a>-->
+<!--      </div>-->
 
     </div>
   </div>

@@ -60,7 +60,7 @@
                 <div class="head-info-user">
                     <img src="/media/icons/profile-user.svg" width="20px" alt="">
                     <a th:href="@{/profile(id = ${post.author.getId()})}">
-                        <p th:text="${post.author.name}" id="post_owner"></p>
+                        <p th:text="${post.author.userName}" id="post_owner"></p>
                     </a>
 
                 </div>
@@ -74,18 +74,24 @@
                 </div>
             </div>
 
-            <div class="head-buttons">
-                <a th:href="@{/post/edit(id=${post.id})}">
+            <div class="head-buttons" style="display: flex;">
+                <a th:if="${#httpServletRequest.remoteUser}" th:href="@{/favorite/add(post_id=${post.id})}">
+                    <button class="btn profile-button">Añadir a favoritos <img src="/media/icons/star.svg" width="18px"
+                                                                               alt="">
+                    </button>
+                </a>
+                <a th:if="${isAuthor}" th:href="@{/post/edit(id=${post.id})}">
                     <button class="btn profile-button">Editar publicación <img src="/media/icons/pencil.svg" width="18px"
-                                                                               alt=""></button>
+                                                                               alt="">
+                    </button>
                 </a>
             </div>
         </div>
 
         <div class="post-container">
             <div class="post-userinfo">
-                <img class="owner-profile-picture" th:src="${post.author.profile_picture}" width="150px" alt="">
-                <p  th:text="${post.author.name}" class="userinfo-username"></p>
+                <img class="owner-profile-picture" th:src="${post.author.profilePicture}" width="150px" alt="">
+                <p th:text="${post.author.userName}" class="userinfo-username"></p>
 
                 <div class="userinfo-stats">
                     <p>Post: 12</p>
@@ -114,10 +120,11 @@
             </div>
         </div>
 
-        <div class="post-new-commentary">
+        <!-- Comentarios relacionados a este post -->
+        <div th:each="commentary : ${commentaries}" class="commentary">
             <div class="post-userinfo">
-                <img class="owner-profile-picture" src="/media/img/profile-picture.jpg" width="150px" alt="">
-                <p class="userinfo-username">Usuario</p>
+                <img class="owner-profile-picture" th:src="${commentary.getUser().getProfilePicture()}" width="150px" alt="">
+                <p class="userinfo-username" th:text="${commentary.getUser().getUserName()}"></p>
 
                 <div class="userinfo-stats">
                     <p>Post: 12</p>
@@ -129,17 +136,54 @@
                     <p>Hombre<img src="/media/icons/male-gender.svg" width="22px" alt=""></p>
                 </div>
             </div>
-            <div class="commentary-editor">
-                <div>
-                    <textarea id="summernote"></textarea>
+            <div class="commentary-body">
+                <div class="post-body-head">
+                    <div>
+                        <p th:text="${commentary.getDate()}" class="text-secondary"></p>
+                    </div>
+                    <div>
+                        <p class="text-secondary">#1</p>
+                    </div>
                 </div>
-                <div class="commentary-editor-button">
-                    <p></p>
-                    <button class="btn profile-button">Enviar comentario<img src="/media/icons/message.png" width="18px"
-                                                                             alt=""></button>
+                <hr>
+                <div th:utext="${commentary.getContent()}" class="post-body-content">
                 </div>
             </div>
         </div>
+
+        <div th:if="(${#httpServletRequest.remoteUser})">
+            <hr>
+            <!-- Nuevo comentario -->
+            <form th:action="@{/post/new-comment}" method="post">
+                <input type="hidden" name="post" th:value="${post.getId()}">
+                <div class="post-new-commentary">
+                    <div class="post-userinfo">
+                        <img class="owner-profile-picture" src="/media/img/profile-picture.jpg" width="150px" alt="">
+                        <p th:inline="text" class="userinfo-username">[[${#httpServletRequest.remoteUser}]]</p>
+
+                        <div class="userinfo-stats">
+                            <p>Post: 12</p>
+                            <p>Comentarios: 2</p>
+                            <p>Favoritos: 7</p>
+                        </div>
+                        <div class="userinfo-profile">
+                            <p>Chile<img src="/media/icons/chile-flag.svg" width="22px" alt=""></p>
+                            <p>Hombre<img src="/media/icons/male-gender.svg" width="22px" alt=""></p>
+                        </div>
+                    </div>
+                    <div class="commentary-editor">
+                        <div>
+                            <textarea id="summernote" name="content"></textarea>
+                        </div>
+                        <div class="commentary-editor-button">
+                            <button type="submit" class="btn profile-button">Enviar comentario<img src="/media/icons/message.png" width="18px" alt=""></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
 
     </main>
 
