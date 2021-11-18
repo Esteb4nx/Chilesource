@@ -41,7 +41,11 @@
         <ul class="dropdown-menu dropdown-menu-end user-menu">
           <li> <a th:href="@{/profile(id=${userId})}"><button class="dropdown-item" type="button">Perfil</button></a></li>
           <li> <a th:href="@{/favorites(user_id=${userId})}"><button class="dropdown-item" type="button">Favoritos</button></a></li>
-          <li> <a th:href="@{/logout}"><button class="dropdown-item" type="button">Cerrar sesión</button></a></li>
+          <form
+                  th:action="@{/logout}"
+                  method="post">
+            <li> <button class="dropdown-item" type="submit">Cerrar sesión</button></li>
+          </form>
         </ul>
       </div>
 
@@ -68,6 +72,7 @@
           <a class="dropdown-item" href="/register">No tienes cuenta? Registrate!</a>
         </div>
       </div>
+
 
 
 <!--      <div th:unless="(${#httpServletRequest.remoteUser})" class="btn-group header-username">-->
