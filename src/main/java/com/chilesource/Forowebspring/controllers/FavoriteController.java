@@ -7,6 +7,7 @@
 package com.chilesource.Forowebspring.controllers;
 
 import com.chilesource.Forowebspring.model.Favorite;
+import com.chilesource.Forowebspring.service.CategoryService;
 import com.chilesource.Forowebspring.service.FavoriteService;
 import com.chilesource.Forowebspring.service.PostService;
 import com.chilesource.Forowebspring.service.UserService;
@@ -32,10 +33,14 @@ public class FavoriteController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @GetMapping("/favorites")
     public String favorites(@RequestParam(value = "user_id") int id, Model model, Principal p){
         model.addAttribute("user", userService.findById(id));
         model.addAttribute("favorites", favoriteService.findAllByAuthorIdOrderByDateAsc(id));
+        model.addAttribute("categories", categoryService.findAll()); // component header query
         boolean isAuthor = false;
 
         if (p != null) {
