@@ -27,6 +27,7 @@ CREATE TABLE user (
     PRIMARY KEY (user_id)
 );
 
+DROP TABLE IF EXISTS user_role;
 CREATE TABLE user_role (
     user_id INT UNSIGNED NOT NULL,
     role_id INT UNSIGNED NOT NULL,

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.Date;
 
@@ -36,10 +35,7 @@ public class PostController {
         // Se necesita la var fuera para el caso del user guest
         boolean isAuthor = false;
 
-
-
-        if(post != null){
-
+        if (post != null) {
             if (p != null) {
                 isAuthor = p.getName().equals(post.getAuthor().getUserName());
                 // Logged user info
