@@ -56,7 +56,9 @@
                 <input type="hidden" name="title" th:value="${post.title}">
 
 
-            <div class="editor-container"> <textarea name="body" th:text="${post.body}" id="summernote"></textarea></div>
+            <div class="editor-container">
+                <textarea name="body" th:text="${post.body}" id="summernote"></textarea>
+            </div>
             <div class="buttons-container">
                 <div style="display: flex;">
                     <p style="margin: 0 8px;">Tags: </p>
