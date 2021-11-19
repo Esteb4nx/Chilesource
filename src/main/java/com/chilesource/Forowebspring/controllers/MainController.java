@@ -1,3 +1,9 @@
+/*
+ *  @author Esteban E.
+ *  @author Jorge M.
+ *  nov-2021
+ */
+
 package com.chilesource.Forowebspring.controllers;
 
 import com.chilesource.Forowebspring.model.User;

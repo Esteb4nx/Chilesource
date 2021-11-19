@@ -1,6 +1,5 @@
 package com.chilesource.Forowebspring.controllers;
 
-
 import com.chilesource.Forowebspring.model.Commentary;
 import com.chilesource.Forowebspring.model.Post;
 import com.chilesource.Forowebspring.service.CategoryService;
