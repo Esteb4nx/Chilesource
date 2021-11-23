@@ -158,7 +158,7 @@
                 <input type="hidden" name="post" th:value="${post.getId()}">
                 <div class="post-new-commentary">
                     <div class="post-userinfo">
-                        <img class="owner-profile-picture" src="/media/img/profile-picture.jpg" width="150px" alt="">
+                        <img class="owner-profile-picture" th:src="${userPP}" width="150px" alt="">
                         <p th:inline="text" class="userinfo-username">[[${#httpServletRequest.remoteUser}]]</p>
 
                         <div class="userinfo-stats">

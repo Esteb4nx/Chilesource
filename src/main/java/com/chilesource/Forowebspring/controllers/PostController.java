@@ -40,7 +40,9 @@ public class PostController {
                 isAuthor = p.getName().equals(post.getAuthor().getUserName());
                 // Logged user info
                 int userId = userService.findByUserName(p.getName()).getId();
+                String userPP = userService.findById(userId).getProfilePicture();
                 model.addAttribute("userId", userId);
+                model.addAttribute("userPP", userPP);
             }
 
             model.addAttribute("post", post);
