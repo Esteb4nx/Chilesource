@@ -27,16 +27,11 @@ import java.util.List;
 @Service
 public class UserService extends GenericService<User, Integer> implements UserDetailsService {
 
-    private RoleRepository roleRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Autowired
-    public UserService(UserRepository repository,
-                       RoleRepository roleRepository,
-                       BCryptPasswordEncoder bCryptPasswordEncoder) {
+    private RoleRepository roleRepository;
+
+    public UserService(UserRepository repository) {
         super(repository);
-        this.roleRepository = roleRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -58,10 +53,4 @@ public class UserService extends GenericService<User, Integer> implements UserDe
         return ((UserRepository) repository).findByUserName(name);
     }
 
-    public User saveUser(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        Role userRole = roleRepository.findByRoleName("ADMIN");
-        user.setRoles(new HashSet<Role>(List.of(userRole)));
-        return repository.save(user);
-    }
 }

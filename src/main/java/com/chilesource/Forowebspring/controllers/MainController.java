@@ -30,10 +30,6 @@ public class MainController {
     @Autowired
     private SuperCategoryService superCategoryService;
 
-    @Autowired
-    private BCryptPasswordEncoder encoder;
-
-
     @RequestMapping("/")
     public String index(Model model, Principal p) {
         // Consultar todos los registros de categorias y supercategorias
@@ -66,8 +62,7 @@ public class MainController {
 
     @PostMapping("/new-user")
     public String newUser(@ModelAttribute User user) {
-        // Save
-//        userService.saveUser(user);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setProfilePicture("https://avatars.dicebear.com/api/initials/"+user.getUserName()+".svg?&backgroundColors[]=pink&backgroundColors[]=purple&backgroundColors[]=red&backgroundColors[]=teal&backgroundColors[]=yellow&backgroundColors[]=lime&backgroundColors[]=orange&backgroundColors[]=lightGreen&backgroundColors[]=indigo&backgroundColors[]=grey&backgroundColors[]=green&backgroundColors[]=deepPurple&backgroundColors[]=deepOrange&backgroundColors[]=brown&backgroundColors[]=amber&fontSize=56");
         user.setPassword(encoder.encode(user.getPassword()));
         userService.save(user);
