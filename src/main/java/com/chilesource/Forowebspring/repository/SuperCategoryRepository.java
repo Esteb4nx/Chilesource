@@ -5,9 +5,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * CrudRepository bean para SuperCategory
+ * Repositorio para operaciones CRUD de tipo <i>SuperCategory</i>
  *
- * @see com.chilesource.Forowebspring.service.SuperCategoryService
+ * @see <a href="https://docs.spring.io/spring-data/commons/docs/2.6.0/api/org/springframework/data/repository/CrudRepository.html">CrudRepository</a>
+ * @see SuperCategory
  */
 @Repository
 public interface SuperCategoryRepository extends CrudRepository<SuperCategory, Integer> {

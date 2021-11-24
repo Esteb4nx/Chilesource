@@ -5,6 +5,8 @@ import com.chilesource.Forowebspring.model.SuperCategory;
 import com.chilesource.Forowebspring.repository.SuperCategoryRepository;
 import org.springframework.stereotype.Service;
 
+/**
+ */
 @Service
 public class SuperCategoryService extends GenericService<SuperCategory, Integer> {
     // Constructor puede ser: SuperCategoryService(CrudRepository<SuperCategory, Integer> repository)
