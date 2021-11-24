@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.security.Principal;
 import java.util.Date;
 
-/*
-* Clase encargada de crear las nuevas publicaciones y guardarlas en la DB
-* */
+/**
+ * Clase encargada de crear las nuevas publicaciones y guardarlas en la DB
+ * **/
 
 @Controller
 @RequestMapping("/new-post")

@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 
+/**
+ * Clase encargada en mostrar las publicaciones organizadas por categoria
+ * **/
+
 @Controller
 public class ForumController {
     @Autowired

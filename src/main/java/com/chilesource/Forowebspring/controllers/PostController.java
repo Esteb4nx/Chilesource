@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.Date;
 
-/*
-* Clase encargada de las vistas de las publicaciones y la gestion de comentarios dentro de estas
-* */
+/**
+ * Clase encargada de las vistas de las publicaciones y la gestion de comentarios dentro de estas
+ * **/
 
 
 @Controller

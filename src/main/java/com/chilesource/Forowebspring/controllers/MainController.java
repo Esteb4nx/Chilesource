@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 
-/*
-* Clase principal de rutas, encargada de mostrar el Index de la aplicación y la creación de usuarios nuevos en el sitio.
-* */
+/**
+ * Clase principal de rutas, encargada de mostrar el Index de la aplicación y la creación de usuarios nuevos en el sitio.
+ * **/
 
 @Controller
 public class MainController {

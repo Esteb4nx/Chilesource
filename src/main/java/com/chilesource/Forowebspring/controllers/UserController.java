@@ -82,7 +82,7 @@ public class UserController {
     /**
      * Ruta formulario de edición perfil
      * El metodo recibe el id del usuario y treae sus datos en un formulario
-     * @parma id del usuario
+     * @param id del usuario
      * @return Vista editar perfil
      * **/
 
