@@ -34,6 +34,7 @@ public class ForumController {
      * @param model UI model
      * @return vista forum.html
      *
+     * <br><br>
      * Ya parece que nos alimentamos a base de tutoriales
      * @see <a href=https://spring.io/guides/gs/serving-web-content/>Servir contenido web con Spring MVC</a>
      */
