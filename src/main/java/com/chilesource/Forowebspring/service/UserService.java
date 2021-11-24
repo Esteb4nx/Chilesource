@@ -18,16 +18,35 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * Servicio correspondiente al modelo User
+ * **/
+
+
 @Service
 public class UserService extends GenericService<User, Integer> implements UserDetailsService {
 
+    /**
+     * Instancia del repositorio de Role pra sus uso en los metodos siguientes
+     * **/
     @Autowired
     private RoleRepository roleRepository;
 
+
+    /**
+     * Instancia del servicio User
+     * @param repository recibe el repositorio correspondiente al modelo
+     * **/
     public UserService(UserRepository repository) {
         super(repository);
     }
 
+
+    /**s
+     * Implementación propia de Cargar usuarios por Username
+     * @param username nombre de usuario del usuario a cargar
+     * @return Devuelve objeto UserDetails de Spring Security
+     * **/
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = findByUserName(username);
@@ -42,6 +61,12 @@ public class UserService extends GenericService<User, Integer> implements UserDe
                 authorities
         );
     }
+
+    /**
+     * Metodo buscar Usuario por Username
+     * @param name Nombre del usuario a buscar
+     * @return Resultado de la operación en el respositorio (Objeto User)
+     * **/
 
     public User findByUserName(String name) {
         return ((UserRepository) repository).findByUserName(name);
