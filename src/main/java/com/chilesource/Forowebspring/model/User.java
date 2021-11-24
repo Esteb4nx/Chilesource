@@ -35,6 +35,14 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    /**
+     * Crea una nueva entidad de tipo <i>User</i> con todos sus atributos
+     * @param id identificador auto incremental (NOT NULL)
+     * @param userName nombre de <i>User</i> (NOT NULL)
+     * @param password contraseña (NOT NULL)
+     * @param email correo electrónico
+     * @param roles conjunto de roles asignados a este <i>User</i>
+     */
     public User(int id, String userName, String password, String email, Set<Role> roles) {
         this.id = id;
         this.userName = userName;
@@ -43,6 +51,9 @@ public class User {
         this.roles = roles;
     }
 
+    /**
+     * Crea una nueva entidad de tipo <i>User</i> sin atributos
+     */
     public User() {
     }
 

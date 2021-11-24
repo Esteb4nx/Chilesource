@@ -27,6 +27,14 @@ public class Category {
     @JoinColumn(name = "super_category_id")
     private SuperCategory superCategory;
 
+    /**
+     * Crea una nueva entidad de tipo <i>Category</i> con todos sus atributos
+     * @param id identificador auto incremental (NOT NULL)
+     * @param name nombre de categoría (NOT NULL)
+     * @param description descripción de categoría
+     * @param superCategory super categoría correspondiente (NOT NULL)
+     * @param iconPath ruta del ícono
+     */
     public Category(int id, String name, String description, SuperCategory superCategory, String iconPath) {
         this.id = id;
         this.name = name;
@@ -35,6 +43,9 @@ public class Category {
         this.iconPath = iconPath;
     }
 
+    /**
+     * Crea una nueva entidad de tipo <i>Category</i> sin atributos
+     */
     public Category() {
     }
 

@@ -18,11 +18,19 @@ public class SuperCategory {
     @Column(name = "scategory_name")
     private String name;
 
+    /**
+     * Crea una nueva entidad de tipo <i>SuperCategory</i> con todos sus atributos
+     * @param id identificador auto incremental (NOT NULL)
+     * @param name nombre asignado (NOT NULL)
+     */
     public SuperCategory(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    /**
+     * Crea una nueva entidad de tipo <i>SuperCategory</i> sin atributos
+     */
     public SuperCategory() {
     }
 

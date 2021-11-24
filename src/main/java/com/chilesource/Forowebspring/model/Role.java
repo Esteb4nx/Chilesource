@@ -17,11 +17,19 @@ public class Role {
     @Column(name = "role_name")
     private String roleName;
 
+    /**
+     * Crea una nueva entidad de tipo <i>Role</i> con todos sus atributos
+     * @param id identificador auto incremental (NOT NULL)
+     * @param name nombre asignado al rol p.ej. ADMIN, USER, etc. (NOT NULL)
+     */
     public Role(int id, String name) {
         this.id = id;
         this.roleName = name;
     }
 
+    /**
+     * Crea una nueva entidad de tipo <i>Role</i> sin atributos
+     */
     public Role() {
     }
 
