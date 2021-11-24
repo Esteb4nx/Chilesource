@@ -1,9 +1,3 @@
-/*
- *  @author Jorge M.
- *  @author Esteban E.
- *  27-10-2021
- */
-
 package com.chilesource.Forowebspring.controllers;
 
 import com.chilesource.Forowebspring.model.Post;

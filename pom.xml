@@ -8,14 +8,30 @@
 		<version>2.5.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.chilesource</groupId>
-	<artifactId>Foroweb-spring</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>Foroweb-spring</name>
+	<artifactId>Foroweb-spring</artifactId> <!-- TODO: Evaluar actualizar artifact -->
+	<version>0.0.1</version>
+	<name>Chilesource</name>
 	<description>Foro web usando Spring Boot</description>
+
+	<developers>
+		<developer>
+			<name>Esteban Esparza</name>
+			<!-- <email>Agregar email si deseas, lo dejo a tu elección</email> -->
+			<url>https://github.com/esteb4nx</url>
+		</developer>
+		<developer>
+			<name>Jorge Mainhard</name>
+			<email>jmainhard01@ufromail.cl</email>
+			<url>https://github.com/jmainhard</url>
+		</developer>
+	</developers>
+
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

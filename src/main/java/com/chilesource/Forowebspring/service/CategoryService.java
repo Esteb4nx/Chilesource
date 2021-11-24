@@ -1,9 +1,3 @@
-/*
- *  @author Jorge M.
- *  @author Esteban E.
- *  23-10-2021
- */
-
 package com.chilesource.Forowebspring.service;
 
 import com.chilesource.Forowebspring.commons.GenericService;

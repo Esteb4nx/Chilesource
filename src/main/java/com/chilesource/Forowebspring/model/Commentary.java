@@ -1,11 +1,4 @@
-/*
- *  @author Jorge M.
- *  @author Esteban E.
- *  25-10-2021
- */
-
 package com.chilesource.Forowebspring.model;
-
 
 import javax.persistence.*;
 import java.sql.Date;

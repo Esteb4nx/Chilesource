@@ -1,17 +1,13 @@
-/*
- *  @author Jorge M.
- *  @author Esteban E.
- *  23-10-2021
- */
-
 package com.chilesource.Forowebspring.model;
-
-import com.chilesource.Forowebspring.model.SuperCategory;
 
 import javax.persistence.*;
 
+/**
+ * Clase <i>@Entity<i/> que representa la tabla respectiva en base de datos
+ *
+ *
+ */
 @Entity
-//@Table(name = "category")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,24 +23,9 @@ public class Category {
     @Column(name = "icon_path")
     private String iconPath;
 
-    /**
-     * Deprecated
-     * Probando relación ManyToOne L36
-     */
-//    @Column(name = "super_category_id")
-//    private int superCategoryId;
-
     @ManyToOne
     @JoinColumn(name = "super_category_id")
     private SuperCategory superCategory;
-
-    public SuperCategory getSuperCategory() {
-        return superCategory;
-    }
-
-    public void setSuperCategory(SuperCategory superCategory) {
-        this.superCategory = superCategory;
-    }
 
     public Category(int id, String name, String description, SuperCategory superCategory, String iconPath) {
         this.id = id;
@@ -82,13 +63,13 @@ public class Category {
         this.description = description;
     }
 
-//    public int getSuperCategoryId() {
-//        return superCategoryId;
-//    }
-//
-//    public void setSuperCategoryId(int superCategoryId) {
-//        this.superCategoryId = superCategoryId;
-//    }
+    public SuperCategory getSuperCategory() {
+        return superCategory;
+    }
+
+    public void setSuperCategory(SuperCategory superCategory) {
+        this.superCategory = superCategory;
+    }
 
     public String getIconPath() {
         return iconPath;

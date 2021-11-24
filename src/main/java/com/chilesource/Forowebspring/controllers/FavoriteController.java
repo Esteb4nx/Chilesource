@@ -1,9 +1,3 @@
-/*
- * @author Esteban E.
- * @author Jorge M.
- *
- */
-
 package com.chilesource.Forowebspring.controllers;
 
 import com.chilesource.Forowebspring.model.Favorite;

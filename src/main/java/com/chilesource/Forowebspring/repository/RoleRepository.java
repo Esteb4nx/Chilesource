@@ -1,8 +1,3 @@
-/*
- *  @author Jorge M.
- *  25-10-2021
- */
-
 package com.chilesource.Forowebspring.repository;
 
 import com.chilesource.Forowebspring.model.Role;

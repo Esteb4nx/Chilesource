@@ -1,9 +1,3 @@
-/*
- *  @author Jorge M.
- *  @author Esteban E.
- *  25-10-2021
- */
-
 package com.chilesource.Forowebspring.controllers;
 
 import com.chilesource.Forowebspring.model.Category;
