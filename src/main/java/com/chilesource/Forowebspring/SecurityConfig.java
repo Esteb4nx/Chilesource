@@ -1,9 +1,3 @@
-/*
- *  @author Jorge M.
- *  @author Esteban E.
- *  10-11-2021
- */
-
 package com.chilesource.Forowebspring;
 
 import org.springframework.beans.factory.annotation.Autowired;

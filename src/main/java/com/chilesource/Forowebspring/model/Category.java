@@ -3,9 +3,9 @@ package com.chilesource.Forowebspring.model;
 import javax.persistence.*;
 
 /**
- * Clase <i>@Entity<i/> que representa la tabla respectiva en base de datos
+ * Clase <i>@Entity</i> que representa la tabla <i>category</i> respectiva en base de datos
  *
- *
+ * @see <a href="https://javadoc.io/doc/jakarta.persistence/jakarta.persistence-api/latest/jakarta.persistence/jakarta/persistence/Entity.html">Entity</a>
  */
 @Entity
 public class Category {

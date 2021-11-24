@@ -4,6 +4,11 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+/**
+ * Clase <i>@Entity</i> que representa la tabla <i>favorite</i> respectiva en base de datos
+ *
+ * @see <a href="https://javadoc.io/doc/jakarta.persistence/jakarta.persistence-api/latest/jakarta.persistence/jakarta/persistence/Entity.html">Entity</a>
+ */
 @Entity
 public class Favorite {
     @Id
