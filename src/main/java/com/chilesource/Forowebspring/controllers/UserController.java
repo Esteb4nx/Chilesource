@@ -11,10 +11,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
+/**
+ * Clase encargada de los perfiles de usuario y la edición de estos
+ * **/
+
+
 // FIXME: Evaluar cambiar nombre de la clase a ProfileController por las rutas que mapea
 @Controller
 @RequestMapping("/profile")
 public class UserController {
+
+    /**
+     *Instanciación de los servicios para los modelos necesarios en el controlador.
+     * **/
 
     @Autowired
     private CategoryService categoryService;
@@ -24,6 +33,15 @@ public class UserController {
 
     @Autowired
     private PostService postService;
+
+
+    /**
+     * Ruta del perfil de usuario
+     * El metodo recibe el id del usuario y trae sus datos desde la DB
+     *
+     * @param id del usuario
+     * @return Vista de perfil
+     * **/
 
     @GetMapping
     public String profile(@RequestParam(value = "id") int id, Model model, Principal p){
@@ -61,6 +79,13 @@ public class UserController {
 
     }
 
+    /**
+     * Ruta formulario de edición perfil
+     * El metodo recibe el id del usuario y treae sus datos en un formulario
+     * @parma id del usuario
+     * @return Vista editar perfil
+     * **/
+
     @GetMapping("/edit")
     public String editProfile(@RequestParam(value = "user_id") int id, Model model, Principal p){
 
@@ -82,6 +107,13 @@ public class UserController {
     // FIXME seguridad: si el usuario edita el hidden input que se encuentra en el html
     // puede lograr duplicar o tener acceso a acciones no esperadas sobre la aplicación, ocurre también con edit/post
     // se ven expuestos atributos que no queremos que se vean cómo password o id p.ej.
+
+    /**
+     * Metodo que procesa la edición del perfil
+     * El metodo recibe el objeto User con los datos modificados y lo guarda y aplica los cambios en la DB
+     * @param user Objeto User modificado
+     * **/
+
     @PostMapping("/edit/submit")
     public String editProfileSubmit(@ModelAttribute User user) {
         userService.save(user);

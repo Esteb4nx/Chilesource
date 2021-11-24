@@ -12,8 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 
+/*
+* Clase principal de rutas, encargada de mostrar el Index de la aplicación y la creación de usuarios nuevos en el sitio.
+* */
+
 @Controller
 public class MainController {
+
+    /**
+     *Instanciación de los servicios para los modelos necesarios en el controlador.
+     * **/
 
     @Autowired
     private UserService userService;
@@ -23,6 +31,12 @@ public class MainController {
 
     @Autowired
     private SuperCategoryService superCategoryService;
+
+    /**
+     * Ruta principal de la aplicación INDEX
+     * Metodo que renderiza el index.
+     * @return index.html
+     * **/
 
     @RequestMapping("/")
     public String index(Model model, Principal p) {
@@ -39,6 +53,12 @@ public class MainController {
         return "index";
     }
 
+    /**
+     * Ruta del formulario de registro
+     * Genera un objeto usuario y setea sus datos apartir del formulario, luego se envía por POST a "/new-user"
+     * @return Vista de registro
+     * **/
+
     @RequestMapping("/register")
     public String register(Model model, Principal p) {
         model.addAttribute("categories", categoryService.findAll());
@@ -54,6 +74,13 @@ public class MainController {
         return "register";
     }
 
+    /**
+     * Ruta que registra los usuarios en la base de datos.
+     * El metodo recibe un objeto User con los datos y mediante el servicio crea el usuario en la DB
+     *
+     * @param user objeto usuario creado con los datos del formulario.
+     * **/
+
     @PostMapping("/new-user")
     public String newUser(@ModelAttribute User user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -61,20 +88,6 @@ public class MainController {
         user.setPassword(encoder.encode(user.getPassword()));
         userService.save(user);
         return "redirect:/";
-    }
-
-    @RequestMapping("/404")
-    public String error(Model model, Principal p) {
-        model.addAttribute("superCategories", superCategoryService.findAll());
-        model.addAttribute("categories", categoryService.findAll());
-
-        if (p != null) {
-            // Logged user info
-            int userId = userService.findByUserName(p.getName()).getId();
-            model.addAttribute("userId", userId);
-        }
-
-        return "404";
     }
 
 }

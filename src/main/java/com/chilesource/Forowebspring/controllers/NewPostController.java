@@ -15,9 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.security.Principal;
 import java.util.Date;
 
+/*
+* Clase encargada de crear las nuevas publicaciones y guardarlas en la DB
+* */
+
 @Controller
 @RequestMapping("/new-post")
 public class NewPostController {
+
+    /**
+     *Instanciación de los servicios para los modelos necesarios en el controlador.
+     * **/
 
     @Autowired
     private PostService postService;
@@ -27,6 +35,12 @@ public class NewPostController {
 
     @Autowired
     private CategoryService categoryService;
+
+    /**
+     * Ruta formulario nueva publicación
+     * Metodo genera un objeto Post apartir del formulario y lo envia por POST
+     * @return Vista formulario nueva publicación
+     * **/
 
     @GetMapping
     public String main(Model model, Principal p) {
@@ -41,6 +55,15 @@ public class NewPostController {
 
         return "new-post";
     }
+
+    /**
+     * Ruta guardado nuevo post
+     * El metodo recibe el objeto post, inserta la fecha donde fue creado y los guarda en la base de datos usando el
+     * servicio.
+     *
+     * @param post Objeto post con los datos.
+     * **/
+
 
     @PostMapping
     public String save(@ModelAttribute Post post, Principal p) {
