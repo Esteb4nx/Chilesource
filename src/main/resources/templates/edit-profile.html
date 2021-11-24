@@ -19,7 +19,10 @@
         <h1 style="text-align: center;">Editar perfil</h1>
         <hr>
         <div class="edit-container">
-			<form class="row g-3">
+			<form class="row g-3" th:action="@{/profile/edit/submit}" method="post">
+                <input type="hidden" name="id" th:value="${user.id}">
+                <input type="hidden" name="password" th:value="${user.password}">
+                <input type="hidden" name="userName" th:value="${user.userName}">
 				<div class="col-md-4 username-input">
 					<label for="validationDefaultUsername" class="form-label">Username</label>
 					<div class="input-group">
@@ -30,19 +33,16 @@
 				</div>
 				<div class="mb-3">
 					<label for="exampleInputEmail1" class="form-label">Email</label>
-					<input type="email" class="form-control" th:value="${user.getEmail()}" id="exampleInputEmail1" aria-describedby="emailHelp">
+					<input type="email" name="email" class="form-control" th:value="${user.getEmail()}" id="exampleInputEmail1" aria-describedby="emailHelp">
 				</div>
-				
                 <label for="inputGroupFile04">Foto de perfil (URL)</label>
-                <div class="input-group" s>
-                    <input type="text" class="form-control" id="inputGroupFile04" th:value="${user.getProfilePicture()}" aria-describedby="inputGroupFileAddon04">
+                <div class="input-group">
+                    <input type="text" name="profilePicture" class="form-control" id="inputGroupFile04" th:value="${user.getProfilePicture()}" aria-describedby="inputGroupFileAddon04">
                 </div>
-
                 <div class="form-floating">
-                    <textarea class="form-control" th:text="${user.getProfileDescription()}" id="floatingTextarea" style="min-height: 160px;"></textarea>
+                    <textarea class="form-control" name="profileDescription" th:text="${user.getProfileDescription()}" id="floatingTextarea" style="min-height: 160px;"></textarea>
                     <label for="floatingTextarea" style="margin-left: 12px;">Descripción del perfil</label>
                 </div>
-
 				<div class="col-12">
 					<button class="btn btn-primary" type="submit">Confirmar edición</button>
 				</div>

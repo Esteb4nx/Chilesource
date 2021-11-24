@@ -17,10 +17,7 @@
             Categorias
           </a>
           <ul class="dropdown-menu categorias" aria-labelledby="navbarDropdown" id="categories-dropdown">
-
             <li th:each="category : ${categories}"><a class="dropdown-item" th:text="${category.name}" th:href="@{/forum(id=${category.id})}"></a></li>
-
-            <!-- <li><a class="dropdown-item" href="#">Frontend</a></li> -->
           </ul>
         </li>
         <li th:if="(${#httpServletRequest.remoteUser})" class="nav-item">
@@ -31,11 +28,13 @@
         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
         <button class="btn search-button" type="submit">Buscar</button>
       </form>
+
+      <!-- Sesión de usuario -->
       <div th:if="(${#httpServletRequest.remoteUser})" th:inline="text" class="btn-group header-username">
         <button type="button" class="btn btn-secondary dropdown-toggle"
           style="background-color: transparent; border: none; box-shadow: none; outline:none;" data-bs-toggle="dropdown"
           aria-expanded="false">
-          <img id="username-header-img" src="/media/icons/profile-user.svg" width="20px" alt="">
+          <img id="username-header-img" th:src="@{https://avatars.dicebear.com/api/initials/}+${#httpServletRequest.remoteUser}+@{.svg?r=50&backgroundColors[]=pink&backgroundColors[]=purple&backgroundColors[]=red&backgroundColors[]=teal&backgroundColors[]=yellow&backgroundColors[]=lime&backgroundColors[]=orange&backgroundColors[]=lightGreen&backgroundColors[]=indigo&backgroundColors[]=grey&backgroundColors[]=green&backgroundColors[]=deepPurple&backgroundColors[]=deepOrange&backgroundColors[]=brown&backgroundColors[]=amber&fontSize=56}" width="22px" alt="">
           [[${#httpServletRequest.remoteUser}]]
         </button>
         <ul class="dropdown-menu dropdown-menu-end user-menu">
@@ -49,11 +48,10 @@
         </ul>
       </div>
 
-      <!-- Vista para usuarios sin inicio de sesión (Invitado) -->
-
+      <!-- Sesión de invitado -->
       <div th:unless="(${#httpServletRequest.remoteUser})" class="btn-group header-username">
         <button type="button" class="btn btn-secondary dropdown-toggle" style="background-color: transparent; border: none; box-shadow: none; outline:none;" data-bs-toggle="dropdown" aria-expanded="false">
-          <img id="username-header-img" src="/media/icons/profile-user.svg" width="20px" alt=""> Invitado
+          <img id="username-header-img" src="/media/icons/profile-user.svg" width="20px" alt="" style="filter: invert(100%) sepia(0%) saturate(2415%) hue-rotate(173deg) brightness(115%) contrast(100%);"> Invitado
         </button>
         <div class="dropdown-menu dropdown-menu-end">
           <form class="form-signin px-4 py-3" method="post" action="/perform_login" data-bitwarden-watching="1">
@@ -72,14 +70,6 @@
           <a class="dropdown-item" href="/register">No tienes cuenta? Registrate!</a>
         </div>
       </div>
-
-
-
-<!--      <div th:unless="(${#httpServletRequest.remoteUser})" class="btn-group header-username">-->
-<!--          <a class="btn btn-success me-2" th:href="@{/login}" role="button">Iniciar sesión</a>-->
-<!--          <a class="btn btn-success me-2" th:href="@{/register}" role="button">Registrarse</a>-->
-<!--      </div>-->
-
     </div>
   </div>
 </nav>

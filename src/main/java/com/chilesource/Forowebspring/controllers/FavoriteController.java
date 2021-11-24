@@ -1,6 +1,7 @@
 package com.chilesource.Forowebspring.controllers;
 
 import com.chilesource.Forowebspring.model.Favorite;
+import com.chilesource.Forowebspring.service.CategoryService;
 import com.chilesource.Forowebspring.service.FavoriteService;
 import com.chilesource.Forowebspring.service.PostService;
 import com.chilesource.Forowebspring.service.UserService;
@@ -14,8 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 import java.util.Date;
 
+/**
+ * Clase encargada de enrutar, mostrar, borrar y crear favoritos
+ * **/
+
 @Controller
 public class FavoriteController {
+
+    /**
+     *Instanciación de los servicios para los modelos necesarios en el controlador.
+     * **/
 
     @Autowired
     private FavoriteService favoriteService;
@@ -26,10 +35,21 @@ public class FavoriteController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private CategoryService categoryService;
+
+    /**
+     * Ruta favoritos.
+     * Recibe id del usuario por parametro para buscarlo en la base de datos.
+     * @param id del usuario.
+     * @return Vista de favoritos.
+     * **/
+
     @GetMapping("/favorites")
     public String favorites(@RequestParam(value = "user_id") int id, Model model, Principal p){
         model.addAttribute("user", userService.findById(id));
         model.addAttribute("favorites", favoriteService.findAllByAuthorIdOrderByDateAsc(id));
+        model.addAttribute("categories", categoryService.findAll()); // component header query
         boolean isAuthor = false;
 
         if (p != null) {
@@ -42,6 +62,14 @@ public class FavoriteController {
 
         return "favorites";
     }
+
+    /**
+     * Metodo para añadir un favorito.
+     * Se recibe los datos de la publicación mediante GET en formato objeto, se genera la fecha de creación del fav y
+     * añade al objeto Favorite.
+     * @param id id del post a añadirse a favoritos.
+     * @param favorite objeto favorito creado.
+     * **/
 
     @GetMapping("/favorite/add")
     public String addFavorite(@RequestParam(value = "post_id") int id,
@@ -59,6 +87,12 @@ public class FavoriteController {
         favoriteService.save(favorite);
         return "redirect:/favorites?user_id=" + favorite.getUser().getId();
     }
+
+    /**
+     * Ruta para eliminar favoritos.
+     * Se pasa el id del favorito por parametro y se borra de la base de datos.
+     * @param id id del favorito.
+     * **/
 
     @GetMapping("/favorite/delete")
     public String deleteFavorite(@RequestParam(value = "fav_id") int id){

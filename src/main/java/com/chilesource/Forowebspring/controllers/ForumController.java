@@ -1,8 +1,3 @@
-/*
- *  @author Jorge M.
- *  25-10-2021
- */
-
 package com.chilesource.Forowebspring.controllers;
 
 import com.chilesource.Forowebspring.model.Category;
@@ -16,6 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+
+/**
+ * Clase encargada en mostrar las publicaciones organizadas por categoria
+ * **/
 
 @Controller
 public class ForumController {
@@ -35,6 +34,7 @@ public class ForumController {
      * @param model UI model
      * @return vista forum.html
      *
+     * <br><br>
      * Ya parece que nos alimentamos a base de tutoriales
      * @see <a href=https://spring.io/guides/gs/serving-web-content/>Servir contenido web con Spring MVC</a>
      */

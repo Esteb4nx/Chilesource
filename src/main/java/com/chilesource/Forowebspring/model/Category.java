@@ -1,16 +1,13 @@
-/*
- *  @author Jorge M.
- *  23-10-2021
- */
-
 package com.chilesource.Forowebspring.model;
-
-import com.chilesource.Forowebspring.model.SuperCategory;
 
 import javax.persistence.*;
 
+/**
+ * Clase <i>@Entity</i> que representa la tabla <i>category</i> respectiva en base de datos
+ *
+ * @see <a href="https://javadoc.io/doc/jakarta.persistence/jakarta.persistence-api/latest/jakarta.persistence/jakarta/persistence/Entity.html">Entity</a>
+ */
 @Entity
-//@Table(name = "category")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,25 +23,18 @@ public class Category {
     @Column(name = "icon_path")
     private String iconPath;
 
-    /**
-     * Deprecated
-     * Probando relación ManyToOne L36
-     */
-//    @Column(name = "super_category_id")
-//    private int superCategoryId;
-
     @ManyToOne
     @JoinColumn(name = "super_category_id")
     private SuperCategory superCategory;
 
-    public SuperCategory getSuperCategory() {
-        return superCategory;
-    }
-
-    public void setSuperCategory(SuperCategory superCategory) {
-        this.superCategory = superCategory;
-    }
-
+    /**
+     * Crea una nueva entidad de tipo <i>Category</i> con todos sus atributos
+     * @param id identificador auto incremental (NOT NULL)
+     * @param name nombre de categoría (NOT NULL)
+     * @param description descripción de categoría
+     * @param superCategory super categoría correspondiente (NOT NULL)
+     * @param iconPath ruta del ícono
+     */
     public Category(int id, String name, String description, SuperCategory superCategory, String iconPath) {
         this.id = id;
         this.name = name;
@@ -53,6 +43,9 @@ public class Category {
         this.iconPath = iconPath;
     }
 
+    /**
+     * Crea una nueva entidad de tipo <i>Category</i> sin atributos
+     */
     public Category() {
     }
 
@@ -81,13 +74,13 @@ public class Category {
         this.description = description;
     }
 
-//    public int getSuperCategoryId() {
-//        return superCategoryId;
-//    }
-//
-//    public void setSuperCategoryId(int superCategoryId) {
-//        this.superCategoryId = superCategoryId;
-//    }
+    public SuperCategory getSuperCategory() {
+        return superCategory;
+    }
+
+    public void setSuperCategory(SuperCategory superCategory) {
+        this.superCategory = superCategory;
+    }
 
     public String getIconPath() {
         return iconPath;

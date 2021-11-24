@@ -1,15 +1,13 @@
-/*
- *  @author Jorge M.
- *  25-10-2021
- */
-
 package com.chilesource.Forowebspring.model;
 
-
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 
+/**
+ * Clase <i>@Entity</i> que representa la tabla <i>commentary</i> respectiva en base de datos
+ *
+ * @see <a href="https://javadoc.io/doc/jakarta.persistence/jakarta.persistence-api/latest/jakarta.persistence/jakarta/persistence/Entity.html">Entity</a>
+ */
 @Entity
 public class Commentary {
     @Id
@@ -35,6 +33,15 @@ public class Commentary {
     private User user;
 
 
+    /**
+     * Crea una nueva entidad de tipo Commentary con todos sus atributos
+     * @param id identificador auto incremental (NOT NULL)
+     * @param content contenido de comentario (NOT NULL)
+     * @param date fecha de publicación (NOT NULL)
+     * @param likes votos (No implementado aún)
+     * @param post post asociado al comentario (NOT NULL)
+     * @param user autor del comentario (NOT NULL)
+     */
     public Commentary(int id, String content, Timestamp date, int likes, Post post, User user) {
         this.id = id;
         this.content = content;
@@ -44,6 +51,9 @@ public class Commentary {
         this.user = user;
     }
 
+    /**
+     * Crea una nueva entidad de tipo Commentary sin atributos
+     */
     public Commentary() {
     }
 

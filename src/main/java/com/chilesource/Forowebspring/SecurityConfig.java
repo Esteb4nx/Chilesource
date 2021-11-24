@@ -1,8 +1,3 @@
-/*
- *  @author Jorge M.
- *  10-11-2021
- */
-
 package com.chilesource.Forowebspring;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/post/delete**").hasAuthority("ADMIN")
                     .antMatchers("/new-post", "/edit**").hasAnyAuthority("ADMIN", "USER")
                     .antMatchers(resources).permitAll()
-                    .antMatchers("/", "/post**", "/forum**", "/login", "/register", "/new-user").permitAll()
+                    .antMatchers("/", "/post**", "/forum**", "/register", "/new-user").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()

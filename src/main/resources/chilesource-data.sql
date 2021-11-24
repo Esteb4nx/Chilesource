@@ -25,10 +25,10 @@ VALUES (NULL, 'PC', 'Debate y temáticas relacionadas al armado de computadores 
 INSERT INTO role(role_name)
 VALUES ('GUEST'),('USER'),('ADMIN');
 
-INSERT INTO user (user_id, user_name, user_password, user_email, profile_description, profile_picture)
-VALUES (1, 'Esteban', '123', 'admin@example.com', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt fugit at tenetur quia atque vero, expedita voluptatibus eveniet natus beatae nisi magnam voluptates? Minus excepturi eligendi necessitatibus suscipit et officiis?', '/media/img/profile-picture.jpg'),
-       (2, 'Jorge', '123', 'admin@example.com', 'Lorem ipsum dolor sit amet, consectetur adip', 'https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture.jpg'),
-       (3, 'Administrador', '123', 'admin@example.com', 'Lorem ipsum dolor sit amet, consectetur adip', 'https://scontent.fzco1-1.fna.fbcdn.net/v/t31.18172-8/16825970_748869598613762_9006949948895762754_o.jpg?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=PxqCs5YLgO8AX-dJovO&_nc_ht=scontent.fzco1-1.fna&oh=2a9ff0bb897953035dc6da10850f1219&oe=619AB6D6');
+# Dummy users, passwords: 123
+INSERT INTO chilesourcedb.user (user_id, user_name, user_password, user_email, profile_description, profile_picture) VALUES (1, 'Esteban', '$2a$10$Sbmt3Zvxs1v3SiWruDZRWuwXZJsUBSnnd3Fp92kkoHdn5bowz7zbq', 'admin@example.com', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt fugit at tenetur quia atque vero, expedita voluptatibus eveniet natus beatae nisi magnam voluptates? Minus excepturi eligendi necessitatibus suscipit et officiis?', '/media/img/profile-picture.jpg');
+INSERT INTO chilesourcedb.user (user_id, user_name, user_password, user_email, profile_description, profile_picture) VALUES (2, 'Jorge', '$2a$10$yCHU1TUw4zvfmATL.Rv7C.jkNz8HTNWHm4K8LR6kz7YgcMSPauvbC', 'admin@example.com', 'Lorem ipsum dolor sit amet, consectetur adip', 'https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture.jpg');
+INSERT INTO chilesourcedb.user (user_id, user_name, user_password, user_email, profile_description, profile_picture) VALUES (3, 'Administrador', '$2a$10$1WVjPmAIxJgeOzqkXlC/WuxJMiVLNbns9iCLeEC.tpAXCLLC7zJ0C', 'admin@example.com', 'Lorem ipsum dolor sit amet, consectetur adip', 'https://scontent.fzco1-1.fna.fbcdn.net/v/t31.18172-8/16825970_748869598613762_9006949948895762754_o.jpg?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=PxqCs5YLgO8AX-dJovO&_nc_ht=scontent.fzco1-1.fna&oh=2a9ff0bb897953035dc6da10850f1219&oe=619AB6D6');
 
 INSERT INTO user_role (user_id, role_id) VALUES (1, 3), (2, 3), (3, 3);
 

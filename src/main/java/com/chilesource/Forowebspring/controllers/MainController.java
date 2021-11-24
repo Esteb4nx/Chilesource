@@ -12,8 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 
+/**
+ * Clase principal de rutas, encargada de mostrar el Index de la aplicación y la creación de usuarios nuevos en el sitio.
+ * **/
+
 @Controller
 public class MainController {
+
+    /**
+     *Instanciación de los servicios para los modelos necesarios en el controlador.
+     * **/
 
     @Autowired
     private UserService userService;
@@ -24,9 +32,11 @@ public class MainController {
     @Autowired
     private SuperCategoryService superCategoryService;
 
-    @Autowired
-    private BCryptPasswordEncoder encoder;
-
+    /**
+     * Ruta principal de la aplicación INDEX
+     * Metodo que renderiza el index.
+     * @return index.html
+     * **/
 
     @RequestMapping("/")
     public String index(Model model, Principal p) {
@@ -43,6 +53,12 @@ public class MainController {
         return "index";
     }
 
+    /**
+     * Ruta del formulario de registro
+     * Genera un objeto usuario y setea sus datos apartir del formulario, luego se envía por POST a "/new-user"
+     * @return Vista de registro
+     * **/
+
     @RequestMapping("/register")
     public String register(Model model, Principal p) {
         model.addAttribute("categories", categoryService.findAll());
@@ -58,34 +74,20 @@ public class MainController {
         return "register";
     }
 
+    /**
+     * Ruta que registra los usuarios en la base de datos.
+     * El metodo recibe un objeto User con los datos y mediante el servicio crea el usuario en la DB
+     *
+     * @param user objeto usuario creado con los datos del formulario.
+     * **/
+
     @PostMapping("/new-user")
     public String newUser(@ModelAttribute User user) {
-        // Debug
-        System.out.println(user);
-
-        // Save
-//        userService.saveUser(user);
-        user.setProfilePicture("https://avatars.dicebear.com/api/initials/"+user.getUserName()+".svg");
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setProfilePicture("https://avatars.dicebear.com/api/initials/"+user.getUserName()+".svg?&backgroundColors[]=pink&backgroundColors[]=purple&backgroundColors[]=red&backgroundColors[]=teal&backgroundColors[]=yellow&backgroundColors[]=lime&backgroundColors[]=orange&backgroundColors[]=lightGreen&backgroundColors[]=indigo&backgroundColors[]=grey&backgroundColors[]=green&backgroundColors[]=deepPurple&backgroundColors[]=deepOrange&backgroundColors[]=brown&backgroundColors[]=amber&fontSize=56");
         user.setPassword(encoder.encode(user.getPassword()));
         userService.save(user);
-
-        // Debug
-        System.out.println(user);
         return "redirect:/";
-    }
-
-    @RequestMapping("/404")
-    public String error(Model model, Principal p) {
-        model.addAttribute("superCategories", superCategoryService.findAll());
-        model.addAttribute("categories", categoryService.findAll());
-
-        if (p != null) {
-            // Logged user info
-            int userId = userService.findByUserName(p.getName()).getId();
-            model.addAttribute("userId", userId);
-        }
-
-        return "404";
     }
 
 }

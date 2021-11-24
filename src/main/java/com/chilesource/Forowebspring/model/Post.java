@@ -1,15 +1,13 @@
-/*
- *  @author Jorge M.
- *  25-10-2021
- */
-
 package com.chilesource.Forowebspring.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-
-
+/**
+ * Clase <i>@Entity</i> que representa la tabla <i>post</i> respectiva en base de datos
+ *
+ * @see <a href="https://javadoc.io/doc/jakarta.persistence/jakarta.persistence-api/latest/jakarta.persistence/jakarta/persistence/Entity.html">Entity</a>
+ */
 @Entity
 public class Post {
     @Id
@@ -34,6 +32,15 @@ public class Post {
     @JoinColumn(name = "author_id")
     private User author;
 
+    /**
+     * Crea una nueva entidad de tipo <i>Post</i> con todos sus atributos
+     * @param id identificador auto incremental (NOT NULL)
+     * @param title título asignado a este <i>Post</i> (NOT NULL)
+     * @param body contenido o cuerpo (NOT NULL)
+     * @param date fecha de creación (NOT NULL)
+     * @param category categoría asociada (NOT NULL)
+     * @param author autor (NOT NULL)
+     */
     public Post(int id, String title, String body, Timestamp date, Category category, User author) {
         this.id = id;
         this.title = title;
@@ -43,6 +50,9 @@ public class Post {
         this.author = author;
     }
 
+    /**
+     * Crea una nueva entidad de tipo <i>Post</i> sin atributos
+     */
     public Post() {
     }
 

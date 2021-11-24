@@ -1,13 +1,13 @@
-/*
- *  @author Jorge M.
- *  25-10-2021
- */
-
 package com.chilesource.Forowebspring.model;
 
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Clase <i>@Entity</i> que representa la tabla <i>user</i> respectiva en base de datos
+ *
+ * @see <a href="https://javadoc.io/doc/jakarta.persistence/jakarta.persistence-api/latest/jakarta.persistence/jakarta/persistence/Entity.html">Entity</a>
+ */
 @Entity
 public class User {
     @Id
@@ -30,11 +30,19 @@ public class User {
     @Column(name = "profile_picture")
     private String profilePicture;
 
-    // FIXME: revisar este tema, roles serán hardcodeados hasta entonces
+    // FIXME: revisar este campo, roles serán hardcodeados hasta entonces
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    /**
+     * Crea una nueva entidad de tipo <i>User</i> con todos sus atributos
+     * @param id identificador auto incremental (NOT NULL)
+     * @param userName nombre de <i>User</i> (NOT NULL)
+     * @param password contraseña (NOT NULL)
+     * @param email correo electrónico
+     * @param roles conjunto de roles asignados a este <i>User</i>
+     */
     public User(int id, String userName, String password, String email, Set<Role> roles) {
         this.id = id;
         this.userName = userName;
@@ -43,6 +51,9 @@ public class User {
         this.roles = roles;
     }
 
+    /**
+     * Crea una nueva entidad de tipo <i>User</i> sin atributos
+     */
     public User() {
     }
 
