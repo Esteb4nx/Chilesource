@@ -51,15 +51,20 @@ public class UserService extends GenericService<User, Integer> implements UserDe
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = findByUserName(username);
 
-        // Aqui implementar lógica de obtener permisos de la base de datos (Esto es harcode)
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ADMIN"));
+        if(user != null){
+            // Aqui implementar lógica de obtener permisos de la base de datos (Esto es harcode)
+            List<GrantedAuthority> authorities = new ArrayList<>();
+            authorities.add(new SimpleGrantedAuthority("ADMIN"));
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getUserName(),
-                user.getPassword(),
-                authorities
-        );
+            return new org.springframework.security.core.userdetails.User(
+                    user.getUserName(),
+                    user.getPassword(),
+                    authorities
+            );
+        }else {
+            throw new UsernameNotFoundException("Usuario no encontrado");
+        }
+
     }
 
     /**
