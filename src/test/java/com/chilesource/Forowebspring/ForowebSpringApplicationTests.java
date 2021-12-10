@@ -2,6 +2,7 @@ package com.chilesource.Forowebspring;
 
 import com.chilesource.Forowebspring.model.User;
 import com.chilesource.Forowebspring.repository.UserRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,7 @@ class ForowebSpringApplicationTests {
 	private BCryptPasswordEncoder encoder;
 
 	@Test
+	@Disabled
 	public void newUserTest() {
 		User user = new User();
 		user.setUserName("user");

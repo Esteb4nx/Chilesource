@@ -28,7 +28,7 @@ Asegurados los pasos 1 y 3 de la etapa anterior:
 
  - Luego ejecutar `.jar` con: `java -jar target/Foroweb-spring-0.0.1.jar`
  
-Si todo resultó correcto la aplicación de Chilesource se encuentra disponible en [localhost:8080](http://localhost:8080/)
+Si todo resultó correcto la aplicación de Chilesource se encuentra disponible en [localhost:8080](http://localhost:8080)
 
 ---
 Iniciado en sept. 2021  

@@ -26,8 +26,12 @@ public class PostService extends GenericService<Post, Integer> {
      * @param categoryId ID de la category asociada
      * @return resultado de la operación realizada por el repositorio
      * **/
-    public Iterable<Post> findAllByCategoryId(int categoryId) {
-        return ((PostRepository) repository).findAllByCategoryId(categoryId);
+    public Iterable<Post> findAllByCategoryId(int categoryId) throws IllegalArgumentException {
+        if (categoryId > 0) {
+            return ((PostRepository) repository).findAllByCategoryId(categoryId);
+        } else {
+            throw new IllegalArgumentException("Id categoría debe ser mayor que 0");
+        }
     }
 
     /**
@@ -36,8 +40,12 @@ public class PostService extends GenericService<Post, Integer> {
      * @return resltado de la operación realizada por el repositorio
      * **/
 
-    public Iterable<Post> findAllByCategoryIdOrderByDateDesc(int categoryId){
-        return ((PostRepository) repository).findAllByCategoryIdOrderByDateDesc(categoryId);
+    public Iterable<Post> findAllByCategoryIdOrderByDateDesc(int categoryId) throws IllegalArgumentException {
+        if (categoryId > 0) {
+            return ((PostRepository) repository).findAllByCategoryIdOrderByDateDesc(categoryId);
+        } else {
+            throw new IllegalArgumentException("Id categoría debe ser mayor que 0");
+        }
     }
 
     /**
@@ -46,8 +54,12 @@ public class PostService extends GenericService<Post, Integer> {
      * @return resltado de la operación realizada por el repositorio
      * **/
 
-    public Iterable<Post> findAllByAuthorIdOrderByDateAsc(int userId){
-        return ((PostRepository) repository).findAllByAuthorIdOrderByDateAsc(userId);
+    public Iterable<Post> findAllByAuthorIdOrderByDateAsc(int userId) throws IllegalArgumentException {
+        if (userId > 0) {
+            return ((PostRepository) repository).findAllByAuthorIdOrderByDateAsc(userId);
+        } else {
+            throw new IllegalArgumentException("Id usuario debe ser mayor que 0");
+        }
     }
 
 }
