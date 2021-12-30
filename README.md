@@ -35,4 +35,4 @@ Iniciado en sept. 2021
 Fin desarrollo en nov. 2021
 
 Creado por:
-[Esteb4nx](https://github.com/Esteb4nx/) y [jmainhard](https://github.com/jmainhard)
+[Esteb4nx](https://github.com/Esteb4nx/) y [jmainhard](https://github.com/jmainhard) en el proceso de aprender las tecnologías señaladas y como parte de una evaluación académica
