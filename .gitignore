@@ -19,6 +19,9 @@ target/
 *.iml
 *.ipr
 
+### JPA Buddy Plugin ###
+.jpb
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
